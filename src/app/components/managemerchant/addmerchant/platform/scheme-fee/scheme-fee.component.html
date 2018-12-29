@@ -1,0 +1,148 @@
+<div [formGroup]="group">
+    <!-- Scheme details start -->
+    <fieldset>
+      <legend>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.TITLE' | translate}}</legend>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.SCHEME' | translate}} <span class="form-field-required">*</span></label>
+            <ng-select
+              class="custom-select-dd groups-countries"
+              name="scheme"
+              [clearable]="false"
+              [multiple]="true"
+              [closeOnSelect]="true"
+              (change)="onSchemeChange($event)"
+              (remove)="onSchemeRemove($event)"
+              bindLabel="schemeName"
+              placeholder="Select Schemes"
+              formControlName="scheme">
+              <ng-option *ngFor="let scheme of schemesList"
+                         [value]="scheme"
+                        [disabled]="scheme['disabled']">{{scheme['schemeName']}}
+              </ng-option>
+            </ng-select>
+          <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.scheme" [errMsg]="{'required':'SCHEME_REQUIRED'}"></app-validation-error>
+
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <!-- Scheme details end-->
+
+    <!-- Registration fee details start -->
+    <fieldset>
+      <legend>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.REGISTRATION_FEE' | translate}}</legend>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label *ngIf="group.controls['global'].value && group.controls['selectionType'].value == 'GROUP'">{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2C' | translate}} <span class="form-field-required">*</span></label>
+            <label *ngIf="(group.controls['domestic'].value && group.controls['selectionType'].value == 'COUNTRY')">{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.DOMESTIC_B2C' | translate}}
+              <span class="form-field-required">*</span></label>
+            <input type="text"
+                placeholder="0.00"
+                [restrict]="REG_EXP_CONFIG.DECIMAL"
+                [maxlength]="MAX_LENGTH_CONFIG.REGISTARTION_FEE_B2C"
+                class="form-control"
+                (keyup)="formValueChanged()"
+                formControlName="registrationFeeB2c">
+            <app-validation-error
+              [isFormSubmitted]="isFormSubmitted" [control]="group.controls.registrationFeeB2c"
+              [errMsg]="{'required':'GLOBAL_PLATFORM_B2C_REQUIRED','minlength':'GLOBAL_PLATFORM_B2C_MIN_LENGTH','decimalWithPrecision':'REGISTARTION_FEE_B2C_NUMERIC',param:{sectionName:group.value.name}}">
+
+            </app-validation-error>
+
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.AGRREMENT_B2C' | translate}} <span class="form-field-required">*</span></label>
+            <input type="text" [restrict]="REG_EXP_CONFIG.DECIMAL"
+                placeholder="0"
+                [maxlength]="MAX_LENGTH_CONFIG.AGREEMENT_PERIOD_B2C"
+                class="form-control"
+                (keyup)="formValueChanged()"
+                formControlName="agreementPeriodB2c">
+                <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.agreementPeriodB2c" [errMsg]="{'required':'AGREEMENT_PLATFORM_B2C_REQUIRED','minlength':'AGREEMENT_PLATFORM_B2C_MIN_LENGTH'}"></app-validation-error>
+          </div>
+
+          <div class="form-group">
+            <label *ngIf="group.controls['global'].value && group.controls['selectionType'].value == 'GROUP'">{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2B' | translate}} <span class="form-field-required">*</span></label>
+            <label *ngIf="group.controls['domestic'].value && group.controls['selectionType'].value == 'COUNTRY'">{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.DOMESTIC_B2B' | translate}} <span class="form-field-required">*</span></label>
+            <input type="text" [restrict]="REG_EXP_CONFIG.DECIMAL"
+                placeholder="0.00"
+                [maxlength]="MAX_LENGTH_CONFIG.REGISTARTION_FEE_B2B"
+                class="form-control"
+                (keyup)="formValueChanged()"
+                formControlName="registrationFeeB2b">
+                <app-validation-error
+                  [isFormSubmitted]="isFormSubmitted"
+                  [control]="group.controls.registrationFeeB2b"
+                  [errMsg]="{'required':'GLOBAL_PLATFORM_B2B_REQUIRED','minlength':'GLOBAL_PLATFORM_B2B_MIN_LENGTH','decimalWithPrecision':'REGISTARTION_FEE_B2B_NUMERIC', param:{sectionName:group.value.name}}"></app-validation-error>
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.AGRREMENT_B2B' | translate}} <span class="form-field-required">*</span></label>
+            <input type="text" [restrict]="REG_EXP_CONFIG.DECIMAL"
+                   placeholder="0"
+                   [maxlength]="MAX_LENGTH_CONFIG.AGREEMENT_PERIOD_B2B"
+                   class="form-control"
+                   (keyup)="formValueChanged()"
+                   formControlName="agreementPeriodB2b">
+            <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.agreementPeriodB2b" [errMsg]="{'required':'AGREEMENT_PERIOD_B2B_REQUIRED','minlength':'AGREEMENT_PERIOD_B2B_MIN_LENGTH'}"></app-validation-error>
+          </div>
+
+        </div>
+      </div>
+    </fieldset>
+    <!-- Registration fee details end-->
+
+    <!-- Transaction fee details start -->
+    <fieldset>
+      <legend>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.TRANSECTION_FEE' | translate}}</legend>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label *ngIf="group.controls['global'].value && group.controls['selectionType'].value == 'GROUP'">{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2C_PERCENT' | translate}} <span class="form-field-required">*</span></label>
+            <label *ngIf="group.controls['domestic'].value && group.controls['selectionType'].value == 'COUNTRY'">{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.DOMESTIC_B2C_PERCENT' | translate}} <span class="form-field-required">*</span></label>
+            <input type="text" [restrict]="REG_EXP_CONFIG.DECIMAL"
+                   [maxlength]="MAX_LENGTH_CONFIG.AGREEMENT_PERIOD_B2B"
+                   placeholder="0.00"
+                   class="form-control"
+                   (keyup)="formValueChanged()"
+                   formControlName="transactionFeeB2c">
+                   <app-validation-error
+                     [isFormSubmitted]="isFormSubmitted"
+                     [control]="group.controls.transactionFeeB2c"
+                     [errMsg]="{'required':'GLOBAL_PLATFORM_B2C_PERCENTAGE_REQUIRED','minlength':'GLOBAL_PLATFORM_B2C_PERCENTAGE_MIN_LENGTH','decimalWithPrecision':'TRANSECTION_FEE_B2C_NUMERIC', param:{sectionName:group.value.name}}"></app-validation-error>
+          </div>
+
+          <div class="form-group">
+            <label *ngIf="group.controls['global'].value && group.controls['selectionType'].value == 'GROUP'">{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2B_PERCENT' | translate}} <span class="form-field-required">*</span></label>
+            <label *ngIf="group.controls['domestic'].value && group.controls['selectionType'].value == 'COUNTRY'">{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.DOMESTIC_B2B_PERCENT' | translate}} <span class="form-field-required">*</span></label>
+            <input type="text" [restrict]="REG_EXP_CONFIG.DECIMAL"
+                   placeholder="0.00"
+                   [maxlength]="MAX_LENGTH_CONFIG.AGREEMENT_PERIOD_B2B"
+                   class="form-control"
+                   (keyup)="formValueChanged()"
+                   formControlName="transactionFeeB2b">
+            <app-validation-error
+              [isFormSubmitted]="isFormSubmitted"
+              [control]="group.controls.transactionFeeB2b"
+              [errMsg]="{'required':'GLOBAL_PLATFORM_B2B_PERCENTAGE_REQUIRED','minlength':'GLOBAL_PLATFORM_B2B_PERCENTAGE_MIN_LENGTH','decimalWithPrecision':'TRANSECTION_FEE_B2B_NUMERIC',param:{sectionName:group.value.name}}"></app-validation-error>
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.REMARKS' | translate}}</label>
+            <textarea type="text" [maxlength]="MAX_LENGTH_CONFIG.OTHERS"
+                      class="form-control"
+                      (keyup)="formValueChanged()"
+                      placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.SCHEME_FEE.REMARKS'| translate }}"
+                      formControlName="remarks"></textarea>
+            <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.remarks" [errMsg]="{'minlength':'PRODUCT_REMARK',param:{sectionName:group.value.name}}"></app-validation-error>
+          </div>
+
+        </div>
+      </div>
+    </fieldset>
+    <!-- Transaction fee details end-->
+</div>

@@ -1,0 +1,93 @@
+<div [formGroup]="group">
+    <!-- Delivery details start -->
+    <fieldset>
+      <legend>Delivery Mode</legend>
+      <div class="row">
+        <div class="col">
+          <div class="form-group custom-control custom-checkbox">
+            <input type="checkbox"  class="custom-control-input" attr.id="delivery-mode-normal-{{group.controls.name.value}}"  (change)="formValueChanged()" formControlName="normal">
+            <label class="custom-control-label" attr.for="delivery-mode-normal-{{group.controls.name.value}}">{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE.NORMAL'| translate }}</label>
+            <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.normal" [errMsg]="{'required':'DELIVERY_MODE_NORMAL_REQUIRED'}"></app-validation-error>
+          </div>
+
+          <div class="form-group custom-control custom-checkbox">
+            <input type="checkbox"  class="custom-control-input" attr.id="delivery-mode-frozen-{{group.controls.name.value}}"  (change)="formValueChanged()" formControlName="frozen">
+            <label class="custom-control-label" attr.for="delivery-mode-frozen-{{group.controls.name.value}}">{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE.FROZEN'| translate }}</label>
+            <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.normal" [errMsg]="{'required':'DELIVERY_MODE_NORMAL_FROZEN'}"></app-validation-error>
+          </div>
+
+          <div class="form-group custom-control custom-checkbox">
+            <input type="checkbox"  class="custom-control-input" attr.id="delivery-mode-merchant-{{group.controls.name.value}}"  (change)="formValueChanged()" formControlName="merchantDelivery">
+            <label class="custom-control-label" attr.for="delivery-mode-merchant-{{group.controls.name.value}}">{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE.TYPE'| translate }}</label>
+            <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.normal" [errMsg]="{'required':'DELIVERY_MODE_NORMAL_MERCHANT'}"></app-validation-error>
+          </div>
+
+          <div class="form-group custom-control custom-checkbox">
+            <input type="checkbox"  class="custom-control-input" attr.id="delivery-mode-others-{{group.controls.name.value}}"  (change)="formValueChanged()" formControlName="other">
+            <label class="custom-control-label" attr.for="delivery-mode-others-{{group.controls.name.value}}">
+              {{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE.OTHERS'| translate }}
+              <span *ngIf="group.controls.other.value" class="form-field-required">*</span>
+            </label>
+            <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.other" [errMsg]="{'required':'DELIVERY_MODE_NORMAL_OTHER'}"></app-validation-error>
+          </div>
+          <!-- Delivery Mode – Others is Checked textbox show -->
+
+          <div class="form-group" >
+            <input type="text"
+                [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_SPACE_HYPHEN"
+                [maxlength]="MAX_LENGTH_CONFIG.OTHERS" class="form-control"
+                (keyup)="formValueChanged()"
+                placeholder="Delivery Mode other"
+                formControlName="otherDetail" >
+                <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.otherDetail" [errMsg]="{'required':'OTHER_DETAIL_REQUIRED','minlength':'OTHER_DETAIL_LENGTH'}"></app-validation-error>
+          </div>
+          <!-- # end -->
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.ESTIMATE'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text"
+                (keyup)="formValueChanged()"
+                [maxlength]="MAX_LENGTH_CONFIG.SKU_NUMBER"
+                [restrict]="REG_EXP_CONFIG.NUMERIC"
+                class="form-control"
+                placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.DELIVERY_DETAILS.ESTIMATE'| translate }}"
+                formControlName="estimateSku">
+            <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.estimateSku" [errMsg]="{'required':'ESTIMATED_SKU_REQUIRED','minlength':'ESTIMATED_SKU_LENGTH'}"></app-validation-error>
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.SHIPPING_FEE'| translate }} <span class="form-field-required">*</span></label>
+            <select class="form-control" formControlName="shippingFee"  (change)="formValueChanged()">
+              <option value="">
+                  {{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.DELIVERY_DETAILS.SHIPPING_FEE'| translate }}
+              </option>
+              <option value="1">
+                Yes
+              </option>
+              <option value="0">
+                No
+              </option>
+            </select>
+            <app-validation-error [isFormSubmitted]="isFormSubmitted" [control]="group.controls.shippingFee" [errMsg]="{'required':'SHIPPING_REQUIRED'}"></app-validation-error>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <!-- Delivery details end-->
+
+    <!-- Scheme details start -->
+    <app-scheme-fee [isFormSubmitted]="isFormSubmitted" [group]="group"></app-scheme-fee>
+    <!-- Scheme details start -->
+
+    <!-- Address start -->
+    <app-address [storeDetail]="storeDetail" [group]="group"></app-address>
+    <!-- Address end -->
+
+  <div class="row action-button mb-3">
+      <div class="col-12 text-right">
+        <button type="button" class="btn btn-sm btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="saveData()">
+          {{'COMMON.BUTTONS.SAVE'| translate }}
+        </button>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,182 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.EDIT'| translate }}" (click)="onEdit()" *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.BANNERS.EDIT)">
+          {{'COMMON.BUTTONS.EDIT'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="onDelete()" *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.BANNERS.DELETE)">
+          {{'COMMON.BUTTONS.DELETE'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered detail-view">
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'COMMON.LABELS.ID'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ banner.entityId }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.BANNER_NAME'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ banner.bannerName }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.BANNER_LANGUAGE'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{banner.bannerLanguage}} </span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.BANNER_PARENT'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{banner.parentName}} </span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.IMAGE'| translate }}</strong>
+      </td>
+      <td>
+        <span><img [src]="banner.image" width="100" height="100"/> </span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.START_DATE'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ banner.startDate }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.END_DATE'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ banner.endDate }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.LOCATION'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ getLocationDetail(banner.location) }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.SPECIFIED_PAGE'| translate }}</strong>
+      </td>
+      <td>
+        <div *ngFor="let page of banner.specifiedPage">{{ page['pageTitle'] }}</div>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.SPECIFIED_CATEGORIES'| translate }}</strong>
+      </td>
+      <td>
+        <div *ngFor="let category of banner.categories">{{ category['categoryName'] }}</div>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.SPECIFIED_PRODUCTS'| translate }}</strong>
+      </td>
+      <td>
+        <div *ngFor="let product of banner.products">{{ product['productName'] }}</div>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.WEB_STATUS'| translate }}</strong>
+      </td>
+      <td>
+        <span class="badge badge-{{ banner.webStatusKey }}">{{ banner.webStatusKey }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.MOBILE_STATUS'| translate }}</strong>
+      </td>
+      <td>
+        <span class="badge badge-{{ banner.mobileStatusKey }}">{{ banner.mobileStatusKey }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.SORT_ORDER'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ banner.sortOrder }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.CREATED_BY'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ banner.createdByName }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.LAST_UPDATED'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ banner.updatedDate }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'BANNERS.FORM_LABELS.CREATED_ON'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ banner.createdDate }}</span>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,105 @@
+<div [formGroup]="group">
+  <!-- Product And Revenue details start-->
+    <fieldset>
+      <legend>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.TITLE'| translate }}</legend>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label> {{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.PRIMARY_CATEGORY' | translate}}<span class="form-field-required"> *</span></label>
+            <ng-select
+              class="custom-select-dd groups-countries"
+              name="primaryCat"
+              [clearable]="false"
+              [items]="primaryCategory"
+              [multiple]="true"
+              [closeOnSelect]="true"
+              bindLabel="categoryName"
+              (change)="onPrimaryCategoryChange($event)"
+              placeholder="Select Primary Category"
+              formControlName="primaryCat">
+            </ng-select>
+            <app-validation-error
+              [isFormSubmitted]="isFormSubmitted"
+              [control]="group.controls.primaryCat"
+              [errMsg]="{'required':'PRIMARY_CATEGORY_REQUIRED'}"></app-validation-error>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.SECONDARY_CATEGORY' | translate}} </label>
+            <ng-select
+              class="custom-select-dd groups-countries"
+              name="secondaryCat"
+              [clearable]="false"
+              [items]="secondryCategoryList"
+              [multiple]="true"
+              [closeOnSelect]="true"
+              bindLabel="categoryName"
+              (change)="onSecondaryCategoryChange($event)"
+              placeholder="Select Secondary Category"
+              formControlName="secondaryCat">
+            </ng-select>
+            <app-validation-error
+              [isFormSubmitted]="isFormSubmitted"
+              [control]="group.controls.secondaryCat"
+              [errMsg]="{'required':'SECONDARY_CATEGORY_REQUIRED'}"></app-validation-error>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.CATEGORY' | translate}}</label>
+            <ng-select
+              class="custom-select-dd groups-countries"
+              name="category"
+              [clearable]="false"
+              [items]="categoryList"
+              [multiple]="true"
+              [closeOnSelect]="true"
+              bindLabel="categoryName"
+              placeholder="Select Category"
+              formControlName="category">
+            </ng-select>
+            <app-validation-error
+              [isFormSubmitted]="isFormSubmitted"
+              [control]="group.controls.category"
+              [errMsg]="{'required':'PRODUCT_REVENU_CATEGORY'}"></app-validation-error>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.NUMBER_PRODUCT' | translate}} <span class="form-field-required">*</span></label>
+            <select class="form-control" (change)="formValueChanged()"  formControlName= "productCountToSell" name="productCountToSell">
+              <option value="">
+                  {{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.PRODUCT_REVENUE.NUMBER_PRODUCT'| translate }}
+              </option>
+              <option *ngFor = "let item of productCountSell" [value]="item.id">{{item.value}}</option>
+            </select>
+            <app-validation-error
+              [isFormSubmitted]="isFormSubmitted"
+              [control]="group.controls.productCountToSell"
+              [errMsg]="{'required': 'PRODUCT_REVENU_PRODUCT'}"></app-validation-error>
+          </div>
+        </div>
+      </div>
+
+      <div class="row action-button mb-3">
+        <div class="col-12 text-right">
+          <button type="button" class="btn btn-sm btn-danger px-4" title=" {{'COMMON.BUTTONS.SAVE'| translate }}" (click)="saveData()">
+            {{'COMMON.BUTTONS.SAVE'| translate }}
+          </button>
+        </div>
+      </div>
+
+    </fieldset>
+    <!-- Product And Revenue details end-->
+
+</div>

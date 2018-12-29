@@ -1,0 +1,80 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+    <div class="row">
+      <!-- start Breadcrumb -->
+      <div class="col-lg-5 align-self-center top-breadcrumb-action">
+        <div class="row page-titles">
+          <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+          </div>
+          <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+              <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+                <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                  <a href='javascript:void(0)'>{{url.title}}</a>
+                </li>
+                <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+              </ng-template>
+            </ol>
+          </div>
+        </div>
+      </div> <!-- # End Breadcrumb -->
+  
+      <!-- start Action Button -->
+      <div class="col-lg-7 align-self-center">
+        <div class="search-filter-header text-right">
+          <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+            <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+          </button>
+          <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+            {{'COMMON.BUTTONS.CANCEL'| translate }}
+          </button>
+          <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="onDelete()" *ngIf="trainingVideosToken && getPermissionStatus(permissions, PERMISSION_ACTION.TRAINING_VIDEOS.DELETE)">
+            {{'COMMON.BUTTONS.DELETE'| translate }}
+          </button>
+        </div>
+      </div><!-- End Action Button -->
+    </div>
+  </div><!-- # End Bread crumb and Action Button -->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card card-body">
+        <form class="form-horizontal m-t-10" #trainingVideosForm="ngForm" id="trainingVideosForm" #trainingVideosForm>
+          <div class="row">
+            <div class="form-group col-sm-6">
+                <label>{{'TRAINING_VIDEO.FORM_LABELS.TITLE'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'TRAINING_VIDEO.FORM_LABELS.TITLE'| translate }}"  class="form-control"   [maxlength]="MAX_LENGTH_CONFIG.MAX_100" [(ngModel)]= "trainingVideos.title" name="title">
+            </div>
+            <div class="form-group col-sm-6">
+                <label>{{'TRAINING_VIDEO.FORM_LABELS.TOPIC'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'TRAINING_VIDEO.FORM_LABELS.TOPIC' | translate }}" class="form-control" [maxlength]="MAX_LENGTH_CONFIG.MAX_100" [(ngModel)]= "trainingVideos.topic" name="topic">
+            </div>
+            <div class="form-group col-sm-6">
+                <label>{{'TRAINING_VIDEO.FORM_LABELS.URL'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'TRAINING_VIDEO.FORM_LABELS.URL' | translate }}" class="form-control" [maxlength]="MAX_LENGTH_CONFIG.MAX_100" name="url" [(ngModel)]= "trainingVideos.url">
+            </div>
+            <div class="form-group col-sm-6">
+              <label>{{'COMMON.LABELS.STATUS'| translate }}
+                  <span class="form-field-required">*</span>
+                </label>
+                <select class="form-control" name="isActive" [(ngModel)]="trainingVideos.isActive">
+                  <!-- <option value="">{{'COUNTRY.FORM_PLACEHOLDER.STATUS'| translate }}</option> -->
+                  <option *ngFor="let status of STATUS_OPTIONS;" [value]="status.value">{{ status.label }}</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-6" *ngIf="isEditSection">
+              <label>{{'CUSTOMER.FORM_LABELS.CREATED_BY'| translate }}</label>
+              <input type="text" [attr.disabled] = "true" class="form-control" [(ngModel)]= "trainingVideos.createdByName" name="createdByName">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="action()">{{'COMMON.BUTTONS.SAVE' | translate}}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

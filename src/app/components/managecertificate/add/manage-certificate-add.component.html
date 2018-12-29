@@ -1,0 +1,81 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.CANCEL' | translate}}" (click)="cancelButtonAction()">
+          {{'COMMON.BUTTONS.CANCEL' | translate}}
+        </button>
+        <button *ngIf="certificate_token && getPermissionStatus(permissions, PERMISSION_ACTION.CERTIFICATE.DELETE)" title="{{'COMMON.BUTTONS.DELETE' | translate}}" type="button" class="btn btn-inverse px-4" (click)="onDeleteCertificate()">
+          {{'COMMON.BUTTONS.DELETE' | translate}}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <form class="form-horizontal m-t-10" id="addCertificateForm" #addCertificateForm>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'MANAGE_CERTIFICATE.FORM_LABLES.CERTIFICATE_NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" class="form-control" placeholder="{{'MANAGE_CERTIFICATE.FORM_PLACEHOLDER.CERTIFICATE_NAME'| translate }}" [maxlength]="MAX_LENGTH_CONFIG.CERTIFICATE_NAME" [(ngModel)]="certificate.certificateTypeName" name="certificateTypeName">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'MANAGE_CERTIFICATE.FORM_LABLES.REQUIRED'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" [(ngModel)]="certificate.required" name="required">
+              <option value="">{{'MANAGE_CERTIFICATE.FORM_PLACEHOLDER.REQUIRED'| translate }}</option>
+              <option *ngFor="let required of REQUIRED_OPTIONS;" [value]="required.value">{{ required.label }}</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'COMMON.LABELS.STATUS'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" [(ngModel)]="certificate.status" name="status">
+              <option value="">{{'MANAGE_CERTIFICATE.FORM_PLACEHOLDER.STATUS'| translate }}</option>
+              <option *ngFor="let sts of STATUS_OPTIONS;" [value]="sts.id">{{ sts.value }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="certificateAction()">{{'COMMON.BUTTONS.SAVE' | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

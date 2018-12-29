@@ -1,0 +1,190 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title=" {{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+          {{'COMMON.BUTTONS.CANCEL'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" (click)="onDelete()" *ngIf="attributeToken && getPermissionStatus(permissions, PERMISSION_ACTION.ATTRIBUTE.DELETE)">
+          {{'COMMON.BUTTONS.DELETE'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <form class="form-horizontal m-t-10" #attributeForm="ngForm" id="attributeForm" [formGroup]="attribute.attributeFormGroup"
+        #attributeForm>
+        <div class="row">
+
+          <div class="form-group col-sm-6">
+            <label>{{'ATTRIBUTE.FORM_LABELS.NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="{{'ATTRIBUTE.PLACEHOLDER.NAME'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER"
+              class="form-control" formControlName="name" [maxlength]="MAX_LENGTH_CONFIG.MAX_100">
+            <control-messages [control]="attribute.attributeFormGroup.controls.name" [messages]="attribute.validateRules.messages.name">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'ATTRIBUTE.FORM_LABELS.ENTITY_TYPE'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" name="entityType" formControlName="entityType">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let entity of attributeEntites;" [value]="entity.entityId">{{ entity.entityName }}</option>
+            </select>
+            <control-messages [control]="attribute.attributeFormGroup.controls.entityType" [messages]="attribute.validateRules.messages.entityType">
+            </control-messages>
+          </div>
+
+
+          <div class="form-group col-sm-6">
+            <label>{{'ATTRIBUTE.FORM_LABELS.INPUT_TYPE'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" [attr.readonly]="attributeToken" name="inputType" formControlName="inputType">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let status of INPUT_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <control-messages [control]="attribute.attributeFormGroup.controls.inputType" [messages]="attribute.validateRules.messages.inputType">
+            </control-messages>
+          </div>
+
+
+
+          <div class="form-group col-sm-6">
+            <label>{{'ATTRIBUTE.FORM_LABELS.IS_REQUIRED'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" name="isRequired" formControlName="isRequired">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let status of REQUIRED_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <control-messages [control]="attribute.attributeFormGroup.controls.isRequired" [messages]="attribute.validateRules.messages.isRequired">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6" *ngIf="attributeToken">
+            <label>{{'USER.FORM_LABELS.CREATED_BY_NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" readonly class="form-control" formControlName="createdByName">
+          </div>
+
+
+          <div class="form-group col-sm-6">
+            <label>{{'COMMON.LABELS.STATUS'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" formControlName="isActive">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let page of STATUS_OPTIONS;" [value]="page.value">{{ page.label }}</option>
+            </select>
+            <control-messages [control]="attribute.attributeFormGroup.controls.isActive" [messages]="attribute.validateRules.messages.isActive">
+            </control-messages>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="attribute.attributeFormGroup.controls.inputType.value!='1' && attribute.attributeFormGroup.controls.inputType.value">
+          <table id="table" class="table  col-sm-12">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Is Default</th>
+                <th scope="col" *ngIf="attribute.attributeFormGroup.controls.inputType.value=='3'">Swatch</th>
+                <th scope="col">Value</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of attribute.attributeFormGroup.get('attributeOptions').controls; let i = index;">
+                <tr formArrayName="attributeOptions" *ngIf="!item.controls.isDeleted.value">
+                  <td>#</td>
+                  <td [formGroupName]="i"><input (click)="redioSelect(i,$event)" name="isDefault"  [checked]="item.controls.isDefault.value==1"
+                       type="radio">
+                    <div *ngIf="item.controls.isDefault.dirty || item.controls.isDefault.touched">
+                      <div class="text-danger" *ngIf="item.hasError('required', 'isDefault')">Required</div>
+                    </div>
+                  </td>
+
+                  <td *ngIf="attribute.attributeFormGroup.controls.inputType.value=='3'">
+                    <div class="btn-group mr-3">
+                      <button *ngIf="item.controls.label.value==''" class="btn btn-outline-secondary"> <i class="mdi mdi-selection-off"></i></button>
+                      <img [src]="item.controls.label.value" width="28" height="28" *ngIf="item.controls.swatch.value==3 && item.controls.label.value!=''" />
+                      <button [cpToggle]="true" [style.background-color]="item.controls.label.value" [cpOutputFormat]="'hex'"
+                        [cpPosition]="'bottom'" [colorPicker]="item.controls.label.value" (colorPickerChange)="item.controls.label.value = $event"
+                        [cpCancelButton]="true" *ngIf="item.controls.swatch.value==2 && item.controls.label.value!=''"
+                        class="btn">&nbsp;&nbsp;&nbsp;</button>
+                      <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                        <button class="btn btn-outline-secondary" ngbDropdownToggle>Select Options</button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                          <button class="dropdown-item" (click)="swatchOption(i,'color')">Choose Color</button>
+                          <button class="dropdown-item" (click)="swatchOption(i,'image')">Upload a file</button>
+                          <button class="dropdown-item" (click)="swatchOption(i,'clear')">Clear</button>
+                        </div>
+                      </div>
+                    </div>
+                    <control-messages [control]="item.controls.label" [messages]="attrOptions.validateRules.messages.label">
+                    </control-messages>
+                  </td>
+                  <td [formGroupName]="i">
+                    <input formControlName="name" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" maxlength="100"
+                      class="form-control" placeholder="{{'ATTRIBUTE.PLACEHOLDER.VALUE'| translate }}">
+                    <control-messages [control]="item.controls.name" [messages]="attrOptions.validateRules.messages.name">
+                    </control-messages>
+                  </td>
+                  <td [formGroupName]="i"> <button *ngIf="activeOptionCount > 1" class="btn btn-danger px-4" (click)="removeOptions(i);">Delete</button></td>
+                </tr>
+              </ng-container>
+              
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4">
+                  <button class="btn btn-secondary px-4" (click)="addOptions();">Add Options</button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="action()">{{'COMMON.BUTTONS.SAVE'
+              | translate}}</button>
+          </div>
+        </div>
+        <input type="file" [hidden]="true" data-index="1" (change)="onFileSelect($event);" accept="image/*" #fileInput />
+      </form>
+    </div>
+  </div>
+</div>

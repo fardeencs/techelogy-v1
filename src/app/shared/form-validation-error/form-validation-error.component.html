@@ -1,0 +1,5 @@
+<div *ngIf="control.errors && control.invalid && isFormSubmitted" class="error-msg">
+  <label class="form-field-required" [hidden]="!control.errors.required">{{errMsg['required'] | translate:errMsg['param']}}</label>
+  <label class="form-field-required" [hidden]="!control.errors.minlength">{{errMsg['minlength'] | translate:errMsg['param']}}</label>
+  <label class="form-field-required" [hidden]="!control.errors.pattern">{{errMsg['decimalWithPrecision'] | translate:errMsg['param']}}</label>
+</div>

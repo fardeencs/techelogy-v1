@@ -1,0 +1,225 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{ pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.EDIT'| translate }}" (click)="onEdit()"
+          *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.THEMES.EDIT)">
+          {{'COMMON.BUTTONS.EDIT'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="onDelete()"
+          *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.THEMES.DELETE) && theme.isDefault==0">
+          {{'COMMON.BUTTONS.DELETE'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered detail-view">
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'COMMON.LABELS.ID'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ theme.entityId || "N/A" }}</span>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.NAME'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ theme.name }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.START_DATE'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ theme.startDate }}</span>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.END_DATE'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ theme.endDate }}</span>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.HEADER_BG_COLOR'| translate }}</strong>
+      </td>
+      <td>
+        <div class="input-color-picker" [class.no-color]="!theme.headerBackgroundColor">
+          <div class="color-preview" *ngIf="theme.headerBackgroundColor" [style.background]="theme.headerBackgroundColor"></div>
+          <div class="color-code">{{ theme.headerBackgroundColor || 'N/A' }}</div>
+        </div>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.FRONT_BG_COLOR'| translate }}</strong>
+      </td>
+      <td>
+        <div class="input-color-picker" [class.no-color]="!theme.headerFontColor">
+          <div class="color-preview" *ngIf="theme.headerFontColor" [style.background]="theme.headerFontColor"></div>
+          <div class="color-code">{{ theme.headerFontColor || 'N/A' }}</div>
+        </div>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.BG_COLOR'| translate }}</strong>
+      </td>
+      <td>
+        <div class="input-color-picker" [class.no-color]="!theme.backgroundColor">
+          <div class="color-preview" *ngIf="theme.backgroundColor" [style.background]="theme.backgroundColor"></div>
+          <div class="color-code">{{ theme.backgroundColor || 'N/A' }}</div>
+        </div>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.PLACEHOLDER_IMG'| translate }}</strong>
+      </td>
+      <td colspan="2">
+        <div class="upload-document-grid mt-3">
+          <div class="document-list__item" *ngIf="theme.productPlaceholder">
+            <span class="file-icon">
+              <i class="mdi mdi-file-image"> </i>
+            </span>
+            <div class="document-name" title="{{theme.productPlaceholderName}}">{{theme.productPlaceholderName}}</div>
+            <a [href]="theme.productPlaceholder" class="btn btn-link btn-download-file">
+              <i class="mdi mdi-cloud-download"></i>
+            </a>
+          </div>
+          <div *ngIf="!theme.productPlaceholder">
+            {{'N/A'| translate }}</div>
+        </div>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.OTHER_PLACEHOLDER_IMG'| translate }}</strong>
+      </td>
+      <td colspan="2">
+        <div class="upload-document-grid mt-3">
+          <div class="document-list__item" *ngIf="theme.otherPlaceholder">
+            <span class="file-icon">
+              <i class="mdi mdi-file-image"> </i>
+            </span>
+            <div class="document-name" title="{{theme.otherPlaceholderName}}">{{theme.otherPlaceholderName}}</div>
+            <a [href]="theme.otherPlaceholder" class="btn btn-link btn-download-file">
+              <i class="mdi mdi-cloud-download"></i>
+            </a>
+          </div>
+          <div *ngIf="!theme.otherPlaceholder">
+            {{'N/A'| translate }}</div>
+        </div>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.BG_IMG'| translate }}</strong>
+      </td>
+      <td colspan="2">
+        <div class="upload-document-grid mt-3">
+          <div class="document-list__item" *ngIf="theme.backgroundImage">
+            <span class="file-icon">
+              <i class="mdi mdi-file-image"> </i>
+            </span>
+            <div class="document-name" title="{{theme.backgroundImageName}}">{{theme.backgroundImageName}}</div>
+            <a [href]="theme.backgroundImage" class="btn btn-link btn-download-file">
+              <i class="mdi mdi-cloud-download"></i>
+            </a>
+          </div>
+          <div *ngIf="!theme.backgroundImage">
+            {{'N/A'| translate }}</div>
+        </div>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'THEME.FORM_LABELS.DEFAULT'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ DEFAULT_OPTION |constantFilter:theme.isDefault }}</span>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'USER.FORM_LABELS.CREATED_BY_NAME'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ theme.createdByName }}</span>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'COMMON.LABELS.STATUS'| translate }}</strong>
+      </td>
+      <td>
+        <span class="badge badge-{{ theme.isActiveKey }}">{{ theme.isActiveKey }}</span>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.LAST_UPDATED_ON'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ theme.updatedDate }}</span>
+      </td>
+    </tr>
+
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.CREATED_ON'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ theme.createdDate }}</span>
+      </td>
+    </tr>
+  </table>
+</div>

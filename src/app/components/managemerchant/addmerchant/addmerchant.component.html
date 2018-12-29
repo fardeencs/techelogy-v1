@@ -1,0 +1,76 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+          {{'COMMON.BUTTONS.CANCEL'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+
+<div class="card box-shadow">
+  <div class="row flex-nowrap m-0">
+
+    <!-- Left sidebar tabs start  -->
+    <div class="col-auto tab-sidebar">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+        <!-- rendering of tabs -->
+        <!-- Disable tabs add class - nav-link-disabled -->
+        <a *ngFor="let item of stepsTabs ; let $index = index;"
+           class="{{isDisabled(item.stepNo)}}"
+           [ngClass]="{'active': (activeTab == item.stepNo),'nav-link':true }"
+           (click)="isActiveTab(item['stepNo'])">
+          <span class="step-icon">{{$index + 1}}</span> <!-- Add step number for mobile view-->
+          {{item['name']}}
+        </a>
+      </div>
+    </div>
+    <!-- # Left sidebar tabs end-->
+
+    <!-- Right sidecontent  start  -->
+    <div class="col tab-contentdetail">
+
+      <div class="tab-content">
+        <app-company-info [isDetailSection]="isDetailSection" [storeDetail]="storeDetail" (buttonHandler)= "buttonHandler($event)" [clickedTab]='activeTab' *ngIf="activeTab == 'step_1'" [ngClass]="{'show active': activeTab == 'step_1','tab-pane fade':true}"></app-company-info>
+        <app-contact-merchants [isDetailSection]="isDetailSection" [storeDetail]="storeDetail" (buttonHandler)= "buttonHandler($event)" [clickedTab]='activeTab' *ngIf="activeTab == 'step_2'" [ngClass] ="{'show active': activeTab == 'step_2','tab-pane fade':true}"></app-contact-merchants>
+        <app-contact-finance [isDetailSection]="isDetailSection" [storeDetail]="storeDetail" (buttonHandler)= "buttonHandler($event)" [clickedTab]='activeTab' *ngIf="activeTab == 'step_3'" [ngClass]="{'show active': activeTab == 'step_3','tab-pane fade':true}"></app-contact-finance>
+        <app-finance-info [isDetailSection]="isDetailSection" [storeDetail]="storeDetail" (buttonHandler)= "buttonHandler($event)" *ngIf="activeTab == 'step_4'" [clickedTab]='activeTab' [ngClass]="{'show active': activeTab == 'step_4','tab-pane fade':true}"></app-finance-info>
+        <app-document-upload [isDetailSection]="isDetailSection" [storeDetail]="storeDetail" (buttonHandler)= "buttonHandler($event)" *ngIf="activeTab == 'step_5'" [clickedTab]='activeTab' [ngClass]="{'show active': activeTab == 'step_5','tab-pane fade':true}"></app-document-upload>
+        <app-authsignature [isDetailSection]="isDetailSection" [storeDetail]="storeDetail" (buttonHandler)= "buttonHandler($event)" *ngIf="activeTab == 'step_7'" [clickedTab]='activeTab' [ngClass]="{'show active': activeTab == 'step_7','tab-pane fade':true}"></app-authsignature>
+        <app-platform [isDetailSection]="isDetailSection" [storeDetail]="storeDetail" (buttonHandler)= "buttonHandler($event)" *ngIf="activeTab == 'step_6'" [clickedTab]='activeTab' [ngClass]="{'show active': activeTab == 'step_6','tab-pane fade':true}"></app-platform>
+
+      </div>
+
+    </div>
+    <!-- # Right sidecontent  end  -->
+
+  </div>
+</div>

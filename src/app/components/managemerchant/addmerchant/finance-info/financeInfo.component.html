@@ -1,0 +1,76 @@
+<!-- Finance Information Step  8 Content Details -->
+<div >
+    <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.TITLE'| translate }}</h4>
+    <form class="form-horizontal m-t-10"  id="financeInfoForm" #financeInfoForm>
+      <!-- Form Control Fields -->
+      <div class="row">
+        <div class="col">
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.BANK_NAME'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.BANK_NAME'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" class="form-control" [maxlength]="MAX_LENGTH_CONFIG.BANK_TXT_FIELD_NAME" [(ngModel)]="financeInfo.bankName" name="bankName">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.BRANCH_NAME'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.BRANCH_NAME'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" class="form-control" [maxlength]="MAX_LENGTH_CONFIG.BANK_TXT_FIELD_DEFAULT" [(ngModel)]="financeInfo.branchName" name="branchName">
+          </div>
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.ACCOUNT_NUMBER'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.ACCOUNT_NUMBER'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_NO_SPECIAL_CHARACTER" [disabled]="isDetailSection" class="form-control" [maxlength]="MAX_LENGTH_CONFIG.BANK_TXT_FIELD_DEFAULT" [(ngModel)]="financeInfo.accountNumber" name="accountNumber">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.ROUTING_NUMBER'| translate }}</label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.ROUTING_NUMBER'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" class="form-control" [(ngModel)]="financeInfo.routing" name="routing" [maxlength]="MAX_LENGTH_CONFIG.BANK_TXT_FIELD_DEFAULT">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.BANK_ADDRESS'| translate }} <span class="form-field-required">*</span></label>
+            <textarea placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.BANK_ADDRESS'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [maxlength]="MAX_LENGTH_CONFIG.ADDRESS_200" [disabled]="isDetailSection" class="form-control" [(ngModel)]="financeInfo.bankAddress" name="bankAddress"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.SWIFT'| translate }}</label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.SWIFT'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_NO_SPECIAL_CHARACTER" class="form-control" [disabled]="isDetailSection"  [maxlength]="MAX_LENGTH_CONFIG.SWIFT" [(ngModel)]="financeInfo.swiftCode" name="swiftCode">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.PAYPAL'| translate }}</label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.PAYPAL'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.EMAIL_CHARACTER" [disabled]="isDetailSection"  [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT"  [(ngModel)]="financeInfo.paypal" name="paypal">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.COMAPNY_NAME'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.COMAPNY_NAME'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER"  [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.ADDRESS_100" [(ngModel)]="financeInfo.companyName" name="companyName">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.TAX_STATE'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.TAX_STATE'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT" class="form-control" [(ngModel)]="financeInfo.taxState" name="taxState">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.GST'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.FINANCE_INFO.GST'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_NO_SPECIAL_CHARACTER"  [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.GST" class="form-control"  [(ngModel)]="financeInfo.taxNumber" name="taxNumber">
+          </div>
+
+        </div>
+      </div>
+      <!-- Action Button -->
+      <div class="row action-button" *ngIf="!isDetailSection">
+        <div class="col-12 text-right">
+
+          <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)="moveToPrevious()">
+            <i class="mdi mdi-arrow-left mr-2"></i>
+            {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+          </button>
+
+          <button type="button" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" (click)="onNextClick()">
+            {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+          </button>
+
+        </div>
+      </div>
+    </form>
+  </div>

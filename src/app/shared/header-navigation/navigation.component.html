@@ -1,0 +1,69 @@
+<header class="topbar">
+    <nav class="navbar top-navbar navbar-expand-md navbar-light">
+        <!-- ============================================================== -->
+        <!-- Logo -->
+        <!-- ============================================================== -->
+        <div class="navbar-header">
+            <a class="navbar-brand" [routerLink]="['/']">
+                <!-- Logo icon -->
+                <b>
+                  <img src="assets/images/logo_icon.png" alt="" width="50">
+                </b>
+                <span>
+                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                    <img src="assets/images/logo-white.svg" alt="homepage" class="light-logo" width=150/>
+                </span>
+              </a>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Logo -->
+        <!-- ============================================================== -->
+        <div class="navbar-collapse">
+            <!-- ============================================================== -->
+            <!-- toggle and nav items -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav mr-auto mt-md-0">
+                <!-- This is  -->
+
+                <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+            </ul>
+            <!-- ============================================================== -->
+            <!-- Select Language Start -->
+            <!-- ============================================================== -->
+            <select class="select-language" name="language" (change)="setLanguage($event.target.value)">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+            </select>
+            <!-- ============================================================== -->
+            <!-- End Select Language -->
+            <!-- ============================================================== -->
+
+            <!-- ============================================================== -->
+            <!-- User profile and search -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav my-lg-0">
+                <!-- Profile -->
+                <!-- ============================================================== -->
+                <li class="nav-item dropdown" ngbDropdown placement="bottom-right">
+                    <a ngbDropdownToggle class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/user/default.png" alt="user" class="profile-pic" /></a>
+                    <div class="dropdown-menu dropdown-menu-right animated slideInDown" ngbDropdownMenu>
+                        <ul class="dropdown-user">
+                            <li>
+                                <div class="dw-user-box">
+                                    <div class="u-text" *ngIf="profile">
+                                        <h4>{{ profile.firstname | titlecase }} ({{ profile.role | titlecase  }})</h4>
+                                        <p class="text-muted">{{ profile.email }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a [routerLink]="['/profile']"><i class="ti-user"></i> My Profile</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:void(0);" (click)="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,65 @@
+<section id="wrapper" class="login-register login-sidebar" style="background-image:url(assets/images/background/login-register.jpg);">
+  <div class="login-box card rounded-0">
+    <div class="card-body">
+      <span class="text-center db my-5">
+        <img src="../assets/images/logo.png" alt="Aladdin Street" />
+      </span>
+      <form class="form-horizontal form-material" #loginForm="ngForm" id="loginForm">
+        <div class="form-group  m-t-40">
+          <div class="col-xs-12">
+            <h3>Login</h3>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email
+            <span class="form-field-required">*</span>
+          </label>
+          <div class="col-xs-12">
+            <input class="form-control" type="email" [(ngModel)]="user.email" name="email" id="email" [maxlength]="MAX_LENGTH_CONFIG.EMAIL">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password
+            <span class="form-field-required">*</span>
+          </label>
+          <div class="col-xs-12">
+            <input class="form-control" type="password" [(ngModel)]="user.password" name="password" id="password"
+              [maxlength]="MAX_LENGTH_CONFIG.PASSWORD">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-12 p-0 text-right">
+            <a href="javascript:void(0)" id="to-recover" class="text-dark">
+              <i class="fa fa-lock m-r-5"></i> Forgot password?</a>
+          </div>
+        </div>
+        <div class="form-group text-center m-t-20">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-danger btn-block text-uppercase waves-effect waves-light" (click)="login()">Log In</button>
+          </div>
+        </div>
+      </form>
+      <form class="form-horizontal" #forgetPasswordForm="ngForm" id="forgetPasswordForm">
+        <div class="form-group ">
+          <div class="col-xs-12">
+            <h3>Forgot Password</h3>
+          </div>
+        </div>
+        <div class="form-group ">
+          <label>Email
+            <span class="form-field-required">*</span>
+          </label>
+          <div class="col-xs-12">
+            <input class="form-control" type="text" [(ngModel)]="forget.email" name="email" [maxlength]="MAX_LENGTH_CONFIG.EMAIL">
+          </div>
+        </div>
+        <div class="form-group text-center m-t-20">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-danger btn-block text-uppercase waves-effect waves-light" (click)="sendForgetPasswordEmail()">Submit</button>
+            <button type="button" class="btn btn-inverse btn-block text-uppercase waves-effect waves-light" id="backToLogin">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

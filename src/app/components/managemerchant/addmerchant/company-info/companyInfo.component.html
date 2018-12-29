@@ -1,0 +1,134 @@
+<!-- Business Information Step  3 Content Details -->
+<div>
+        <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.TITLE'| translate }}</h4>
+        <form class="form-horizontal m-t-10"  id="companyInfoForm" #companyInfoForm>
+          <div class="row">
+            <div class="col">
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.BUISNESS_NAME'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.BUISNESS_NAME'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" class="form-control"  [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT" [(ngModel)]= "companyInfo.businessLegalName" name="businessLegalName">
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.COMPANY_NAME'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.COMPANY_NUMBER'| translate }}" [restrict] = "REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" class="form-control" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.COMPANY_TXT_FIELD_DEFAULT" [(ngModel)]= "companyInfo.companyNumber" name="companyNumber">
+              </div>
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.MERCHANT_REPRESENTATIVE_NAME'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.MERCHANT_REPRESENTATIVE_NAME'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT" name="merchantRepresentativeName" [(ngModel)]= "companyInfo.merchantRepresentativeName">
+              </div>
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.MOBILE_NUMBER'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.MOBILE_NUMBER'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.NUMERIC" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.MOBILE_NUMBER" [(ngModel)]= "companyInfo.mobileNumber" name="mobileNumber">
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.STORE_NAME'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.STORE_NAME'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT" [(ngModel)]= "companyInfo.storeName" name="storeName">
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.STORE_EMAIL' | translate}} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.STORE_EMAIL'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.EMAIL_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT" [(ngModel)]= "companyInfo.email" name="email">
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.NATURE_OF_BUISNESS'| translate }} <span class="form-field-required">*</span></label>
+                <textarea placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.NATURE_OF_BUISNESS'| translate }}" class="form-control" rows="5" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.NATURE_OF_BUSINESS"  [(ngModel)]= "companyInfo.natureOfBusiness" name="natureOfBusiness"></textarea>
+              </div>
+
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.ANNUAL_TURNOVER' | translate}}</label>
+                <select  [disabled]="isDetailSection" class="form-control" [(ngModel)]= "companyInfo.annualTurnover" name="annualTurnover">
+                  <option *ngFor = "let item of annualTurnOver" [attr.value]="item.id">{{item.value}}</option>
+                </select>
+                </div>
+
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.ADDRESS_1'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.ADDRESS_1'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.ADDRESS_100" [(ngModel)]= "companyInfo.addressLine1" name="addressLine1" >
+              </div>
+
+              <div class="form-group" >
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.ADDRESS_2'| translate }}</label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.ADDRESS_2'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.ADDRESS_100" [(ngModel)]= "companyInfo.addressLine2" name="addressLine2">
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.COUNTRY'| translate }} <span class="form-field-required">*</span></label>
+                <select class="form-control" [disabled]="isDetailSection" (ngModelChange)="onChangeDropDown($event, 'country')" [(ngModel)]= "companyInfo.countryId" name="countryId" [ngModelOptions]="{standalone: true}">
+                    <option value="">{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.COUNTRY'| translate }}</option>
+                    <option *ngFor ="let country of countryList" [attr.value]="country.countryCode">
+                    {{country['countryName']}}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.STATE'| translate }} <span class="form-field-required">*</span></label>
+                <select class="form-control" [disabled]="isDetailSection" (ngModelChange)="onChangeDropDown($event, 'state')" [(ngModel)]= "companyInfo.state" name="state" [ngModelOptions]="{standalone: true}">
+                  <option value="">{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.STATE'| translate }}</option>
+                  <option *ngFor="let state of stateList; let i =index" [selected]="state.stateId == companyInfo.state" [attr.value]="state.stateId">
+                    {{state.stateName}}
+                    <!-- {{state.stateName}} -->
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.CITY'| translate }} <span class="form-field-required">*</span></label>
+                <select class="form-control" [disabled]="isDetailSection" (ngModelChange)="onChangeDropDown($event, 'city')" [(ngModel)]= "companyInfo.city" name="city" [ngModelOptions]="{standalone: true}">
+                  <option value="">{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.CITY'| translate }}</option>
+                  <option *ngFor="let city of cityList" [selected]="city.cityId == companyInfo.city" [attr.value]="city.cityId">
+                    {{city.cityName}}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.ZIPCODE'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.ZIPCODE'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_NO_SPECIAL_CHARACTER" class="form-control" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.ZIP_CODE"  [(ngModel)]= "companyInfo.zipcode" name="zipcode">
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.URL'| translate }}</label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.URL'| translate }}" class="form-control" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.WEBSITE_URL"  [(ngModel)]= "companyInfo.websiteUrl" name="websiteUrl">
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.SELL_OTHER_WEB'| translate }} <span class="form-field-required">*</span></label>
+                <select  [disabled]="isDetailSection" class="form-control" (ngModelChange) = "sellOtherWebsiteOnChange($event)" [(ngModel)]= "companyInfo.sellInOtherWebsite" name="sellInOtherWebsite">
+                  <option value="">
+                      {{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.SELL_OTHER_WEB'| translate }}
+                  </option>
+                  <option [attr.value]="1">
+                    Yes
+                  </option>
+                  <option [attr.value]="0" selected>
+                    No
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.URL'| translate }}</label>
+                <input placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.COMPANY_INFO.URL'| translate }}"  [disabled]="isDetailSection || companyInfo.sellInOtherWebsite != '1'" type="text" class="form-control"  [maxlength]="MAX_LENGTH_CONFIG.WEBSITE_URL" [(ngModel)]= "companyInfo.otherWebsiteUrl" name="otherWebsiteUrl">
+              </div>
+
+            </div>
+          </div>
+          <!-- Action Button -->
+          <div class="row action-button" *ngIf="!isDetailSection">
+            <div class="col-12 text-right">
+
+              <button type="button" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" (click)= "onNextClick()">
+                {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+              </button>
+
+            </div>
+          </div>
+        </form>
+      </div>

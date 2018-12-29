@@ -1,0 +1,242 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title=" {{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+          {{'COMMON.BUTTONS.CANCEL'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" (click)="onDelete()" title=" {{'COMMON.BUTTONS.DELETE'| translate }}" *ngIf="!theme.themeFormGroup.controls.backgroundColor.value && getPermissionStatus(permissions, PERMISSION_ACTION.THEMES.DELETE)">
+          {{'COMMON.BUTTONS.DELETE'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <form class="form-horizontal m-t-10" #themeForm="ngForm" id="themeForm" [formGroup]="theme.themeFormGroup"
+        #themeForm>
+        <div class="row">
+
+          <div class="form-group col-sm-6">
+            <label>{{'THEME.FORM_LABELS.NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="{{'THEME.PLACEHOLDER.NAME'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" class="form-control"
+              formControlName="name" [maxlength]="MAX_LENGTH_CONFIG.MAX_100">
+            <control-messages [control]="theme.themeFormGroup.controls.name" [messages]="theme.validateRules.messages.name">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'THEME.FORM_LABELS.START_DATE'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text"  placeholder="{{ theme.currentDate}}" class="form-control read-only-color" formControlName="startDate" autocomplete="off"
+              readonly (ngModelChange)="setEndDate($event);" [minDate]="minDate" [bsConfig]="bsConfig" bsDatepicker>
+            <control-messages [control]="theme.themeFormGroup.controls.startDate" [messages]="theme.validateRules.messages.startDate">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'THEME.FORM_LABELS.END_DATE'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="{{ theme.currentDate}}" class="form-control read-only-color" formControlName="endDate" autocomplete="off"
+              readonly [minDate]="endMinDate" [bsConfig]="bsConfig" bsDatepicker>
+            <control-messages [control]="theme.themeFormGroup.controls.endDate" [messages]="theme.validateRules.messages.endDate">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'THEME.FORM_LABELS.HEADER_BG_COLOR'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <div class="input-color-picker">
+              <div class="color-preview"  [style.background]="theme.themeFormGroup.controls.headerBackgroundColor.value"></div>
+              <input type="text" placeholder="{{'COLOR_PLACEHOLDER'| translate }}" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" [colorPicker]="theme.themeFormGroup.controls.headerBackgroundColor.value"
+                (colorPickerChange)="setColorCode({'headerBackgroundColor':$event})" [cpCancelButton]="true" readonly
+                class="col-sm-4 form-control read-only-color" formControlName="headerBackgroundColor" [maxlength]="MAX_LENGTH_CONFIG.MAX_7">
+            </div>
+            <control-messages [control]="theme.themeFormGroup.controls.headerBackgroundColor" [messages]="theme.validateRules.messages.headerBackgroundColor">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'THEME.FORM_LABELS.FRONT_BG_COLOR'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <div class="input-color-picker">
+              <div class="color-preview"  [style.background]="theme.themeFormGroup.controls.headerFontColor.value"></div>
+              <input type="text" placeholder="{{'COLOR_PLACEHOLDER'| translate }}" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" [colorPicker]="theme.themeFormGroup.controls.headerFontColor.value"
+                (colorPickerChange)="setColorCode({'headerFontColor':$event})" [cpCancelButton]="true" readonly class="col-sm-4 form-control read-only-color"
+                formControlName="headerFontColor" [maxlength]="MAX_LENGTH_CONFIG.MAX_7">
+            </div>
+            <control-messages [control]="theme.themeFormGroup.controls.headerFontColor" [messages]="theme.validateRules.messages.headerFontColor">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'THEME.FORM_LABELS.BG_COLOR'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <div class="input-color-picker">
+              <div class="color-preview"  [style.background]="theme.themeFormGroup.controls.backgroundColor.value"></div>
+              <input type="text" placeholder="{{'COLOR_PLACEHOLDER'| translate }}" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" [colorPicker]="theme.themeFormGroup.controls.backgroundColor.value"
+                (colorPickerChange)="setColorCode({'backgroundColor':$event})" [cpCancelButton]="true" readonly class="col-sm-4 form-control read-only-color"
+                formControlName="backgroundColor" [maxlength]="MAX_LENGTH_CONFIG.MAX_7">
+            </div>
+            <control-messages [control]="theme.themeFormGroup.controls.backgroundColor" [messages]="theme.validateRules.messages.backgroundColor">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'THEME.FORM_LABELS.DEFAULT'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" name="isDefault" formControlName="isDefault">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let status of DEFAULT_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <control-messages [control]="theme.themeFormGroup.controls.isDefault" [messages]="theme.validateRules.messages.isDefault">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6" *ngIf="themeToken">
+            <label>{{'USER.FORM_LABELS.CREATED_BY_NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" readonly class="form-control" formControlName="createdByName">
+          </div>
+
+
+          <div class="form-group col-sm-6">
+            <label>{{'COMMON.LABELS.STATUS'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" formControlName="isActive">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let page of STATUS_OPTIONS;" [value]="page.value">{{ page.label }}</option>
+            </select>
+            <control-messages [control]="theme.themeFormGroup.controls.isActive" [messages]="theme.validateRules.messages.isActive">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label>{{'THEME.FORM_LABELS.BG_IMG'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <p-fileUpload name="backgroundImage" multiple="false" [disabled]="theme.imageUpload.backgroundImage || theme.themeFormGroup.controls.backgroundImage.value"
+              accept="image/*" auto="true" maxFileSize="10000000" customUpload="true" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}"
+              invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_EXCEPTED' | translate }}" (onError)="onError($event)"
+              (onSelect)="onSelect($event,'backgroundImage')" (uploadHandler)="onFileUpload($event,'backgroundImage')">
+            </p-fileUpload>
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="theme.imageUpload.backgroundImage || theme.themeFormGroup.controls.backgroundImage.value">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{theme.backgroundImageName}}">{{theme.backgroundImageName}}</div>
+                <a [href]="theme.imageUpload.backgroundImage || theme.themeFormGroup.controls.backgroundImage.value"
+                  class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button type="button" (click)="onRemove('backgroundImage')" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label>{{'THEME.FORM_LABELS.OTHER_PLACEHOLDER_IMG'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <p-fileUpload name="otherPlaceholder" multiple="false" [disabled]="theme.imageUpload.otherPlaceholder || theme.themeFormGroup.controls.otherPlaceholder.value"
+              accept="image/*" auto="true" maxFileSize="10000000" customUpload="true" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}"
+              invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_EXCEPTED' | translate }}" (onError)="onError($event)"
+              (onSelect)="onSelect($event,'otherPlaceholder')" (uploadHandler)="onFileUpload($event,'otherPlaceholder')">
+            </p-fileUpload>
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="theme.imageUpload.otherPlaceholder || theme.themeFormGroup.controls.otherPlaceholder.value">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{theme.otherPlaceholderName}}">{{theme.otherPlaceholderName}}</div>
+                <a [href]="theme.imageUpload.otherPlaceholder || theme.themeFormGroup.controls.otherPlaceholder.value"
+                  class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button type="button" (click)="onRemove('otherPlaceholder')" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group col-sm-12">
+            <label>{{'THEME.FORM_LABELS.PLACEHOLDER_IMG'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <p-fileUpload name="productPlaceholder" multiple="false" [disabled]="theme.imageUpload.productPlaceholder || theme.themeFormGroup.controls.productPlaceholder.value"
+              accept="image/*" auto="true" maxFileSize="10000000" customUpload="true" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}"
+              invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_EXCEPTED' | translate }}" (onError)="onError($event)"
+              (onSelect)="onSelect($event,'productPlaceholder')" (uploadHandler)="onFileUpload($event,'productPlaceholder')">
+            </p-fileUpload>
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="theme.imageUpload.productPlaceholder || theme.themeFormGroup.controls.productPlaceholder.value">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{theme.productPlaceholderName}}">{{theme.productPlaceholderName}}</div>
+                <a [href]="theme.imageUpload.productPlaceholder || theme.themeFormGroup.controls.productPlaceholder.value"
+                  class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button type="button" (click)="onRemove('productPlaceholder')" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="action()">{{'COMMON.BUTTONS.SAVE'
+              | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

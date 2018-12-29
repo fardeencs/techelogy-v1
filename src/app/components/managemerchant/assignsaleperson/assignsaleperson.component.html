@@ -1,0 +1,37 @@
+<form class="form-horizontal"
+      *ngIf="active"
+      id="assigneForm" #assigneForm>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      {{title | translate}}
+    </h4>
+    <button type="button" class="btn close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="form-group">
+              <label>{{'MANAGE_MERCHANT.FORM_LABELS.SELECT_SALESPERSON'| translate }}
+                  <span class="form-field-required">*</span>
+              </label>
+            <select class="form-control" name="salesPersonal" [(ngModel)]="assignPersonal.salesPersonal">
+              <option value="">{{'COMMON.LABELS.SELECT' | translate}}</option>
+                <option *ngFor="let sale of salesMan" value="{{sale.userId}}">{{sale.firstname}} {{sale.lastname}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="submit" title="{{'COMMON.BUTTONS.SUBMIT'| translate }}" class="btn btn-danger btn-sm px-4" (click)="submitAddPersonal()">
+      {{'COMMON.BUTTONS.SUBMIT'| translate }}
+    </button>
+    <button type="button" class="btn btn-inverse btn-sm px-4" (click)="hideConfirmationModal()">
+      {{'COMMON.BUTTONS.CANCEL'| translate }}
+    </button>
+  </div>
+</form>

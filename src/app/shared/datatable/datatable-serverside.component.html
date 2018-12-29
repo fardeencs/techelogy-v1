@@ -1,0 +1,57 @@
+<div class="dt-table">
+    <!-- <div class="loader-dt" [hidden]="!isLoading">
+      <img src="./assets/images/loader.gif" />
+    </div> -->
+    <ngx-datatable
+      #table
+      [rows]="rows"
+      [columns]="columns"
+      [columnMode]="columnMode"
+      [headerHeight]="50"
+      [footerHeight]="80"
+      [rowHeight]="'auto'"
+      [scrollbarV]="scrollBarV"
+      [scrollbarH]="scrollBarH"
+      [count]="rows?.length"
+      [offset]="0"
+      [limit]="pageLimit"
+      (sort)="onSort($event)"
+      (scroll)="onGridScroll($event)"
+      (select)='onSelect($event)'
+      [loadingIndicator]="isLoading">
+      <ngx-datatable-footer>
+        <ng-template
+          ngx-datatable-footer-template
+          let-rowCount="rowCount"
+          let-pageSize="pageSize"
+          let-selectedCount="selectedCount"
+          let-curPage="curPage"
+          let-offset="offset">
+          <div class="row datatable-info align-items-center">
+            <div class="col-4 col-md-auto datatable-pagesize" *ngIf="showPageLimit">
+              <select [(ngModel)]="pageLimit" name="pagesize" (change)="onPageLimitChange($event)">
+                <option *ngFor="let item of pageSizeOptions" [value]="item">
+                  {{item}}
+                </option>
+              </select>
+            </div>
+            <div class="col-8 col-md-auto datatable-totalrecord"><strong>{{'COMMON.LABELS.TOTAL_RECORDS' | translate}}: {{totalRecords}}</strong></div>
+            <div class="col text-center text-md-right datatable-pagination" *ngIf="showPageinator">
+              <pagination
+              [(ngModel)] = "currentPage"
+              [itemsPerPage]="pageLimit"
+              [totalItems]="totalRecords"
+              [rotate]="rotate"
+              [maxSize]="maxSize"
+              [boundaryLinks]="true"
+              previousText="&lsaquo;"
+              nextText="&rsaquo;"
+              firstText="&laquo;"
+              lastText="&raquo;"
+              (pageChanged)="onPageChange($event)"></pagination>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-footer>
+    </ngx-datatable>
+</div>

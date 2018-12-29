@@ -1,0 +1,38 @@
+/**
+ * Table Of Content
+ *
+ * 	1. Globals
+ *	2. Headers
+ *	3. Navigations
+ *	4. Banners
+ *	5. Footers
+ *	6. app
+ *	7. Widgets
+ *	8. Custom Templates
+ */
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import 'variable';
+
+@import 'app';
+@import 'pages';
+@import 'sidebar';
+@import '../scss/icons/font-awesome/css/font-awesome.min.css';
+@import '../scss/icons/simple-line-icons/css/simple-line-icons.css';
+@import '../scss/icons/themify-icons/themify-icons.css';
+@import "../scss/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+@import 'widgets';
+@import 'grid';
+@import 'spinners.scss';
+@import 'animate.css';
+@import 'theme-settings.scss';
+@import 'form';
+// color css
+
+@import 'colors/red-dark';
+
+// import custom
+@import 'custom';
+
+// import responsive
+@import 'responsive';

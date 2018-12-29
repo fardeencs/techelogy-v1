@@ -1,0 +1,184 @@
+<!-- Merchandising & Sales Dept. -->
+<div>
+  <h4>Merchandising &amp; Sales</h4>
+  <income-counter [counters]='salesCounters'></income-counter>
+  <!-- Row -->
+  <div class="row">
+    <div class="col-sm-6">
+      <recent-comment [records]='merchentApprovalPendingLists'></recent-comment>
+    </div>
+    <div class="col-sm-6">
+      <recent-comment [records]='merchentMembershipExpiredLists'></recent-comment>
+    </div>
+    <div class="col-sm-6">
+      <recent-comment [records]='skuApprovalPendingLists'></recent-comment>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<!-- Marketing Dept. -->
+<div>
+  <h4>Marketing</h4>
+  <income-counter [counters]='marketingCounters'></income-counter>
+  <!-- Row -->
+  <div class="row">
+    <div class="col-sm-6">
+      <recent-comment [records]='marketingOnlineLists'></recent-comment>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<!-- Logistics & Sales Dept. -->
+<div>
+  <h4>Logistics / Sales</h4>
+  <income-counter [counters]='logisticsCounters'></income-counter>
+  <!-- Row -->
+  <div class="row">
+    <div class="col-sm-6">
+      <recent-comment [records]='logisticApprovalPendingLists'></recent-comment>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<!-- Customer Service Dept. -->
+<div>
+  <h4>Customer Service</h4>
+  <income-counter [counters]='customerCounters'></income-counter>
+  <hr>
+</div>
+
+<!-- Finance Dept. -->
+<div>
+  <h4>Finance</h4>
+  <income-counter [counters]='financeCounters'></income-counter>
+  <!-- Row -->
+  <div class="row">
+    <div class="col-sm-6">
+      <recent-comment [records]='logisticApprovalPendingLists'></recent-comment>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<!-- Integrity Dept. -->
+<div>
+  <h4>Integrity</h4>
+  <income-counter [counters]='integrityCounters'></income-counter>
+  <!-- Row -->
+  <div class="row">
+    <div class="col-sm-6">
+      <recent-comment [records]='logisticApprovalPendingLists'></recent-comment>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<!-- Merchant Dept. -->
+<div *ngIf="profile.role == 'Merchant'">
+  <h4>Merchant</h4>
+  <income-counter [counters]='merchantCounters'></income-counter>
+  <!-- Row -->
+  <div class="row">
+    <!-- Top Selling Product List -->
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Top Selling Products</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th></th>
+                  <th>Product</th>
+                  <th class="text-center">Qty. Ordered</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of topproducts; let i = index;">
+                  <td>{{ (i+1) }}</td>
+                  <td>
+                    <img [src]="product.image" width="70">
+                  </td>
+                  <td> {{ product.name }}
+                  </td>
+                  <td class="text-center">{{ product.sale }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>
+                    <a href="javascript:void(0)" class="btn btn-xs btn-outline-info">
+                      Edit
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-xs btn-outline-danger">
+                      View
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Stock Overview List -->
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Current Stock Overview</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th></th>
+                  <th>Product</th>
+                  <th class="text-center">Qty. in Stock</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of stockOverview; let i = index;">
+                  <td>{{ (i+1) }}</td>
+                  <td>
+                    <img [src]="product.image" width="70">
+                  </td>
+                  <td> {{ product.name }}
+                  </td>
+                  <td class="text-center">{{ product.qty }}
+                    <br>
+                    <i class="fa fa-warning text-danger" *ngIf="product.qty <= 0"></i>
+                  </td>
+                  <td>{{ product.price }}</td>
+                  <td>
+                    <a href="javascript:void(0)" class="btn btn-xs btn-outline-info">
+                      Edit
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-xs btn-outline-danger">
+                      View
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <recent-comment [records]='merchantAlertLists'></recent-comment>
+    </div>
+    <div class="col-sm-6">
+      <recent-comment [records]='merchantMessagesLists'></recent-comment>
+    </div>
+    <div class="col-sm-6">
+      <recent-comment [records]='merchantComplaintsLists'></recent-comment>
+    </div>
+  </div>
+  <hr>
+</div>
+

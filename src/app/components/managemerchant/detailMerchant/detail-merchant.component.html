@@ -1,0 +1,983 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.EDIT'| translate }}" (click)="onEdit()" *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.MERCHANT.EDIT) && isEditAllowed(allowedStatusTypes)">
+          {{'COMMON.BUTTONS.EDIT'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="onDelete()" *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.MERCHANT.DELETE)">
+          {{'COMMON.BUTTONS.DELETE'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+
+
+<div class="table-responsive" *ngIf= "merchantCompleteDetails != '' ">
+  <!-- # Business Information start -->
+  <table class="table table-striped table-bordered detail-view">
+    <tr class="detail-view-item table-heading">
+      <td colspan="2" class="bg-inverse text-white">
+          <strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.TITLE'| translate }}</strong>
+      </td>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.BUISNESS_NAME'| translate }}</td>
+      <td *ngIf= "merchantCompleteDetails['businessInfo']['businessLegalName'] != undefined; else blankTemplate">
+      {{merchantCompleteDetails['businessInfo']['businessLegalName']}}
+       </td>
+       <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.COMPANY_NAME'| translate }}</td>
+      <td *ngIf= "merchantCompleteDetails['businessInfo']['companyNumber'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['businessInfo']['companyNumber']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.MERCHANT_REPRESENTATIVE_NAME'| translate }}</td>
+      <td *ngIf= "merchantCompleteDetails['businessInfo']['merchantRepresentativeName'] != undefined; else blankTemplate" >
+       {{merchantCompleteDetails['businessInfo']['merchantRepresentativeName']}}
+      </td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.MOBILE_NUMBER'| translate }}</td>
+      <td *ngIf = "merchantCompleteDetails['businessInfo']['mobileNumber'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['businessInfo']['mobileNumber']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.STORE_NAME'| translate }}</td>
+      <td *ngIf = "merchantCompleteDetails['businessInfo']['storeName'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['businessInfo']['storeName']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.STORE_EMAIL'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['email'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['businessInfo']['email']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.NATURE_OF_BUISNESS'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['natureOfBusiness'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['businessInfo']['natureOfBusiness']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.ANNUAL_TURNOVER'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['annualTurnover'] != undefined; else blankTemplate">
+            {{annualTurnOverDetails(merchantCompleteDetails['businessInfo']['annualTurnover'])}}{{annualTurnOverResult}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.ADDRESS_1'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['addressLine1'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['businessInfo']['addressLine1']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.ADDRESS_2'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['addressLine2'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['businessInfo']['addressLine2']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.COUNTRY'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['countryName'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['businessInfo']['countryName']}}({{merchantCompleteDetails['businessInfo']['countryId']}})</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.STATE'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['stateName'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['businessInfo']['stateName']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.CITY'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['cityName'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['businessInfo']['cityName']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.ZIPCODE'| translate }}</td>
+        <td *ngIf = "merchantCompleteDetails['businessInfo']['zipcode'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['businessInfo']['zipcode']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+    <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.URL'| translate }}</td>
+      <td *ngIf="merchantCompleteDetails['businessInfo']['websiteUrl'] != undefined; else blankTemplate">
+        <a href="{{this.addHttpURL(merchantCompleteDetails['businessInfo']['websiteUrl'])}}" target="_blank">{{merchantCompleteDetails['businessInfo']['websiteUrl']}}</a>
+      </td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.SELL_OTHER_WEB'| translate }}</td>
+          <td *ngIf="merchantCompleteDetails['businessInfo']['sellInOtherWebsite'] == 1">Yes</td>
+          <td *ngIf="merchantCompleteDetails['businessInfo']['sellInOtherWebsite'] == 0">No</td>
+          <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.COMPANY_INFO.PROVIDE_WEBSITE_URL'| translate }}</td>
+        <td *ngIf="merchantCompleteDetails['businessInfo']['sellInOtherWebsite'] == 1; else blankTemplate">
+          <a href="{{this.addHttpURL(merchantCompleteDetails['businessInfo']['otherWebsiteUrl'])}}" target="_blank">{{merchantCompleteDetails['businessInfo']['otherWebsiteUrl']}}</a>
+        </td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+</table> <!-- # Business Information end -->
+
+<!-- # Contact Person for Merchandise and Product Matters start -->
+<table class="table table-striped table-bordered detail-view">
+   <tr class="detail-view-item table-heading">
+      <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_PERSON.CONTACT_PERSON_MERCHANDISE' | translate}}</strong></td>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_PERSON.CONTACT_PERSON' | translate}}</td>
+      <td *ngIf = "merchantCompleteDetails['contactInfo']['contactPerson'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['contactInfo']['contactPerson']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_PERSON.DESIGNATION' | translate}}</td>
+        <td *ngIf = "merchantCompleteDetails['contactInfo']['designation'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['contactInfo']['designation']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_PERSON.TELEPHONE' | translate}}</td>
+      <td *ngIf = "merchantCompleteDetails['contactInfo']['telephone'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['contactInfo']['telephone']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_PERSON.EXT' | translate}}</td>
+      <td *ngIf = "merchantCompleteDetails['contactInfo']['extensionNumber'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['contactInfo']['extensionNumber']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_PERSON.EMAIL' | translate}}</td>
+      <td *ngIf = "merchantCompleteDetails['contactInfo']['email'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['contactInfo']['email']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_PERSON.MOBILE_1' | translate}}</td>
+      <td *ngIf = "merchantCompleteDetails['contactInfo']['phoneNumber1'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['contactInfo']['phoneNumber1']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_PERSON.MOBILE_2' | translate}}</td>
+      <td *ngIf = "merchantCompleteDetails['contactInfo']['phoneNumber2'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['contactInfo']['phoneNumber2']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+</table><!-- # Contact Person for Merchandise and Product Matters end -->
+
+<!-- # Contact Person for Accounts and Finance Matters Start -->
+<table class="table table-striped table-bordered detail-view">
+   <tr class="detail-view-item table-heading">
+      <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.CONTACT_PERSON_FINANCE' | translate}}</strong></td>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.CONTACT_PERSON' | translate}}</td>
+      <td *ngIf = "merchantCompleteDetails['financeInfo']['contactPerson'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['financeInfo']['contactPerson']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+      <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.DESIGNATION' | translate}}</td>
+      <td *ngIf = "merchantCompleteDetails['financeInfo']['contactDesignation'] != undefined; else blankTemplate">
+          {{merchantCompleteDetails['financeInfo']['contactDesignation']}}</td>
+      <ng-template #blankTemplate><td>-</td></ng-template>
+    </tr>
+   <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.TELEPHONE' | translate}}</td>
+        <td *ngIf = "merchantCompleteDetails['financeInfo']['telephone'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['financeInfo']['telephone']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+      </tr>
+     <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.EXT' | translate}}</td>
+        <td *ngIf = "merchantCompleteDetails['financeInfo']['extensionNumber'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['financeInfo']['extensionNumber']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+      </tr>
+       <tr class="detail-view-item">
+          <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.EMAIL' | translate}}</td>
+          <td *ngIf = "merchantCompleteDetails['financeInfo']['email'] != undefined; else blankTemplate">
+              {{merchantCompleteDetails['financeInfo']['email']}}</td>
+          <ng-template #blankTemplate><td>-</td></ng-template>
+        </tr>
+     <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.MOBILE_1' | translate}}</td>
+        <td *ngIf = "merchantCompleteDetails['financeInfo']['mobileNumber1'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['financeInfo']['mobileNumber1']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+      </tr>
+     <tr class="detail-view-item">
+        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.MOBILE_2' | translate}}</td>
+        <td *ngIf = "merchantCompleteDetails['financeInfo']['mobileNumber2'] != undefined; else blankTemplate">
+            {{merchantCompleteDetails['financeInfo']['mobileNumber2']}}</td>
+        <ng-template #blankTemplate><td>-</td></ng-template>
+      </tr>
+</table><!-- # Contact Person for Accounts and Finance Matters end -->
+
+<!-- Finance and Tax details start -->
+<table class="table table-striped table-bordered detail-view">
+     <tr class="detail-view-item table-heading">
+        <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.TAX_DETAILS.TITLE'| translate }}</strong></td>
+      </tr>
+      <tr class="detail-view-item">
+        <td colspan="2">
+        <table class="table table-striped table-bordered detail-view table-inner">
+            <tr class="detail-view-item table-heading">
+                <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.BANK_DETALS'| translate }}</strong></td>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.BANK_NAME'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['bankName'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['bankName']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.BRANCH_NAME'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['branchName'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['branchName']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.ACCOUNT_NUMBER'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['accountNumber'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['accountNumber']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.ROUTING_NUMBER'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['routing'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['routing']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.BANK_ADDRESS'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['bankAddress'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['bankAddress']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.SWIFT'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['swiftCode'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['swiftCode']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.PAYPAL'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['paypal'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['paypal']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FINANCE_INFO.COMAPNY_NAME'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['companyName'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['companyName']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item table-heading">
+                    <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.TAX_DETAILS.TAX_DETAILS'| translate }}</strong></td>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.TAX_DETAILS.TAX_STATE'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['taxState'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['taxState']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+            <tr class="detail-view-item">
+                <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.TAX_DETAILS.GST'| translate }}</td>
+                <td *ngIf = "merchantCompleteDetails['financeInfo']['taxNumber'] != undefined; else blankTemplate">
+                    {{merchantCompleteDetails['financeInfo']['taxNumber']}}</td>
+                <ng-template #blankTemplate><td>-</td></ng-template>
+            </tr>
+        </table>
+        </td>
+      </tr>
+</table><!--# Finance and Tax details end-->
+
+<!-- Upload Documents Start -->
+<table class="table table-striped table-bordered detail-view">
+     <tr class="detail-view-item table-heading">
+          <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.DOCUMENT_UPLOAD.DOCUMENT'| translate }}</strong></td>
+      </tr>
+     <tr class="detail-view-item">
+          <!-- <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DOCUMENT_UPLOAD.DOC_TYPE'| translate }}</td> -->
+          <td colspan="2" *ngIf = "merchantCompleteDetails['documentInfo'].length > 0 ; else blankTemplate">
+            <ng-container *ngFor= "let items of merchantCompleteDetails['documentInfo']">
+                <table class="table table-striped table-bordered detail-view table-inner" >
+                    <tr class="detail-view-item table-heading">
+                        <td  colspan="2"><strong>{{items['documentName']}}</strong></td>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td colspan="2" >
+                            <div class="upload-document-grid mt-3">
+                                <div class="document-list__item" *ngFor= "let link of items['documents']">
+                                    <span class="file-icon">
+                                        <i class="mdi mdi-file-image"> </i>
+                                    </span>
+                                    <div class="document-name" [title]="link['documentName']">{{link['documentName']}}</div>
+                                    <a [href]="link['documentValue']" class="btn btn-link btn-download-file">
+                                        <i class="mdi mdi-cloud-download"></i>
+                                    </a>
+                                </div>
+                              <div *ngIf="items['documents'].length == 0">{{'MANAGE_MERCHANT.ADD_MERCHANT.DOCUMENT_UPLOAD.NO_DOCUMENTS_UPLOADED'| translate }}</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </ng-container>
+
+          </td>
+          <ng-template #blankTemplate><td>-</td></ng-template>
+      </tr>
+
+  </table> <!-- # Upload Document end-->
+</div>
+<div class="table-responsive" *ngIf= "merchantCompleteDetails != ''">
+<!-- Global Platform start -->
+    <table class="table table-striped table-bordered detail-view">
+        <tr class="detail-view-item table-heading">
+          <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFORM.GLOBAL_PLATFORM'| translate }}</strong></td>
+        </tr>
+       <tr class="detail-view-item" *ngIf="merchantCompleteDetails['platformInfo']['international'] == '1'">
+           <td colspan="2">
+                <table class="table table-striped table-bordered detail-view table-inner">
+                <tr class="detail-view-item table-heading">
+                        <td  colspan="2" ><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.SELECT_GROUP_COUNTRIES.GROUP'| translate }}</strong></td>
+                </tr>
+                <tr class="detail-view-item">
+                    <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SELECT_GROUP_COUNTRIES.GROUP_NAME'| translate }}</td>
+                    <td *ngIf = "merchantCompleteDetails['deliveryInfo']['group'] != undefined; else blankTemplate">
+                        <span *ngFor= "let groups of merchantCompleteDetails['deliveryInfo']['group']">
+                        <div>{{groups['countryGroupName']}} ({{groups['groupCountryId']}}) </div>
+                        </span>
+                    </td>
+                    <ng-template #blankTemplate><td>-</td></ng-template>
+                </tr>
+                <tr class="detail-view-item table-heading">
+                    <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.SELECT_GROUP_COUNTRIES.COUNTRIES'| translate }}</strong></td>
+                </tr>
+                <tr class="detail-view-item">
+                    <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SELECT_GROUP_COUNTRIES.COUNTRIES'| translate }}</td>
+                    <td *ngIf = "merchantCompleteDetails['deliveryInfo']['country'] != undefined; else blankTemplate">
+                        <span *ngFor= "let country of merchantCompleteDetails['deliveryInfo']['country']">
+                            <div>{{country['countryName']}} ({{country['countryId']}}) </div>
+                        </span>
+                    </td>
+                    <ng-template #blankTemplate><td>-</td></ng-template>
+                </tr>
+               </table>
+               <!-- Group Platform Delivery, Scheme & Fee details  start-->
+               <table class="table table-striped table-bordered detail-view table-inner repeatableTable" *ngFor = "let details of merchantCompleteDetails['deliveryInfo']['group']">
+                    <tr class="detail-view-item table-heading">
+                        <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.FEES_DETAILS.TITLE'| translate}} of <span class="badge badge-default">{{details['countryGroupName']}}</span></strong></td>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.NORMAL'| translate }}</td>
+                        <td *ngIf = "details['normal'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['normal'] == 0">No</span>
+                            <span *ngIf= "details['normal'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.FROZEN'| translate }}</td>
+                        <td *ngIf = "details['frozen'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['frozen'] == 0">No</span>
+                            <span *ngIf= "details['frozen'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.DELIVERY'| translate }}</td>
+                        <td *ngIf = "details['merchantDelivery'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['merchantDelivery'] == 0">No</span>
+                            <span *ngIf= "details['merchantDelivery'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.OTHERS'| translate }}</td>
+                        <td *ngIf = "details['other'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['other'] == 0">No</span>
+                            <span *ngIf= "details['other'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.OTHERS_VALUE'| translate }}</td>
+                        <td *ngIf = "details['otherDetail'] != undefined; else blankTemplate">{{details['otherDetail']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.ESTIMATE'| translate }}</td>
+                        <td *ngIf = "details['estimateSku'] != undefined; else blankTemplate">{{details['estimateSku']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.SHIPPING_FEE_MERCHANT_VIEW'| translate }}</td>
+                        <td *ngIf = "details['shippingFee'] != undefined; else blankTemplate">
+                        <span *ngIf= "details['shippingFee'] == 1">Yes</span>
+                        <span *ngIf= "details['shippingFee'] == 0">No</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FEES_DETAILS.SCHEME'| translate }}</td>
+                        <td *ngIf = "details['schemeType1Name'] != undefined; else blankTemplate">{{details['schemeType1Name']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item table-heading">
+                        <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.REGISTRATION_FEE' | translate}}</strong></td>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2C' | translate}}</td>
+                        <td *ngIf = "details['registrationFeeB2c'] != undefined; else blankTemplate">{{details['registrationFeeB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.AGRREMENT_B2C' | translate}}</td>
+                        <td *ngIf = "details['agreementPeriodB2c'] != undefined; else blankTemplate">{{details['agreementPeriodB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2B' | translate}}</td>
+                        <td *ngIf = "details['registrationFeeB2b'] != undefined; else blankTemplate">{{details['registrationFeeB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.AGRREMENT_B2B' | translate}}</td>
+                        <td *ngIf = "details['agreementPeriodB2b'] != undefined; else blankTemplate">{{details['agreementPeriodB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item table-heading">
+                        <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.TRANSECTION_FEE' | translate}}</strong></td>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2C_PERCENT' | translate}}</td>
+                        <td *ngIf = "details['transactionFeeB2c'] != undefined; else blankTemplate">{{details['transactionFeeB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2B_PERCENT' | translate}}</td>
+                        <td *ngIf = "details['transactionFeeB2b'] != undefined; else blankTemplate">{{details['transactionFeeB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.REMARKS' | translate}}</td>
+                        <td *ngIf = "details['remarks'] != undefined; else blankTemplate">{{details['remarks']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <!-- Group Pickup Address start -->
+                    <ng-container  *ngFor = "let pickupAddressGrp of details['pickupInfo']">
+                        <tr class="detail-view-item table-heading">
+                            <td  colspan="2" ><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFROM_ADDRESS.TITLE'| translate }} of <span class="badge badge-default">{{details['countryGroupName']}}</span></strong></td>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CONTACT_NAME'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['contactName'] != undefined; else blankTemplate">{{pickupAddressGrp['contactName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CONTACT_NUMBER'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['contactNumber'] != undefined; else blankTemplate">{{pickupAddressGrp['contactNumber']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ADDRESS_LINE1'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['addressLine1'] != undefined; else blankTemplate">{{pickupAddressGrp['addressLine1']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ADDRESS_LINE2'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['addressLine2'] != undefined; else blankTemplate">{{pickupAddressGrp['addressLine2']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.COUNTRY'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['countryName'] != undefined; else blankTemplate">{{pickupAddressGrp['countryName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.STATE'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['stateName'] != undefined; else blankTemplate">{{pickupAddressGrp['stateName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CITY'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['cityName'] != undefined; else blankTemplate">{{pickupAddressGrp['cityName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ZIPCODE'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['zipcode'] != undefined; else blankTemplate">{{pickupAddressGrp['zipcode']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                    </ng-container><!-- # Group Pickup Address end -->
+
+                    <!-- Group Product & Revenue start -->
+                        <tr class="detail-view-item table-heading">
+                            <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.TITLE' | translate}} of <span class="badge badge-default">{{details['countryGroupName']}}</span></strong></td>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.CATEGORY' | translate}}</td>
+                            <td *ngIf = "details['catalogs'] != undefined; else blankTemplate">
+                            <div  *ngFor = "let catalog of details['catalogs']">
+                                <strong><u>{{catalog['categoryName']}}</u></strong>
+                                <div *ngFor = "let subCatalog of catalog['subCatalog']">
+                                <strong><i>{{subCatalog['categoryName']}}</i></strong>
+                                <div *ngFor = "let supersubCatalog of subCatalog['subCatalog']">
+                                    {{supersubCatalog['categoryName']}}
+                                </div>
+                                </div>
+                            </div>
+                            </td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.NUMBER_PRODUCT' | translate}} </td>
+                            <td *ngIf = "details['productCountToSell'] != undefined; else blankTemplate">
+                                    {{productSellCount(details['productCountToSell'], 'group')}}{{productCountGroup}}
+                            </td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr><!-- # Group Product & Revenue end -->
+              </table>
+              <!-- Country Delivery, Scheme & Fee details start -->
+              <table class="table table-striped table-bordered detail-view table-inner repeatableTable" *ngFor = "let details of merchantCompleteDetails['deliveryInfo']['country']">
+                    <tr class="detail-view-item table-heading">
+                        <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.FEES_DETAILS.TITLE'| translate}} of <span class="badge badge-default">{{details['countryName']}}</span> </strong></td>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.NORMAL'| translate }}</td>
+                        <td *ngIf = "details['normal'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['normal'] == 0">No</span>
+                            <span *ngIf= "details['normal'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.FROZEN'| translate }}</td>
+                        <td *ngIf = "details['frozen'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['frozen'] == 0">No</span>
+                            <span *ngIf= "details['frozen'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.DELIVERY'| translate }}</td>
+                        <td *ngIf = "details['merchantDelivery'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['merchantDelivery'] == 0">No</span>
+                            <span *ngIf= "details['merchantDelivery'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.OTHERS'| translate }}</td>
+                        <td *ngIf = "details['other'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['other'] == 0">No</span>
+                            <span *ngIf= "details['other'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.OTHERS_VALUE'| translate }}</td>
+                        <td *ngIf = "details['otherDetail'] != undefined; else blankTemplate">{{details['otherDetail']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.ESTIMATE'| translate }}</td>
+                        <td *ngIf = "details['estimateSku'] != undefined; else blankTemplate">{{details['estimateSku']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.SHIPPING_FEE_MERCHANT_VIEW'| translate }}</td>
+                        <td *ngIf = "details['shippingFee'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['shippingFee'] == 1">Yes</span>
+                            <span *ngIf= "details['shippingFee'] == 0">No</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FEES_DETAILS.SCHEME'| translate }}</td>
+                        <td *ngIf = "details['schemeType1Name'] != undefined; else blankTemplate">{{details['schemeType1Name']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item table-heading">
+                        <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.REGISTRATION_FEE' | translate}}</strong></td>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2C' | translate}}</td>
+                        <td *ngIf = "details['registrationFeeB2c'] != undefined; else blankTemplate">{{details['registrationFeeB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.AGRREMENT_B2C' | translate}}</td>
+                        <td *ngIf = "details['agreementPeriodB2c'] != undefined; else blankTemplate">{{details['agreementPeriodB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2B' | translate}}</td>
+                        <td *ngIf = "details['registrationFeeB2b'] != undefined; else blankTemplate">{{details['registrationFeeB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.AGRREMENT_B2B' | translate}}</td>
+                        <td *ngIf = "details['agreementPeriodB2b'] != undefined; else blankTemplate">{{details['agreementPeriodB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item table-heading">
+                        <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.TRANSECTION_FEE' | translate}}</strong></td>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2C_PERCENT' | translate}}</td>
+                        <td *ngIf = "details['transactionFeeB2c'] != undefined; else blankTemplate">{{details['transactionFeeB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2B_PERCENT' | translate}}</td>
+                        <td *ngIf = "details['transactionFeeB2b'] != undefined; else blankTemplate">{{details['transactionFeeB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                   <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.REMARKS' | translate}}</td>
+                        <td *ngIf = "details['remarks'] != undefined; else blankTemplate">{{details['remarks']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <!--  Pickup Address start -->
+                    <ng-container  *ngFor = "let pickupAddressGrp of details['pickupInfo']">
+                        <tr class="detail-view-item table-heading">
+                            <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFROM_ADDRESS.TITLE'| translate }} of <span class="badge badge-default">{{details['countryName']}}</span></strong></td>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CONTACT_NAME'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['contactName'] != undefined; else blankTemplate">{{pickupAddressGrp['contactName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CONTACT_NUMBER'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['contactNumber'] != undefined; else blankTemplate">{{pickupAddressGrp['contactNumber']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ADDRESS_LINE1'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['addressLine1'] != undefined; else blankTemplate">{{pickupAddressGrp['addressLine1']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ADDRESS_LINE2'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['addressLine2'] != undefined; else blankTemplate">{{pickupAddressGrp['addressLine2']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.COUNTRY'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['countryName'] != undefined; else blankTemplate">{{pickupAddressGrp['countryName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.STATE'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['stateName'] != undefined; else blankTemplate">{{pickupAddressGrp['stateName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CITY'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['cityName'] != undefined; else blankTemplate">{{pickupAddressGrp['cityName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ZIPCODE'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['zipcode'] != undefined; else blankTemplate">{{pickupAddressGrp['zipcode']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                    </ng-container><!-- # Country Pickup Address end -->
+
+                    <!--  Country Product & Revenue start -->
+                        <tr class="detail-view-item table-heading">
+                            <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.TITLE' | translate}} of <span class="badge badge-default">{{details['countryName']}}</span></strong></td>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.CATEGORY' | translate}}</td>
+                            <td *ngIf = "details['catalogs'] != undefined; else blankTemplate">
+                            <div  *ngFor = "let catalog of details['catalogs']">
+                                <strong><u>{{catalog['categoryName']}}</u></strong>
+                                <div *ngFor = "let subCatalog of catalog['subCatalog']">
+                                <strong><i>{{subCatalog['categoryName']}}</i></strong>
+                                <div *ngFor = "let supersubCatalog of subCatalog['subCatalog']">
+                                    {{supersubCatalog['categoryName']}}
+                                </div>
+                                </div>
+                            </div>
+                            </td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.NUMBER_PRODUCT' | translate}} </td>
+                            <td *ngIf = "details['productCountToSell'] != undefined; else blankTemplate">{{productSellCount(details['productCountToSell'], 'group')}}{{productCountGroup}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr><!--  #Country Product & Revenue end -->
+              </table>
+           </td>
+       </tr>
+       <tr *ngIf="merchantCompleteDetails['platformInfo']['international'] == '0' || merchantCompleteDetails['platformInfo'].length == 0"><td>{{'COMMON.LABELS.NO_RECORD_FOUND'| translate }}</td></tr>
+    </table> <!-- # Global Platform end -->
+
+
+</div>
+<!-- # Domestic Platform start -->
+<div class="table-responsive" *ngIf= "merchantCompleteDetails != '' ">
+    <table class="table table-striped table-bordered detail-view">
+        <tr class="detail-view-item table-heading">
+            <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFORM.DOMESTIC_PLATFORM'| translate }}</strong></td>
+        </tr>
+
+        <tr class="detail-view-item" *ngFor = "let details of merchantCompleteDetails['deliveryInfo']['country']">
+            <td *ngIf="merchantCompleteDetails['platformInfo']['domestic'] == '1' && domesticCountry == details['countryId']">
+                <!-- Delivery, Scheme & Fee details start -->
+                <table class="table table-striped table-bordered detail-view table-inner">
+                    <tr class="detail-view-item table-heading">
+                            <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.FEES_DETAILS.TITLE'| translate}}</strong></td>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.NORMAL'| translate }}</td>
+                        <td *ngIf = "details['normal'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['normal'] == 0">No</span>
+                            <span *ngIf= "details['normal'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.FROZEN'| translate }}</td>
+                        <td *ngIf = "details['frozen'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['frozen'] == 0">No</span>
+                            <span *ngIf= "details['frozen'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.DELIVERY'| translate }}</td>
+                        <td *ngIf = "details['merchantDelivery'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['merchantDelivery'] == 0">No</span>
+                            <span *ngIf= "details['merchantDelivery'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.OTHERS'| translate }}</td>
+                        <td *ngIf = "details['other'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['other'] == 0">No</span>
+                            <span *ngIf= "details['other'] == 1">Yes</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.MODE_ON_MERCHANT_VIEW.OTHERS_VALUE'| translate }}</td>
+                        <td *ngIf = "details['otherDetail'] != undefined; else blankTemplate">{{details['otherDetail']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.ESTIMATE'| translate }}</td>
+                        <td *ngIf = "details['estimateSku'] != undefined; else blankTemplate">{{details['estimateSku']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.DELIVERY_DETAILS.SHIPPING_FEE_MERCHANT_VIEW'| translate }}</td>
+                        <td *ngIf = "details['shippingFee'] != undefined; else blankTemplate">
+                            <span *ngIf= "details['shippingFee'] == 1">Yes</span>
+                            <span *ngIf= "details['shippingFee'] == 0">No</span>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.FEES_DETAILS.SCHEME'| translate }}</td>
+                        <td *ngIf = "details['schemeType1Name'] != undefined; else blankTemplate">{{details['schemeType1Name']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item table-heading">
+                        <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.REGISTRATION_FEE' | translate}}</strong></td>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2C' | translate}}</td>
+                        <td *ngIf = "details['registrationFeeB2c'] != undefined; else blankTemplate">{{details['registrationFeeB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.AGRREMENT_B2C' | translate}}</td>
+                        <td *ngIf = "details['agreementPeriodB2c'] != undefined; else blankTemplate">{{details['agreementPeriodB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2B' | translate}}</td>
+                        <td *ngIf = "details['registrationFeeB2b'] != undefined; else blankTemplate">{{details['registrationFeeB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.AGRREMENT_B2B' | translate}}</td>
+                        <td *ngIf = "details['agreementPeriodB2b'] != undefined; else blankTemplate">{{details['agreementPeriodB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item table-heading">
+                        <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.TRANSECTION_FEE' | translate}}</strong></td>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2C_PERCENT' | translate}}</td>
+                        <td *ngIf = "details['transactionFeeB2c'] != undefined; else blankTemplate">{{details['transactionFeeB2c']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.GLOBAL_B2B_PERCENT' | translate}}</td>
+                        <td *ngIf = "details['transactionFeeB2b'] != undefined; else blankTemplate">{{details['transactionFeeB2b']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.SCHEME_FEE.REMARKS' | translate}}</td>
+                        <td *ngIf = "details['remarks'] != undefined; else blankTemplate">{{details['remarks']}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <!--  Pickup Address start -->
+                    <ng-container class="table table-striped table-bordered detail-view repeatableTable"  *ngFor = "let pickupAddressGrp of details['pickupInfo']">
+                        <tr class="detail-view-item table-heading">
+                            <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFROM_ADDRESS.TITLE'| translate }} of <span class="badge badge-default">{{details['countryName']}}</span></strong></td>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CONTACT_NAME'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['contactName'] != undefined; else blankTemplate">{{pickupAddressGrp['contactName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CONTACT_NUMBER'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['contactNumber'] != undefined; else blankTemplate">{{pickupAddressGrp['contactNumber']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ADDRESS_LINE1'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['addressLine1'] != undefined; else blankTemplate">{{pickupAddressGrp['addressLine1']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ADDRESS_LINE2'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['addressLine2'] != undefined; else blankTemplate">{{pickupAddressGrp['addressLine2']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.COUNTRY'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['countryName'] != undefined; else blankTemplate">{{pickupAddressGrp['countryName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.STATE'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['stateName'] != undefined; else blankTemplate">{{pickupAddressGrp['stateName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CITY'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['cityName'] != undefined; else blankTemplate">{{pickupAddressGrp['cityName']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                        <tr class="detail-view-item">
+                            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ZIPCODE'| translate}}</td>
+                            <td *ngIf = "pickupAddressGrp['zipcode'] != undefined; else blankTemplate">{{pickupAddressGrp['zipcode']}}</td>
+                            <ng-template #blankTemplate><td>-</td></ng-template>
+                        </tr>
+                    </ng-container><!--  # Pickup Address end -->
+                    <!--  Product & Revenue start -->
+                    <tr class="detail-view-item table-heading">
+                        <td  colspan="2"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.TITLE' | translate}}</strong></td>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.CATEGORY' | translate}}</td>
+                        <td *ngIf = "details['catalogs'] != undefined; else blankTemplate">
+                            <div  *ngFor = "let catalog of details['catalogs']">
+                            <strong><u>{{catalog['categoryName']}}</u></strong>
+                            <div *ngFor = "let subCatalog of catalog['subCatalog']">
+                                <strong><i>{{subCatalog['categoryName']}}</i></strong>
+                                <div *ngFor = "let supersubCatalog of subCatalog['subCatalog']">
+                                {{supersubCatalog['categoryName']}}
+                                </div>
+                            </div>
+                            </div>
+                        </td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <tr class="detail-view-item">
+                        <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.NUMBER_PRODUCT' | translate}} </td>
+                        <td *ngIf = "details['productCountToSell'] != undefined; else blankTemplate"> {{productSellCount(details['productCountToSell'], 'domestic')}}{{productCountDomestic}}</td>
+                        <ng-template #blankTemplate><td>-</td></ng-template>
+                    </tr>
+                    <!--  # Product & Revenue end -->
+                </table><!-- # Delivery, Scheme & Fee details end -->
+            </td>
+        </tr>
+        <tr *ngIf="merchantCompleteDetails['platformInfo']['domestic'] == '0' || merchantCompleteDetails['platformInfo'].length == 0"><td>{{'COMMON.LABELS.NO_RECORD_FOUND'| translate }}</td></tr>
+    </table>
+</div>
+
+<div class="table-responsive" *ngIf= "merchantCompleteDetails != ''">
+    <table class="table table-striped table-bordered detail-view">
+        <tr class="detail-view-item table-heading">
+            <td  colspan="2" class="bg-inverse text-white"><strong>{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.TITLE'| translate }}</strong></td>
+        </tr>
+       <tr class="detail-view-item">
+          <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.DATE'| translate }}</td>
+          <td *ngIf = "merchantCompleteDetails['signatoryInfo']['createdAt'] != undefined; else blankTemplate">
+              {{authorizedSignDate}}</td>
+          <ng-template #blankTemplate><td>--</td></ng-template>
+        </tr>
+       <tr class="detail-view-item">
+          <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.NAME'| translate }}</td>
+          <td *ngIf = "merchantCompleteDetails['signatoryInfo']['applicantName'] != undefined; else blankTemplate">
+              {{merchantCompleteDetails['signatoryInfo']['applicantName']}}</td>
+          <ng-template #blankTemplate><td>-</td></ng-template>
+        </tr>
+       <tr class="detail-view-item">
+          <td >{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.DESIGNATION'| translate }}</td>
+          <td *ngIf = "merchantCompleteDetails['signatoryInfo']['designtaion'] != undefined; else blankTemplate ">
+              {{merchantCompleteDetails['signatoryInfo']['designtaion']}}</td>
+          <ng-template #blankTemplate><td>-</td></ng-template>
+        </tr>
+       <tr class="detail-view-item">
+            <td>{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.SIGNATURE'| translate }}</td>
+            <td *ngIf = "merchantCompleteDetails['signatoryInfo']['applicantSignature'] != undefined; else blankTemplate">
+              <img class="img-fluid" src= "{{merchantCompleteDetails['signatoryInfo']['applicantSignature']}}"/>
+            </td>
+            <ng-template #blankTemplate><td>-</td></ng-template>
+          </tr>
+      </table>
+</div>

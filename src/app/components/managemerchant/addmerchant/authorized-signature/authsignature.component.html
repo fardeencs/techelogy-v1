@@ -1,0 +1,47 @@
+<!-- Tax Information Step 4 Content Details -->
+<div>
+        <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.TITLE'| translate }}</h4>
+        <form class="form-horizontal m-t-10"  id="authSignature" #authSignature>
+          <div class="row">
+            <div class="col">
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.DATE'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.AUTHORIZED_SIGNATURE.DATE'| translate }}" disabled [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT_50" class="form-control" [(ngModel)]="authSignatureData.createdAt" name="createdAt">
+              </div>
+
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.NAME'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.AUTHORIZED_SIGNATURE.NAME'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER"  [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT" class="form-control"  [(ngModel)]="authSignatureData.applicantName" name="applicantName">
+              </div>
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.DESIGNATION'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.AUTHORIZED_SIGNATURE.DESIGNATION'| translate }}" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_NO_SPECIAL_CHARACTER"  [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT" class="form-control"  [(ngModel)]="authSignatureData.designtaion" name="designtaion">
+              </div>
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.AUTHORIZED_SIGNATURE.SIGNATURE'| translate }} <span class="form-field-required">*</span></label>
+                <input type="file" (change)="fileEvent($event)" [disabled]="isDetailSection"  class="form-control" name="applicantSignature" >
+              </div>
+              <div class="form-group">
+                <img [src]="authSignatureData.applicantSignature" class="uploadedImage" *ngIf = "authSignatureData.applicantSignature != ''" />
+              </div>
+
+            </div>
+          </div>
+          <!-- Action Button -->
+          <div class="row action-button" *ngIf="!isDetailSection">
+            <div class="col-12 text-right">
+
+              <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)="moveToPrevious()">
+                <i class="mdi mdi-arrow-left mr-2"></i>
+                {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+              </button>
+
+              <button type="button" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SUBMIT_FOR_REVIEW'| translate }}" (click)="onNextClick()">
+                {{'COMMON.BUTTONS.SUBMIT_FOR_REVIEW'| translate }}
+              </button>
+
+            </div>
+          </div>
+        </form>
+      </div>

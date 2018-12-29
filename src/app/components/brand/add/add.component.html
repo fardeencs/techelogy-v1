@@ -1,0 +1,272 @@
+<!-- <div class="card  box-shadow action-button--top text-right">
+  <div class="search-filter-header text-right">
+    <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+      <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+    </button>
+    <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+      {{'COMMON.BUTTONS.CANCEL'| translate }}
+    </button>
+    <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="onDelete()"
+      *ngIf="token && getPermissionStatus(permissions, PERMISSION_ACTION.BRANDS.DELETE)">
+      {{'COMMON.BUTTONS.DELETE'| translate }}
+    </button>
+  </div>
+</div> -->
+
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+        <div class="search-filter-header text-right">
+            <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+              <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+            </button>
+            <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+              {{'COMMON.BUTTONS.CANCEL'| translate }}
+            </button>
+            <button type="button" class="btn btn-inverse px-4" (click)="onDelete()" title="{{'COMMON.BUTTONS.DELETE'| translate }}" *ngIf="brandToken && getPermissionStatus(permissions, PERMISSION_ACTION.COUNTRY.DELETE)">
+              {{'COMMON.BUTTONS.DELETE'| translate }}
+            </button>
+          </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <form class="form-horizontal m-t-10" #dataForm="ngForm" #dataForm id="dataForm" [formGroup]="data.formGroup">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.NAME'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" class="form-control" formControlName="brandName" placeholder="{{'BRANDS.FORM_LABELS.NAME'| translate}}">
+            <control-messages [control]="data.formGroup.controls.brandName" [messages]="data.validateRules.messages.brandName">
+            </control-messages>
+          </div>
+
+          <!-- formControlName="startDate" -->
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.START_DATE'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" class="form-control read-only-color"  autocomplete="off" formControlName="startDate" placeholder="{{'BRANDS.FORM_LABELS.START_DATE'| translate }}"
+              [minDate]="minDate" [bsConfig]="bsConfig" bsDatepicker>
+            <control-messages [control]="data.formGroup.controls.startDate" [messages]="data.validateRules.messages.startDate">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.END_DATE'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" class="form-control read-only-color"  autocomplete="off" formControlName="endDate" placeholder="{{'BRANDS.FORM_LABELS.END_DATE'| translate }}"
+              [minDate]="minDate" [bsConfig]="bsConfig" bsDatepicker>
+            <control-messages [control]="data.formGroup.controls.endDate" [messages]="data.validateRules.messages.endDate">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.LOCATION'| translate }} </label>
+            <!-- <select class="form-control" name="location" formControlName="location">
+              <option [ngValue]="undefined" disabled  selected> Please select </option>
+              <option *ngFor="let status of LOCATION_OPTIONS;" [value]="status.value">{{ status.label }}</option>
+            </select> -->
+            <app-dropdown name="location" [data]="LOCATION_OPTIONS" bindLabel="label" bindValue="value"
+              placeholder="Please Select" formControlName="location">
+            </app-dropdown>
+            <!-- <app-dropdown name="location" [searchable]="true" [data]="LOCATION_OPTIONS" bindLabel="label" bindValue="value"
+              placeholder="Please Select" [multiple]="true" formControlName="location">
+            </app-dropdown> -->
+            <control-messages [control]="data.formGroup.controls.location" [messages]="data.validateRules.messages.location">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+          <label>{{'BRANDS.FORM_LABELS.LANDING_PAGE'| translate }} <span class="form-field-required">*</span></label>
+            <select class="form-control" name="landingPage" formControlName="landingPage">
+              <option *ngFor="let status of PAGE_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <!-- <app-dropdown name="landingPage" [data]="PAGE_OPTION" bindLabel="label" bindValue="value"
+              placeholder="Please Select" formControlName="landingPage">
+            </app-dropdown> -->
+            <!-- <app-dropdown name="landingPage" [data]="PAGE_OPTION" bindLabel="label" bindValue="value"
+              placeholder="Please Select" formControlName="landingPage">
+            </app-dropdown> -->
+            <control-messages [control]="data.formGroup.controls.landingPage" [messages]="data.validateRules.messages.landingPage">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.SPECIFIED_PAGE'| translate }} </label>
+
+            <app-dropdown name="specifiedPage" [searchable]="true" [data]="SPECIFIED_PAGES" bindLabel="label" bindValue="value"
+              placeholder="Please Select" [multiple]="true" formControlName="specifiedPage">
+            </app-dropdown>
+
+            <control-messages [control]="data.formGroup.controls.specifiedPage" [messages]="data.validateRules.messages.specifiedPage">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.CATEGORIES'| translate }}</label>
+            <!-- [itemTemplate]="itemTemplate" 
+              [buttonClass]="buttonClass"  -->
+            <app-dropdown
+              [treeview]="true"
+              name="categories"
+              [config]="config" 
+              [items]="CATEGORY_LIST" 
+              (selectedChange)="onSelectedChange($event)"
+              formControlName="categories"
+              [ngxDisabledOnSelector]="'button.dropdown-toggle'">
+            </app-dropdown>
+
+            <!-- <input type="text" class="form-control" formControlName="categories"> -->
+            <control-messages [control]="data.formGroup.controls.categories" [messages]="data.validateRules.messages.categories">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.PRODUCTS'| translate }} </label>
+            <app-dropdown name="products" [searchable]="true" [data]="PRODUCT_LIST" bindLabel="productName" bindValue="entityId"
+              placeholder="Please Select" [multiple]="true" formControlName="products">
+            </app-dropdown>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.TOP_BRAND'| translate }} <span class="form-field-required">*</span></label>
+            <select class="form-control" name="topBrands" formControlName="topBrands">
+              <option *ngFor="let status of PAGE_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <!-- <app-dropdown name="topBrands" [data]="PAGE_OPTION" bindLabel="label" bindValue="value"
+              placeholder="Please Select" formControlName="topBrands">
+            </app-dropdown> -->
+            <control-messages [control]="data.formGroup.controls.topBrands" [messages]="data.validateRules.messages.topBrands">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.LATEST_BRAND'| translate }} <span class="form-field-required">*</span></label>
+            <select class="form-control" name="latestBrands" formControlName="latestBrands">
+                <!-- <option [ngValue]="undefined" disabled  selected> Please select </option> -->
+              <option *ngFor="let status of PAGE_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <!-- <app-dropdown name="latestBrands" [data]="PAGE_OPTION" bindLabel="label" bindValue="value"
+              placeholder="Please Select" formControlName="latestBrands">
+            </app-dropdown> -->
+            <control-messages [control]="data.formGroup.controls.latestBrands" [messages]="data.validateRules.messages.latestBrands">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.MONTH_BRAND'| translate }} <span class="form-field-required">*</span></label>
+            <select class="form-control" name="monthBrand" formControlName="monthBrand">
+                <!-- <option [ngValue]="undefined" disabled  selected> Please select </option> -->
+              <option *ngFor="let status of PAGE_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <!-- <app-dropdown name="monthBrand" [data]="PAGE_OPTION" bindLabel="label" bindValue="value"
+              placeholder="Please Select" formControlName="monthBrand">
+            </app-dropdown> -->
+            <control-messages [control]="data.formGroup.controls.monthBrand" [messages]="data.validateRules.messages.monthBrand">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BRANDS.FORM_LABELS.SORT_ORDER'| translate }} </label>
+            <input type="text" class="form-control" formControlName="sortOrder" placeholder="{{'BRANDS.FORM_LABELS.SORT_ORDER'| translate }}">
+            <control-messages [control]="data.formGroup.controls.sortOrder" [messages]="data.validateRules.messages.sortOrder">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'COMMON.LABELS.STATUS'| translate }} <span class="form-field-required">*</span></label>
+            <select class="form-control" name="isActive" formControlName="isActive">
+                <!-- <option [ngValue]="0" disabled  selected> Please select </option> -->
+              <option *ngFor="let status of STATUS_OPTIONS;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <!-- <app-dropdown name="isActive" [data]="STATUS_OPTIONS" bindLabel="label" bindValue="value"
+              placeholder="Please Select" formControlName="isActive">
+            </app-dropdown> -->
+            <control-messages [control]="data.formGroup.controls.isActive" [messages]="data.validateRules.messages.isActive">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label>{{'BRANDS.FORM_LABELS.ICON'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+
+            <p-fileUpload name="icon" multiple="false" [disabled]="data.formGroup.controls.icon.value" accept="image/*"
+            auto="true" maxFileSize="5000000" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}" invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_SIGNATURE_EXCEPTED' | translate }}" customUpload="true" (onError)="onError($event)"  (onSelect)="onSelect($event,'icon')" (uploadHandler)="onFileUpload($event,'icon')"
+              >
+            </p-fileUpload>
+
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="data.formGroup.controls.icon.value">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{iconName}}">{{iconName | translate}}</div>
+                <a [href]="data.icon" class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button  type="button" (click)="onRemove('icon')" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete" ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label>{{'BRANDS.FORM_LABELS.IMAGE'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <p-fileUpload name="image" multiple="false" [disabled]="data.formGroup.controls.image.value" accept="image/*"
+              auto="true" maxFileSize="10000000" customUpload="true" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}" invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_SIGNATURE_EXCEPTED' | translate }}" (onError)="onError($event)" (onSelect)="onSelect($event,'image')" (uploadHandler)="onFileUpload($event,'image')"
+              >
+            </p-fileUpload>
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="data.formGroup.controls.image.value">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{imageName}}">{{imageName | translate}}</div>
+                <a [href]="data.image" class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button  (click)="onRemove('image')" type="button" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="action()">{{'COMMON.BUTTONS.SAVE'
+              | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

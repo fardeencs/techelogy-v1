@@ -1,0 +1,16 @@
+<div class="row">
+  <!-- Column -->
+  <div class="col-lg-3 col-md-6" *ngFor="let counter of counters">
+      <div class="card card-income-info">
+          <div class="card-body">
+              <div class="d-flex flex-row">
+                  <div class="income-icon round align-self-center round-gray"><i [ngClass]="counter.icon"></i></div>
+                  <div class="m-l-10 align-self-center">
+                      <h3 class="m-b-0">{{ counter.value }}</h3>
+                      <h5 class="text-muted m-b-0">{{ counter.name }}</h5></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

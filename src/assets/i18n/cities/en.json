@@ -1,0 +1,14 @@
+{
+  "CITIES": {
+    "FORM_LABELS": {
+      "NAME": "City Name",
+      "COUNTRY": "Country",
+      "STATE": "State"
+    },
+    "BUTTONS": {
+      "ADD": "Add City"
+    }
+  },
+  "CITIES_UPDATED_SUCCESSFULLY": "City updated successfully.",
+  "CITIES_DELETED_SUCCESSFULLY": "City deleted successfully."
+}

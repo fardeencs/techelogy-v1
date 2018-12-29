@@ -1,0 +1,70 @@
+.dropdown {
+    width: 100%;
+    display: inline-block;
+    border: 1px solid #ced4da;
+    padding: 5px;
+    min-height: 37px;
+    button {
+        width: 100%;
+        margin-right: .9rem;
+        text-align: left;
+        &::after {
+            position: absolute;
+            right: .6rem;
+            margin-top: .6rem;
+        }
+    }
+    .dropdown-menu {
+        .dropdown-container {
+            padding: 0 .6rem;
+        }
+    }
+}
+.tree-dropdown{
+    ::-webkit-scrollbar { 
+        display: none; 
+    }
+}
+
+
+.dropdown-toggle::after{
+float: right;
+}
+
+.ng-value .ng-value-icon.left {
+    border-right: 1px solid #c2e0ff;
+    cursor: pointer;
+}
+
+.ng-value .ng-value-icon {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+
+.lables {
+    font-size: .9em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: #f5faff;
+    border-radius: 2px;
+    border: 1px solid #c2e0ff;
+}
+
+.ng-value {
+    font-size: .9em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: #f5faff;
+    border-radius: 2px;
+    border: 1px solid #c2e0ff;
+}
+
+.ng-value .ng-value-label {
+    display: inline-block;
+    padding: 0 5px 0 5px;
+}
+
+.ng-value .ng-value-icon.left {
+    border-right: 1px solid #c2e0ff;
+}

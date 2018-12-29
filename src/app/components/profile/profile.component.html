@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <h4 class="card-title">{{'PROFILE.FORM_LABELS.MY_PROFILE'| translate }}</h4>
+      <form class="form-horizontal m-t-10" #profileForm="ngForm" id="profileForm">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'PROFILE.FORM_LABELS.FIRST_NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="{{'PROFILE.FORM_PLACEHOLDER.FIRST_NAME'| translate }}" class="form-control" [(ngModel)]="user.firstname" name="firstName">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'PROFILE.FORM_LABELS.LAST_NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="{{'PROFILE.FORM_PLACEHOLDER.LAST_NAME'| translate }}" class="form-control" [(ngModel)]="user.lastname" name="lastName">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'PROFILE.FORM_LABELS.EMAIL'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="{{'PROFILE.FORM_PLACEHOLDER.EMAIL'| translate }}" class="form-control" [(ngModel)]="user.email" name="email">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'PROFILE.FORM_LABELS.PHONE_NUMBER1'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="{{'PROFILE.FORM_PLACEHOLDER.PHONE_NUMBER1'| translate }}" class="form-control" [(ngModel)]="user.phoneNumber1" name="phoneNumber1">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'PROFILE.FORM_LABELS.PHONE_NUMBER2'| translate }}</label>
+            <input type="text" placeholder="{{'PROFILE.FORM_PLACEHOLDER.PHONE_NUMBER2'| translate }}" class="form-control" [(ngModel)]="user.phoneNumber2" name="phoneNumber2">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <button type="submit" title="{{'COMMON.BUTTONS.UPDATE'| translate }}" class="btn btn-danger px-4" (click)="updateProfile()">{{'COMMON.BUTTONS.UPDATE' | translate}}</button>
+            <button type="reset" title="{{'COMMON.BUTTONS.RESET'| translate }}" class="btn btn-inverse px-4" id="backToLogin">{{'COMMON.BUTTONS.RESET' | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="card card-body">
+      <h4 class="card-title">{{'CHANGE_PASSWORD.FORM_LABELS.CHANGE_PASSWORD'| translate }}</h4>
+      <form class="form-horizontal m-t-10" #passwordForm="ngForm" id="passwordForm">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'CHANGE_PASSWORD.FORM_LABELS.CURRENT_PASSWORD'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="password" placeholder="{{'CHANGE_PASSWORD.FORM_PLACEHOLDER.CURRENT_PASSWORD'| translate }}" class="form-control" [(ngModel)]="password.oldPassword" name="oldPassword">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'CHANGE_PASSWORD.FORM_LABELS.NEW_PASSWORD'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="password" placeholder="{{'CHANGE_PASSWORD.FORM_PLACEHOLDER.NEW_PASSWORD'| translate }}" class="form-control" [(ngModel)]="password.newPassword" name="newPassword" id="newPassword" [maxlength]="MAX_LENGTH_CONFIG.PASSWORD">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'CHANGE_PASSWORD.FORM_LABELS.CONFIRM_PASSWORD'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="password" placeholder="{{'CHANGE_PASSWORD.FORM_PLACEHOLDER.CONFIRM_PASSWORD'| translate }}" class="form-control" [(ngModel)]="password.confirmPassword" name="confirmPassword" [maxlength]="MAX_LENGTH_CONFIG.PASSWORD">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <button type="submit" title="{{'COMMON.BUTTONS.UPDATE'| translate }}" class="btn btn-danger px-4" (click)="updatePassword()">{{'COMMON.BUTTONS.UPDATE' | translate}}</button>
+            <button type="reset" title="{{'COMMON.BUTTONS.RESET'| translate }}" class="btn btn-inverse px-4">{{'COMMON.BUTTONS.RESET' | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

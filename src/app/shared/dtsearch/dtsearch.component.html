@@ -1,0 +1,70 @@
+
+
+<div [ngbCollapse]="collapse">
+    <div class="card search-filter">
+      <form class="form-horizontal m-t-10" >
+        <div class="card-body">
+          <div class="row">
+              <!-- [ngFor]="let item of options" -->
+            <ng-template ngFor let-item [ngForOf]="options" >
+              <ng-container [ngSwitch]="item?.type">
+                <div class="form-group col-sm-6 col-lg-3" *ngSwitchDefault>
+                    <label>{{item['labelName'] | translate}}</label>
+                    <input [type]="item.type" [(ngModel)]="item['fieldValue']" class="form-control" name="{{item['fieldName']}}">
+                </div>
+
+                <div class="form-group col-sm-6 col-lg-3" *ngSwitchCase="'dropdown'">
+                  <label>{{item['labelName'] | translate}}</label>
+                  <select class="form-control" name="{{item['fieldName']}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="item['fieldValue']">
+                    <option [value]="''" selected>{{'COMMON.LABELS.SELECT' | translate}}</option>
+                    <option *ngFor ="let res of item['options']" [attr.value]="res" >{{res}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-sm-6 col-lg-3" *ngSwitchCase="'datepicker'">
+                  <label>{{item['labelName'] | translate}}</label>
+                  <input type="text" [(ngModel)]="item['fieldValue']" name="{{item['fieldName']}}" class="form-control" bsDatepicker [bsConfig]="bsConfig" autocomplete="off">
+                </div>
+
+                <div class="form-group col-sm-6 col-lg-3" *ngSwitchCase="'keyValueDropdown'">
+                  <label>{{item['labelName'] | translate}}</label>
+                  <select class="form-control" name="{{item['fieldName']}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="item['fieldValue']">
+                    <option [value]="''" selected>{{'COMMON.LABELS.SELECT' | translate}}</option>
+                    <option *ngFor ="let res of item['options']" [attr.value]="res.value" >{{res.label}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-sm-6 col-lg-3" *ngSwitchCase="'multipleKeyValueDropdown'">
+                    <label>{{item['labelName'] | translate}}</label>
+                    <ng-select
+                      class="custom-select-dd"
+                      name="countryIds"
+                      [searchable]="true"
+                      [items]="item['options']"
+                      [multiple]="true"
+                      [closeOnSelect]="false"
+                      bindLabel="lable"
+                      placeholder="Select {{ item['labelName'] | translate }}"
+                      [(ngModel)]="item['fieldValue']"
+                      (change)="onMultipleValueChange(item['fieldValue'])"
+                      >
+                    </ng-select>
+                  </div>
+
+              </ng-container>
+            </ng-template>
+          </div>
+          <div class="row action-button text-right">
+              <div class="col-12">
+                <button (click)="onSearch();" type="button" title="{{'COMMON.BUTTONS.SEARCH' | translate}}" class="btn btn-danger px-4">
+                  {{'COMMON.BUTTONS.SEARCH' | translate}}
+                </button>
+                <button (click)="onClear();" type="button" title="{{'COMMON.BUTTONS.CLEAR' | translate}}" class="btn btn-inverse px-4">
+                  {{'COMMON.BUTTONS.CLEAR' | translate}}
+                </button>
+              </div>
+            </div>
+        </div>
+      </form>
+    </div>
+</div>

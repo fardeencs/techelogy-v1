@@ -1,0 +1,152 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col align-self-center p-0">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-auto align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-auto align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button"
+                title="{{'COMMON.BUTTONS.FILTER'| translate }}"
+                class="btn btn-inverse px-4"
+                (click)="isCollapsedSearch = !isCollapsedSearch" [ngClass]="{'active': !isCollapsedSearch}" >
+          <i class="fa fa-filter mr-2"></i> {{'COMMON.BUTTONS.FILTER'| translate }}
+        </button>
+        <button type="button"
+                title="{{'COMMON.TITLES.CATEGORY_ADD'| translate }}"
+                (click)="onAdd()"
+                *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.CATEGORY.ADD)"
+                class="btn btn-inverse px-4">
+          {{'COMMON.TITLES.CATEGORY_ADD'| translate }}
+        </button>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-inverse" title="{{'COMMON.BUTTONS.ACTION'| translate }}" id="actionDropdownButton" ngbDropdownToggle>{{'COMMON.BUTTONS.ACTION'| translate }}</button>
+          <div ngbDropdownMenu aria-labelledby="actionDropdownButton">
+            <button class="dropdown-item"
+                    downloadFile
+                    [path]="CATEGORY_EXPORT_API"
+                    [ids]="selectedRids"
+                    [ngClass]="{'disabled':!showMassDeleteBtn}"
+                    [disabled]="!showMassDeleteBtn"
+                    [action]="CATEGORY_EXPORT_ACTION">{{'COMMON.BUTTONS.EXPORT'| translate }}</button>
+            <button class="dropdown-item" [ngClass]="{'disabled':!showMassDeleteBtn}"
+            [disabled]="!showMassDeleteBtn"
+            *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.CATEGORY.DELETE)"
+            (click)="onMassDelete()">
+            {{'COMMON.BUTTONS.DELETE_CAM_CASE'| translate}}
+          </button>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+<dt-search [collapse]="isCollapsedSearch"  [options]="categorySearchTableOption" (onDTSearch)="onSearch($event)"></dt-search>
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+
+<div class="row">
+  <!-- column -->
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body p-0">
+        <div>
+          <app-dt-server-side
+            [rows]="categoryListConfig['rows']"
+            [columns]="categoryListConfig['columns']"
+            (sort)="onSort($event)"
+            [isLoading]= "loader"
+            [scrollBarV]="false"
+            [scrollBarH]="true"
+            [columnMode]="'force'"
+            [showPageinator]="true"
+            [totalRecords] ="categoryListConfig['totalRecords']"
+            [pageSize] ="pageSize"
+            [pageNumber] ="pageNumber"
+            [sortedColumn]="sortArray"
+            (pageChangeEvent)="pageChange($event)">
+          </app-dt-server-side>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #checkboxTmpl let-row="row" let-value="value">
+  <div class="text-left" *ngIf="row.rid">
+    <div class="text-center">
+      <div class="custom-control custom-checkbox d-inline">
+          <input type="checkbox" class="custom-control-input" id="{{'checkbox_'+row.rid}}" [checked]="row['selected']" (change)="onCheckBoxSelect(row)">
+          <label class="custom-control-label" for="{{'checkbox_'+row.rid}}"></label>
+      </div>
+      <!-- <input type="checkbox" [checked]="row['selected']" (change)="onCheckBoxSelect(row)" /> -->
+    </div>
+  </div>
+</ng-template>
+<ng-template #commonTmplHeader let-column="column" let-row="row" let-value="value" let-sort="sortFn" let-sortDir="sortDir" >
+  <span class="mobile-hidden hand-cursor" class="{{column.value}}" (click)="sort($event, sortDir, sortFn)">{{column['name'] | translate }}</span>
+</ng-template>
+<ng-template #commonTmplCell let-row="row" let-column="column" let-value="value">
+  <span>{{row[(column['value']).toString()]}}</span>
+</ng-template>
+<ng-template #dateTmplCell let-row="row" let-column="column" let-value="value">
+  <span>{{formatDate(row[(column['value']).toString()])}}</span>
+</ng-template>
+<ng-template #statusTmplCell let-row="row" let-column="column" let-value="value">
+  <span class="badge badge-{{getStatusName(row[(column['value']).toString()])}}">{{getStatusName(row[(column['value']).toString()])}}</span>
+</ng-template>
+<ng-template #countriesTmplCell let-row="row" let-column="column" let-value="value">
+    <span [innerHTML]="row[(column.value).toString()]"></span>
+</ng-template>
+<ng-template #checkboxTmplHeader let-row="row" let-value="value">
+    <div class="text-center">
+      <div class="custom-control custom-checkbox d-inline">
+          <input type="checkbox" class="custom-control-input" id="checkbox_all" [checked]="allRowsSelected"  (change)="onSelectAllCheckbox($event)">
+          <label class="custom-control-label" for="checkbox_all"></label>
+      </div>
+    </div>
+</ng-template>
+<ng-template #actionTmpl let-row="row" let-value="value">
+  <div class="text-center datatable-button">
+    <div class="btn-group btn-group-sm" role="group" *ngIf="row.rid">
+      <button type="button" class="btn btn-table" title="{{'COMMON.BUTTONS.VIEW'| translate }}" (click)="onView(row)">
+          <i class="mdi mdi-eye"></i>
+      </button>
+      <button type="button" class="btn btn-table" title="{{'COMMON.BUTTONS.EDIT'| translate }}" (click)="onEdit(row)" *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.CATEGORY.EDIT)">
+        <i class="mdi mdi-lead-pencil"></i>
+      </button>
+      <button type="button" class="btn btn-table" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="onDelete(row, confirmModal)" *ngIf="getPermissionStatus(permissions, PERMISSION_ACTION.CATEGORY.DELETE)">
+        <i class="mdi mdi-delete-forever"></i>
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #confirmModal>
+    <div class="modal-body text-center">
+      <p>Do you want to confirm?</p>
+      <button type="button" class="btn btn-default" title="{{'COMMON.BUTTONS.YES'| translate }}" (click)="confirmDelete()">{{'COMMON.BUTTONS.YES'| translate }}</button>
+      <button type="button" class="btn btn-primary" title="{{'COMMON.BUTTONS.NO'| translate }}" (click)="confirmClose()">{{'COMMON.BUTTONS.NO'| translate }}</button>
+    </div>
+  </ng-template>
+
+
+

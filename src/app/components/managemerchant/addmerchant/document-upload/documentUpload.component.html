@@ -1,0 +1,70 @@
+
+<!-- Documents Step 6 Content Details -->
+<div >
+    <h4 class="mb-4"> {{'MANAGE_MERCHANT.ADD_MERCHANT.DOCUMENT_UPLOAD.TITLE'| translate }}</h4>
+    <form class="form-horizontal m-t-10"  id="docUploadForm" #docUploadForm>
+      <div class="row">
+
+        <!--LIST DOCUMENTS -->
+        <div class="col-12">
+
+          <div class="upload-document" *ngFor="let doc of uploadedDocuments">
+            <div class="row align-items-center">
+              <div class="col col-xs-12">
+                  <h5 class="document-list__type">{{doc['documentName']}} <span class="form-field-required">*</span></h5>
+              </div>
+              <div class="col-sm-auto col-xs-12" *ngIf="!isDetailSection">
+                <div class="custom-upload-file">
+                  <input type="file" id="{{doc.rid}}" (change)="fileEvent($event,doc.documentTypeId,doc.rid)" name="document">
+                  <label class="btn btn-danger btn-sm" for="{{doc.rid}}">
+                    <i class="mdi mdi-cloud-upload"></i> {{'MANAGE_MERCHANT.ADD_MERCHANT.DOCUMENT_UPLOAD.BROWSE_DOCUMENT'| translate }}
+                  </label>
+                </div>
+                <span class="help-block" *ngIf="!isDetailSection">
+                  <small>{{'MANAGE_MERCHANT.ADD_MERCHANT.DOCUMENT_UPLOAD.MAX_FILE_SIZE'| translate }}</small>
+                </span>
+              </div>
+            </div>
+
+            <!-- Static Uploaded Document Lists start  -->
+            <div class="upload-document-grid mt-3">
+
+              <div class="document-list__item" *ngFor="let item of doc['documents']">
+                <span class="file-icon">
+                    <i class="mdi mdi-file-{{getFileType(getFileExtension(item['documentValue']))}}"> </i>
+                </span>
+                <div class="document-name" [title]="item['documentName']">{{item['documentName']}}</div>
+                <a [href]="item['documentValue']" class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button *ngIf="!isDetailSection" type="button" class="btn btn-link btn-delete-file" (click)="confirmDeleteDocument(item)">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </div>
+
+            </div>
+            <div class="upload-document-list mt-12 no-records-found" *ngIf="doc['documents']?.length == 0">
+              {{'COMMON.LABELS.NO_RECORD_FOUND'| translate }}
+            </div>
+            <!-- Static Uploaded Document Lists end  -->
+          </div>
+        </div>
+
+      </div>
+      <!-- Action Button -->
+      <div class="row action-button" *ngIf="!isDetailSection">
+        <div class="col-12 text-right">
+
+          <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)="moveToPrevious()">
+            <i class="mdi mdi-arrow-left mr-2"></i>
+            {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+          </button>
+
+          <button type="button" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" (click)="onNextClick()">
+            {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+          </button>
+
+        </div>
+      </div>
+    </form>
+  </div>

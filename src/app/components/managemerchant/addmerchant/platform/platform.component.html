@@ -1,0 +1,254 @@
+<!-- Select Platform Start-->
+<div class="select-platform" *ngIf="currentSubStep == 1">
+  <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFORM.TITLE'| translate }}</h4>
+  <div class="row mx-0 mb-3">
+    <div class="col-12 select-platform__item">
+      <div class="form-group custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input"
+               id="global-platform"
+               [checked]="globalPlatform"
+               (change)="globalPlatform = !globalPlatform"
+               name="normal">
+        <label class="custom-control-label" for="global-platform">{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFORM.GLOBAL_PLATFORM_CHKBOX'| translate }}</label>
+        <p><small>{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFORM.GLOBAL_PLATFORM_DETAIL'| translate }}</small></p>
+      </div>
+
+    </div>
+
+    <div class="col-12 select-platform__item">
+      <div class="form-group custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input"
+               id="domestic-platform"
+               [checked]="domesticPlatform"
+               (change)="domesticPlatform = !domesticPlatform"
+               name="normal">
+        <label class="custom-control-label" for="domestic-platform">{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFORM.DOMESTIC_PLATFORM_CHKBOX'| translate }}</label>
+        <p><small>{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFORM.DOMESTIC_PLATFORM_DETAIL'| translate }}</small></p>
+      </div>
+
+    </div>
+  </div>
+  <div class="row action-button">
+    <div class="col-12 text-right">
+      <button type="button" class="btn btn-inverse px-4" title=" {{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)= "moveToPrevious()">
+        <i class="mdi mdi-arrow-left mr-2"></i>
+        {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+      </button>
+      <button type="button" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" (click)="onSubStepNextClick(1)">
+        {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Select Platform End -->
+
+<!-- Select Groups & Countries Start-->
+<div class="select-groups-countries" *ngIf="currentSubStep == 2">
+  <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.SELECT_GROUP_COUNTRIES.TITLE'| translate }}</h4>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.SELECT_GROUP_COUNTRIES.GROUP'| translate }} <span class="form-field-required">*</span></label>
+        <ng-select
+          class="custom-select-dd groups-countries"
+          name="groups"
+          [clearable]="false"
+          [items]="groupsList"
+          [multiple]="true"
+          [closeOnSelect]="true"
+          bindLabel="groupName"
+          placeholder="Select Groups"
+          (change)="onGroupSelect($event)"
+          (remove)="onGroupRemove($event)"
+          [(ngModel)]="selectedGroups">
+          <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+            <div>
+              <h5 [ngOptionHighlight]="search">{{item.groupName}}</h5>
+              <small [ngOptionHighlight]="search">{{ getCountriesLabels(item.countries)}}</small>
+            </div>
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <div class="form-group">
+        <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.SELECT_GROUP_COUNTRIES.COUNTRIES'| translate }} <span class="form-field-required">*</span></label>
+        <ng-select
+          class="custom-select-dd"
+          name="countries"
+          [clearable]="false"
+          [multiple]="true"
+          [closeOnSelect]="true"
+          placeholder="Select Countries"
+          [(ngModel)]="selectedCountries">
+          <ng-option *ngFor="let country of countriesList"
+                     [value]="country"
+                     [disabled]="country.isDisabled" >{{country['countryName']}}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+  </div>
+  <div class="row action-button">
+    <div class="col-12 text-right">
+      <button type="button" class="btn btn-inverse px-4" title=" {{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)= "onSubStepPrevClick(2)">
+        <i class="mdi mdi-arrow-left mr-2"></i>
+        {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+      </button>
+      <button type="button" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" (click)="onSubStepNextClick(2)">
+        {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Select Groups & Countries End -->
+
+<!-- Select Delivery, scheme & fee details for Global Platform Start-->
+<div class="select-delivery-scheme-global" *ngIf="currentSubStep == 3">
+  <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.FEES_DETAILS.TITLE'| translate}}</h4>
+  <form [formGroup]="deliverAndFeeSchemeFormGlobal" novalidate (ngSubmit)="saveDeliveryFeeScheme(deliverAndFeeSchemeFormGlobal,3)">
+      <div class="row">
+        <div class="col-12" formArrayName="groupsAndCountries">
+          <accordion>
+            <accordion-group
+              [ngClass]="{'disable-accordion':checkGroupIsValid(deliverAndFeeSchemeFormGlobal.controls.groupsAndCountries,group)}"
+              [isDisabled]="checkGroupIsValid(deliverAndFeeSchemeFormGlobal.controls.groupsAndCountries,group)"
+              *ngFor="let group of deliverAndFeeSchemeFormGlobal.controls.groupsAndCountries.controls; let i = index">
+                <div class="row align-items-center card-header-title" accordion-heading [ngClass]="{'border-danger':group.controls.isChanged['value']}">
+                  <div class="col">
+                      <div class="title">{{group.controls.name.value}} </div>
+                  </div>
+                  <div class="col-auto pr-0" *ngIf="deliverAndFeeSchemeFormGlobal.controls.groupsAndCountries.controls.length > 1 && !group.controls.isDisabled.value">
+                      <button type="button" class="btn btn-link" (click)="removeGroupAndCountries(i,deliverAndFeeSchemeFormGlobal)">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                  </div>
+                  <i class="mdi mdi-chevron-right mdi-24px accordion-icon"></i>
+                </div>
+                <div class="content">
+                  <div [formGroupName]="i">
+                    <span class="hidden-properties"><input type="hidden" class="form-control" formControlName="name"></span>
+                    <app-delivery [storeDetail]="storeDetail" [isFormSubmitted]="isFormSubmitted" [group]="deliverAndFeeSchemeFormGlobal.controls.groupsAndCountries.controls[i]"></app-delivery>
+                  </div>
+                </div>
+            </accordion-group>
+          </accordion>
+        </div>
+      </div>
+      <div class="row action-button">
+        <div class="col-12 text-right">
+          <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)= "onSubStepPrevClick(3)">
+            <i class="mdi mdi-arrow-left mr-2"></i>
+            {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+          </button>
+          <button type="submit" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" class="btn btn-danger px-4">
+            {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+          </button>
+        </div>
+      </div>
+  </form>
+</div>
+<!-- Select Delivery, scheme & fee details  for Global Platform End -->
+
+<!-- Select Product and Revenue for Global Platform Start-->
+<div class="select-product-revenue-global" *ngIf="currentSubStep == 4">
+  <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.TITLE'| translate }}</h4>
+  <form [formGroup]="productRevenueFormGlobal" novalidate (ngSubmit)="saveProductRevenueScheme(productRevenueFormGlobal,4)">
+    <div class="row">
+      <div class="col-12" formArrayName="products">
+        <accordion>
+          <accordion-group
+            [ngClass]="{'disable-accordion':checkGroupIsValid(productRevenueFormGlobal.controls.products,group)}"
+            [isDisabled]="checkGroupIsValid(productRevenueFormGlobal.controls.products,group)"
+            *ngFor="let group of productRevenueFormGlobal.controls.products.controls; let i = index">
+            <div class="row align-items-center card-header-title" accordion-heading [ngClass]="{'border-danger':group.controls.isChanged['value']}">
+              <div class="col">
+                <div class="title">{{group.controls.name.value}}</div>
+              </div>
+              <i class="mdi mdi-chevron-right mdi-24px accordion-icon"></i>
+            </div>
+            <div class="content">
+              <div [formGroupName]="i">
+                <span class="hidden-properties"><input type="hidden" class="form-control" formControlName="name"></span>
+                <app-products-revenue [storeDetail]="storeDetail" [isFormSubmitted]="isFormSubmitted" [group]="productRevenueFormGlobal.controls.products.controls[i]"></app-products-revenue>
+              </div>
+            </div>
+          </accordion-group>
+        </accordion>
+      </div>
+    </div>
+    <div class="row action-button">
+      <div class="col-12 text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.PREVIOUS'| translate }}"  (click)= "onSubStepPrevClick(4)">
+          <i class="mdi mdi-arrow-left mr-2"></i>
+          {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+        </button>
+        <button type="submit" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" class="btn btn-danger px-4">
+          {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Select Product and Revenue for Global Platform End -->
+
+<!-- Select Delivery, scheme & fee details Start for Domestic Platform-->
+<div class="select-delivery-scheme-domestic" *ngIf="currentSubStep == 5">
+    <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.FEES_DETAILS.TITLE'| translate}}</h4>
+    <form [formGroup]="deliverAndFeeSchemeFormDomestic" novalidate (ngSubmit)="saveDeliveryFeeScheme(deliverAndFeeSchemeFormDomestic,5)">
+      <div class="row">
+        <div class="col-12" formArrayName="groupsAndCountries">
+              <div class="content" *ngFor="let group of deliverAndFeeSchemeFormDomestic.controls.groupsAndCountries.controls; let i = index">
+                <div [formGroupName]="i">
+                  <span class="hidden-properties"><input type="hidden" class="form-control" formControlName="name"></span>
+                  <app-delivery [storeDetail]="storeDetail" [isFormSubmitted]="isFormSubmitted" [group]="deliverAndFeeSchemeFormDomestic.controls.groupsAndCountries.controls[i]"></app-delivery>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="row action-button">
+        <div class="col-12 text-right">
+          <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)= "onSubStepPrevClick(5)">
+            <i class="mdi mdi-arrow-left mr-2"></i>
+            {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+          </button>
+          <button type="submit" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" class="btn btn-danger px-4">
+            {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+</div>
+<!-- Select Delivery, scheme & fee details  for Domestic Platform End -->
+
+<!-- Select Product and Revenue for Domestic Platform Start-->
+<div class="select-product-revenue-domestic" *ngIf="currentSubStep == 6">
+  <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.PRODUCT_REVENUE.TITLE'| translate }}</h4>
+  <form [formGroup]="productRevenueFormDomestic" novalidate (ngSubmit)="saveProductRevenueScheme(productRevenueFormDomestic,6)">
+    <div class="row">
+      <div class="col-12" formArrayName="products">
+        <div class="content" *ngFor="let group of productRevenueFormDomestic.controls.products.controls; let i = index">
+          <div [formGroupName]="i">
+            <span class="hidden-properties"><input type="hidden" class="form-control" formControlName="name"></span>
+            <app-products-revenue [storeDetail]="storeDetail" [isFormSubmitted]="isFormSubmitted" [group]="productRevenueFormDomestic.controls.products.controls[i]"></app-products-revenue>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row action-button">
+      <div class="col-12 text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)= "onSubStepPrevClick(6)">
+          <i class="mdi mdi-arrow-left mr-2"></i>
+          {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+        </button>
+        <button type="submit" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" class="btn btn-danger px-4">
+          {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Select Product and Revenue for Domestic Platform End -->
+
+
+
+

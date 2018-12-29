@@ -1,0 +1,53 @@
+<!-- Sidebar navigation-->
+<nav class="sidebar-nav" *ngIf="sidebarnavItems">
+  <ul id="sidebarnav">
+    <li [class.active]="showMenu === 'Dashboard'" [routerLinkActive]="'active'">
+      <a [routerLink]="['/dashboard']">
+        <i class="mdi mdi-view-dashboard"></i>
+        <span class="hide-menu">Dashboard
+        </span>
+      </a>
+    </li>
+    <li
+      [class.active]="showMenu === sidebarnavItem.moduleName"
+      *ngFor="let sidebarnavItem of sidebarnavItems" [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
+      <!-- {{sidebarnavItem | json}} -->
+      <a [routerLink]="sidebarnavItem.submenu.length === 0 ? [sidebarnavItem.routes] : null"
+         [attr.id]="sidebarnavItem['rid']"
+         [ngClass]="sidebarnavItem.submenu.length > 0 ? 'has-arrow' : ''"
+         (click)="addExpandClass(sidebarnavItem.moduleName)">
+        <i [ngClass]="sidebarnavItem.icon"></i>
+        <span class="hide-menu">{{sidebarnavItem.moduleName}}
+        </span>
+      </a>
+
+      <!-- Second level menu -->
+      <ul class="collapse" *ngIf="sidebarnavItem.submenu.length > 0" [ngClass]="{'in' : showMenu === sidebarnavItem.moduleName }">
+        <li *ngFor="let sidebarnavSubItem of sidebarnavItem.submenu" [class.active]="showSubMenu === sidebarnavSubItem.moduleName" [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'active'">
+          <a [routerLink]="sidebarnavSubItem.submenu.length > 0 ? null : [sidebarnavSubItem.routes]"                [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'router-link-active'" [ngClass]  ="sidebarnavSubItem.submenu.length > 0 ? 'has-arrow' : ''" (click)="addActiveClass(sidebarnavSubItem.moduleName)">
+            <i [ngClass]="sidebarnavSubItem.icon"></i>
+            {{sidebarnavSubItem.moduleName}}
+          </a>
+
+          <!-- Third level menu -->
+          <ul class="collapse" *ngIf="sidebarnavSubItem.submenu.length > 0" [ngClass]="{'in' : showSubMenu === sidebarnavSubItem.moduleName }">
+            <li *ngFor="let sidebarnavSubsubItem of sidebarnavSubItem.submenu" routerLinkActive="active" [ngClass]="sidebarnavSubsubItem.class">
+              <a [routerLink]="[sidebarnavSubsubItem.routes]" [routerLinkActive]="sidebarnavSubsubItem.submenu ? '' : 'router-link-active'">
+                <i [ngClass]="sidebarnavSubsubItem.icon"></i>
+                {{sidebarnavSubsubItem.moduleName}}
+              </a>
+            </li>
+            <!-- <li *ngFor="let sidebarnavSubsubItem of sidebarnavSubItem.submenu" routerLinkActive="active" [ngClass]="[sidebarnavSubsubItem.class]">
+              <a [routerLink]="[sidebarnavSubsubItem.routes]" [routerLinkActive]="sidebarnavSubsubItem.submenu.length > 0 ? '' : 'router-link-active'">
+                <i [ngClass]="[sidebarnavSubsubItem.icon]"></i>
+                {{sidebarnavSubsubItem.moduleName}}
+              </a>
+            </li> -->
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- End Sidebar navigation -->
+

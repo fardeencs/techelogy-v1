@@ -1,0 +1,37 @@
+<div class="card" *ngIf="records">
+  <div class="card-body">
+    <h4 class="card-title">{{ records[0].heading }}</h4>
+  </div>
+  <!-- ============================================================== -->
+  <!-- Comment widgets -->
+  <!-- ============================================================== -->
+  <div class="comment-widgets">
+    <!-- Comment Row -->
+    <div class="d-flex flex-row comment-row" *ngFor="let list of records[0].lists">
+      <div class="p-2">
+        <span class="round">
+          <i [ngClass]="list.icon"></i>
+        </span>
+      </div>
+      <div class="comment-text w-100">
+        <p class="m-b-5">{{list.comment}}</p>
+        <div class="row">
+          <div class="col">
+            <!-- <span class="action-icons" *ngFor="let action of list.actions">
+              <button class="btn btn-xs" [ngClass]="action.colorClass">
+                {{ action.label }}
+                <i [ngClass]="action.labelIcon" *ngIf="action.labelIcon"></i>
+              </button>
+            </span> -->
+          </div>
+          <div class="col text-right">
+            <div class="date">
+              {{ list.date }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

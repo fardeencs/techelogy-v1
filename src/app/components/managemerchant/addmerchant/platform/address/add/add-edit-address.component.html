@@ -1,0 +1,142 @@
+<form class="form-horizontal"
+      *ngIf="active"
+      id="pickupAddressForm"
+      #pickupAddressForm >
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      {{title | translate}}
+    </h4>
+    <button type="button" class="btn close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CONTACT_NAME'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text"
+                   class="form-control"
+                   [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT"
+                   [(ngModel)]="pickupAddress.contactName"
+                   name="contactName"
+                   placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.PICKUP_DETAILS.CONTACT_NAME'| translate }}"
+                   [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CONTACT_NUMBER'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text"
+                   class="form-control"
+                   [maxlength]="MAX_LENGTH_CONFIG.MOBILE_NUMBER"
+                   [(ngModel)]="pickupAddress.contactNumber"
+                   name="contactNumber"
+                   placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.PICKUP_DETAILS.CONTACT_NUMBER'| translate }}"
+                   [restrict]="REG_EXP_CONFIG.NUMERIC">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ADDRESS_LINE1'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text"
+                   class="form-control"
+                   [maxlength]="MAX_LENGTH_CONFIG.ADDRESS_100"
+                   [(ngModel)]="pickupAddress.addressLine1"
+                   name="addressLine1"
+                   placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.PICKUP_DETAILS.ADDRESS_LINE1'| translate }}"
+                   [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ADDRESS_LINE2'| translate }}</label>
+            <input type="text"
+                   class="form-control"
+                   [maxlength]="MAX_LENGTH_CONFIG.ADDRESS_100"
+                   [(ngModel)]="pickupAddress.addressLine2"
+                   name="addressLine2"
+                   placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.PICKUP_DETAILS.ADDRESS_LINE2'| translate }}"
+                   [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.COUNTRY'| translate }} <span class="form-field-required">*</span></label>
+            <select
+              class="form-control"
+              (ngModelChange)="onChangeDropDown($event, 'country',pickupAddress)"
+              [(ngModel)]="pickupAddress.countryId"
+              name="countryId">
+              <option value="">{{'COMMON.LABELS.SELECT_COUNTRY' | translate }}</option>
+              <option *ngFor ="let country of countryList"
+                      [selected]="pickupAddress.countryId == country.countryCode"
+                      [attr.value]="country.countryCode">
+                {{country['countryName']}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.STATE'| translate }} <span class="form-field-required">*</span></label>
+            <select
+              class="form-control"
+              (ngModelChange)="onChangeDropDown($event, 'state',pickupAddress)"
+              [(ngModel)]="pickupAddress.stateId"
+              name="stateId">
+              <option value="">{{'COMMON.LABELS.SELECT_STATE' | translate}}</option>
+              <option *ngFor="let state of stateList; let i =index"
+                      [selected]="pickupAddress.stateId == state.stateId" [attr.value]="state.stateId">
+                {{state.stateName}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.CITY'| translate }}
+              <span class="form-field-required">*</span></label>
+            <select [disabled]="isDetailSection"
+                    class="form-control"
+                    (ngModelChange)="onChangeDropDown($event, 'city' ,pickupAddress)"
+                    [(ngModel)]="pickupAddress.cityId" name="cityId">
+              <option value="">{{'COMMON.LABELS.SELECT_CITY' | translate}}</option>
+              <option *ngFor="let city of cityList" [selected]="pickupAddress.cityId == city.cityId" [attr.value]="city.cityId">
+                {{city.cityName}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.PICKUP_DETAILS.ZIPCODE'| translate }} <span class="form-field-required">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="pickupAddress.zipcode"
+              name="zipcode"
+              placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.PICKUP_DETAILS.ZIPCODE'| translate }}"
+              [maxlength]="MAX_LENGTH_CONFIG.ZIP_CODE"
+              [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_NO_SPECIAL_CHARACTER">
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger btn-sm px-4" title="{{'COMMON.BUTTONS.SUBMIT'| translate }}" (click)="onConfirm()">
+        {{'COMMON.BUTTONS.SUBMIT'| translate }}
+    </button>
+    <button type="button" class="btn btn-inverse btn-sm px-4" title=" {{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="onCancel()">
+        {{'COMMON.BUTTONS.CANCEL'| translate }}
+    </button>
+  </div>
+</form>

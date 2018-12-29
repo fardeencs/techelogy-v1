@@ -1,0 +1,127 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-6 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-6 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.EDIT'| translate }}" (click)="onEdit()" *ngIf="approvalRequestDetail.approvalStatus == 'New'">
+          {{'COMMON.BUTTONS.EDIT'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered detail-view">
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.APPROVAL_REQUEST_ID'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ approvalRequestDetail.approvalRequestId }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.STORE_NAME'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ approvalRequestDetail.storeName }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.ASSIGNEE_NAME'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ approvalRequestDetail.assigneeName }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.ROLE_NAME'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ approvalRequestDetail.roleName }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.STATUS'| translate }}</strong>
+      </td>
+      <td>
+        <span class="badge badge-{{ approvalRequestDetail.approvalStatus }}">{{ approvalRequestDetail.approvalStatus }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.APPROVAL_DATE'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ approvalRequestDetail.approvalDate }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.LAST_UPDATED_ON'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ approvalRequestDetail.updatedDate }}</span>
+      </td>
+    </tr>
+    <tr class="detail-view-item">
+      <td>
+        <strong>{{'APPROVAL.FORM_LABELS.CREATED_ON'| translate }}</strong>
+      </td>
+      <td>
+        <span>{{ approvalRequestDetail.createdDate }}</span>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="card" *ngIf="comments.length > 0">
+  <div class="card-body">
+      <h4 class="card-title">Recent Comments</h4>
+  </div>
+  <!-- ============================================================== -->
+  <!-- Comment widgets -->
+  <!-- ============================================================== -->
+  <div class="comment-widgets">
+      <!-- Comment Row -->
+      <div class="d-flex flex-row comment-row" *ngFor="let comment of comments; let i = index;">
+          <div class="p-2"><span class="round bg-dark">{{ i + 1 }}</span></div>
+          <div class="comment-text w-100">
+              <h5>{{comment.complainantName}} <small class="text-muted">({{ comment.roleName }})</small>
+                <small class="text-danger" *ngIf="comment.isNotified == 0">New</small>
+                <small class="text-muted pull-right">{{comment.createdDate}}</small>
+              </h5>
+              <p class="m-b-5">{{comment.comments}}</p>
+          </div>
+      </div>
+  </div>
+</div>

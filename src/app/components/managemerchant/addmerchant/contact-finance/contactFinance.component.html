@@ -1,0 +1,66 @@
+<!-- Contact Person Step  2 Content Details -->
+<div>
+    <h4 class="mb-4">{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.TITLE'| translate }}</h4>
+    <form class="form-horizontal m-t-10"  id="contactFinanceForm" #contactFinanceForm>
+      <div class="row">
+        <div class="col">
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.CONTACT_PERSON'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.CONTACT_FINANCE.CONTACT_PERSON'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT"  name="contactPerson" [(ngModel)]= "contactFinance.contactPerson">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.DESIGNATION'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.CONTACT_FINANCE.DESIGNATION'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT" name="contactDesignation" [(ngModel)]= "contactFinance.contactDesignation">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.EMAIL'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.CONTACT_FINANCE.EMAIL'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.EMAIL_CHARACTER" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.EMAIL" name="email" [(ngModel)]= "contactFinance.email">
+          </div>
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.TELEPHONE'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.CONTACT_FINANCE.TELEPHONE'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.NUMERIC" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.TELEPHONE" name="telephone" [(ngModel)]= "contactFinance.telephone">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.EXT'| translate }} <span class="form-field-required">*</span></label>
+                <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.CONTACT_FINANCE.EXT'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.NUMERIC" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.EXTENSION_TXT_MAX_LENGTH" name="extensionNumber" [(ngModel)]= "contactFinance.extensionNumber">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.MOBILE_1'| translate }} <span class="form-field-required">*</span></label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.CONTACT_FINANCE.MOBILE_1'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.NUMERIC" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.MOBILE_NUMBER"  name="mobileNumber1" [(ngModel)]= "contactFinance.mobileNumber1">
+          </div>
+
+          <div class="form-group">
+            <label>{{'MANAGE_MERCHANT.ADD_MERCHANT.CONTACT_FINANCE.MOBILE_2'| translate }} </label>
+            <input type="text" placeholder="{{'MANAGE_MERCHANT.ADD_MERCHANT.FORM_PLACEHOLDER.CONTACT_FINANCE.MOBILE_2'| translate }}" class="form-control" [restrict]="REG_EXP_CONFIG.NUMERIC" [disabled]="isDetailSection" [maxlength]="MAX_LENGTH_CONFIG.MOBILE_NUMBER"  name="mobileNumber2" [(ngModel)]= "contactFinance.mobileNumber2">
+          </div>
+
+        </div>
+      </div>
+      <!-- Action Button -->
+      <div class="row action-button" *ngIf="!isDetailSection">
+        <div class="col-12 text-right">
+
+          <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.PREVIOUS'| translate }}" (click)="moveToPrevious()">
+            <i class="mdi mdi-arrow-left mr-2"></i>
+            {{'COMMON.BUTTONS.PREVIOUS'| translate }}
+          </button>
+
+          <button type="button" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}" (click)= "onNextClick()">
+            {{'COMMON.BUTTONS.SAVE_AND_CONTINUE'| translate }}
+          </button>
+
+        </div>
+      </div>
+    </form>
+  </div>

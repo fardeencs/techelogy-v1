@@ -1,0 +1,34 @@
+<div [formGroup]="group">
+  <fieldset>
+    <legend>{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFROM_ADDRESS.TITLE'| translate }}</legend>
+    <div class="row">
+      <div class="col-12 mb-3 text-right ">
+        <button type="button" class="btn btn-inverse btn-sm px-4" title="{{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFROM_ADDRESS.ADD_ADDRESS'| translate }}" (click)= "addAddress(group)">
+          {{'MANAGE_MERCHANT.ADD_MERCHANT.PLATFROM_ADDRESS.ADD_ADDRESS'| translate }}
+      </button>
+      </div>
+    </div>
+    <div class="pickup-address">
+    <!-- Address list start -->
+    <div class="row pickup-address__list " *ngFor="let address of group['controls']['addresses']['controls']; let i = index">
+      <div class="col">
+        <div>{{ address.controls['contactName'] ? address.controls['contactName']['value'] : ''}}</div>
+        <div>{{ address.controls['contactNumber'] ? address.controls['contactNumber']['value'] : ''}}, </div>
+        <div>{{address.controls['addressLine1'] ? address.controls['addressLine1']['value'] : ''}}, </div>
+        <div *ngIf="address.controls['addressLine2']?.value">{{address.controls['addressLine2'] ? address.controls['addressLine2']['value'] : ''}}, </div>
+        <div>{{address.controls['cityName'] ? address.controls['cityName']['value'] : ''}}, {{address.controls['stateName'] ? address.controls['stateName']['value'] : ''}},</div>
+        <div>{{address.controls['countryName'] ? address.controls['countryName']['value'] : ''}}, {{address.controls['zipcode'] ? address.controls['zipcode']['value']: ''}}</div>
+      </div>
+      <div class="col-sm-12 col-md-auto">
+        <button type="button" class="btn btn-link" title="{{'COMMON.BUTTONS.EDIT'| translate }}" (click)="editAddress(i,group)">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-link" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="removeAddress(i,address.value)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Address list end-->
+    </div>
+  </fieldset>
+</div>

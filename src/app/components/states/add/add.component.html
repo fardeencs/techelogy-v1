@@ -1,0 +1,123 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+    <div class="row">
+      <!-- start Breadcrumb -->
+      <div class="col-lg-5 align-self-center top-breadcrumb-action">
+        <div class="row page-titles">
+          <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+          </div>
+          <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+              <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+                <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                  <a href='javascript:void(0)'>{{url.title}}</a>
+                </li>
+                <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+              </ng-template>
+            </ol>
+          </div>
+        </div>
+      </div> <!-- # End Breadcrumb -->
+  
+      <!-- start Action Button -->
+      <div class="col-lg-7 align-self-center">
+          <div class="search-filter-header text-right">
+              <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+                <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+              </button>
+              <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+                {{'COMMON.BUTTONS.CANCEL'| translate }}
+              </button>
+              <button type="button" class="btn btn-inverse px-4" (click)="onDelete()" title="{{'COMMON.BUTTONS.DELETE'| translate }}" *ngIf="token && getPermissionStatus(permissions, PERMISSION_ACTION.STATES.DELETE)">
+                {{'COMMON.BUTTONS.DELETE'| translate }}
+              </button>
+            </div>
+      </div><!-- End Action Button -->
+    </div>
+  </div><!-- # End Bread crumb and Action Button -->
+  
+  
+  <div class="row">
+      <div class="col-sm-12">
+        <div class="card card-body">
+          <form class="form-horizontal m-t-10" #dataForm="ngForm" id="dataForm" #dataForm [formGroup]="data.formGroup">
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label>{{'STATES.FORM_LABELS.COUNTRY'| translate }}
+                  <span class="form-field-required">*</span>
+                </label>
+                <!-- <ng-select
+                  class="custom-select-dd"
+                  name="countryId"
+                  [searchable]="true"
+                  [items]="lookups.countries"
+                  bindLabel="countryName"
+                  bindValue="countryCode"
+                  placeholder="Select Countries"
+                  [(ngModel)]="data.countryId">
+                </ng-select> -->
+                <app-dropdown name="countryId" [searchable]="true" [data]="lookups.countries" bindLabel="countryName" bindValue="countryCode"
+                  placeholder="Please Select" formControlName="countryId">
+                </app-dropdown>
+                <control-messages 
+                  [control]="data.formGroup.controls.countryId"
+                  [messages]="data.validateRules.messages.countryId">
+                </control-messages>
+              </div>
+              <div class="form-group col-sm-6">
+                <label>{{'STATES.FORM_LABELS.NAME'| translate }}
+                  <span class="form-field-required">*</span>
+                </label>
+                <input type="text" formControlName="stateName" class="form-control" name="stateName" 
+                placeholder="State Name" [maxlength]="MAX_LENGTH_CONFIG.COUNTRY_NAME">
+                <control-messages 
+                    [control]="data.formGroup.controls.stateName"
+                    [messages]="data.validateRules.messages.stateName">
+                </control-messages>
+              </div>
+              <div class="form-group col-sm-6">
+                <label>{{'COMMON.LABELS.STATUS'| translate }}
+                  <span class="form-field-required">*</span>
+                </label>
+                <select class="form-control" name="isActive" formControlName="isActive">
+                  <option *ngFor="let status of STATUS_OPTIONS;" [value]="status.value">{{ status.label }}</option>
+                </select>
+                <control-messages 
+                    [control]="data.formGroup.controls.isActive"
+                    [messages]="data.validateRules.messages.isActive">
+                </control-messages>
+              </div>
+    
+            <!-- uncomment for tree view dropdown-->
+             <!-- <div class="form-group col-sm-6">
+                <label>group dropdown</label>
+                <app-dropdown
+                  [treeview]="true"
+                   name="statesid"
+                   [config]="config" 
+                   [items]="items" 
+                   [disabled]="!dropdownEnabled"
+                   [itemTemplate]="itemTemplate" 
+                   [buttonClass]="buttonClass" 
+                   (selectedChange)="onSelectedChange($event)"
+                   [ngxDisabledOnSelector]="'button.dropdown-toggle'" 
+                   (filterChange)="onFilterChange($event)">
+                </app-dropdown>
+              </div> -->
+    
+    
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <button type="submit" title="{{'COMMON.BUTTONS.SAVE'| translate }}" class="btn btn-danger px-4" (click)="action()">{{'COMMON.BUTTONS.SAVE' | translate}}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  

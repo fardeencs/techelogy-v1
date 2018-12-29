@@ -1,0 +1,230 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+          {{'COMMON.BUTTONS.CANCEL'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="onDelete()" *ngIf="bannerID && getPermissionStatus(permissions, PERMISSION_ACTION.BANNERS.DELETE)">
+          {{'COMMON.BUTTONS.DELETE'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <form class="form-horizontal m-t-10" #bannerForm="ngForm" id="bannerForm" #bannerForm [formGroup]="banner.FormGroup">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.BANNER_NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text"
+                   [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER"
+                   [maxlength]="MAX_LENGTH_CONFIG.MAX_100"
+                   placeholder="{{'BANNERS.FORM_LABELS.BANNER_NAME'| translate }}"
+                   class="form-control"
+                   name="bannerName"
+                   formControlName="bannerName">
+            <control-messages
+              [control]="banner.FormGroup.controls.bannerName"
+              [messages]="banner.validateRules['messages']['bannerName']">
+            </control-messages>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.BANNER_LANGUAGE'| translate }}</label>
+            <app-dropdown name="bannerLanguage" [multiple]="true" [searchable]="true" [data]="bannerLanguages" bindLabel="label" bindValue="value"
+                          placeholder="{{'BANNERS.FORM_LABELS.PLEASE_SELECT_PLACE_HOLDER'| translate }}" formControlName="bannerLanguage">
+            </app-dropdown>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.BANNER_PARENT'| translate }}</label>
+            <app-dropdown name="parentId" [multiple]="false" [searchable]="false" [data]="parentBanners" bindLabel="bannerName" bindValue="entityId"
+                          placeholder="{{'BANNERS.FORM_LABELS.PLEASE_SELECT_PLACE_HOLDER'| translate }}" formControlName="parentId">
+            </app-dropdown>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.IMAGE'| translate }}</label>
+            <div class="custom-upload-file">
+              <input type="text" [hidden]="true" name="image" formControlName="image">
+              <input type="file" id="banner_image" (change)="fileEvent($event)">
+              <label class="btn btn-danger btn-sm" for="banner_image">
+                <i class="mdi mdi-cloud-upload"></i> {{'BANNERS.FORM_LABELS.BROWSE_IMAGE'| translate }}
+              </label>
+            </div>
+            <img
+              *ngIf="banner.FormGroup.controls.image.value"
+              [src]="banner.FormGroup.controls.image.value"
+              width="50" height="50"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.START_DATE'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text"
+                   formControlName="startDate"
+                   name="startDate"
+                   [minDate]="minDate"
+                   placeholder="{{'BANNERS.FORM_LABELS.START_DATE'| translate }}"
+                   class="form-control read-only-color"
+                   bsDatepicker
+                   [bsConfig]="bsConfig"
+                   autocomplete="off" readonly>
+            <control-messages
+              [control]="banner.FormGroup.controls.startDate"
+              [messages]="banner.validateRules['messages']['startDate']">
+            </control-messages>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.END_DATE'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text"
+                   [minDate]="minDate"
+                   formControlName="endDate"
+                   name="endDate"
+                   placeholder="{{'BANNERS.FORM_LABELS.END_DATE'| translate }}"
+                   class="form-control read-only-color"
+                   autocomplete="off"
+                   bsDatepicker
+                   [bsConfig]="bsConfig"
+                   readonly>
+            <control-messages
+              [control]="banner.FormGroup.controls.endDate"
+              [messages]="banner.validateRules['messages']['endDate']">
+            </control-messages>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.LOCATION'| translate }}</label>
+            <app-dropdown name="location" [multiple]="true" [searchable]="true" [data]="locationArr" bindLabel="label" bindValue="value"
+                          placeholder="{{'BANNERS.FORM_LABELS.PLEASE_SELECT_PLACE_HOLDER'| translate }}" formControlName="location">
+            </app-dropdown>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.SPECIFIED_PAGE'| translate }}</label>
+            <app-dropdown name="specifiedPage" [multiple]="true" [searchable]="true" [data]="specifiedPage" bindLabel="pageTitle" bindValue="entityId"
+                          placeholder="{{'BANNERS.FORM_LABELS.PLEASE_SELECT_PLACE_HOLDER'| translate }}" formControlName="specifiedPage">
+            </app-dropdown>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.SPECIFIED_CATEGORIES'| translate }}</label>
+
+            <app-dropdown
+              [treeview]="true"
+              name="categories"
+              [config]="config"
+              [items]="specifiedCategories"
+              (selectedChange)="onSelectedChange($event)"
+              formControlName="categories"
+              placeholder="{{'BANNERS.FORM_LABELS.PLEASE_SELECT_PLACE_HOLDER'| translate }}"
+              [ngxDisabledOnSelector]="'button.dropdown-toggle'">
+            </app-dropdown>
+
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.SPECIFIED_PRODUCTS'| translate }}</label>
+            <app-dropdown name="products" [multiple]="true" [searchable]="true" [data]="specifiedProducts" bindLabel="productName" bindValue="entityId"
+                          placeholder="{{'BANNERS.FORM_LABELS.PLEASE_SELECT_PLACE_HOLDER'| translate }}" formControlName="products">
+            </app-dropdown>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.WEB_STATUS'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <app-dropdown name="webStatus" [multiple]="false" [searchable]="false" [data]="webStatusArray" bindLabel="value" bindValue="id"
+                          placeholder="{{'BANNERS.FORM_LABELS.PLEASE_SELECT_PLACE_HOLDER'| translate }}" formControlName="webStatus">
+            </app-dropdown>
+            <control-messages
+              [control]="banner.FormGroup.controls.webStatus"
+              [messages]="banner.validateRules['messages']['webStatus']">
+            </control-messages>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.MOBILE_STATUS'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <app-dropdown name="mobileStatus" [multiple]="false" [searchable]="false" [data]="mobileStatusArray" bindLabel="value" bindValue="id"
+                          placeholder="{{'BANNERS.FORM_LABELS.PLEASE_SELECT_PLACE_HOLDER'| translate }}" formControlName="mobileStatus">
+            </app-dropdown>
+            <control-messages
+              [control]="banner.FormGroup.controls.mobileStatus"
+              [messages]="banner.validateRules['messages']['mobileStatus']">
+            </control-messages>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'BANNERS.FORM_LABELS.SORT_ORDER'| translate }}</label>
+            <input type="text"
+                   [restrict]="REG_EXP_CONFIG.NUMERIC"
+                   [maxlength]="MAX_LENGTH_CONFIG.MAX_10"
+                   placeholder="{{'BANNERS.FORM_LABELS.SORT_ORDER'| translate }}"
+                   class="form-control"
+                   formControlName="sortOrder"
+                   name="sortOrder"
+                   >
+          </div>
+          <div class="form-group col-sm-6" [hidden]="!bannerID">
+            <label>{{'BANNERS.FORM_LABELS.CREATED_BY'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text"
+                   placeholder="{{'BANNERS.FORM_LABELS.CREATED_BY'| translate }}"
+                   class="form-control"
+                   formControlName="createdByName"
+            >
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="action()">{{'COMMON.BUTTONS.SAVE' | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.RESET'| translate }}" (click)="reset()">
+           {{'COMMON.BUTTONS.RESET'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title="{{'CURRENCY_RATES.BUTTONS.SAVE'| translate }}" (click)="add()">
+          {{'CURRENCY_RATES.BUTTONS.SAVE'| translate }}
+        </button>
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <div style="text-align:center" *ngIf="currencyRates.rates">    
+        <button (click)="import()">{{'COMMON.BUTTONS.IMPORT' | translate}}</button>
+      </div>
+      <form class="form-horizontal m-t-10" [formGroup]="currencyRatesForm" >
+        <div class="row">
+            <div class="form-group col-sm-2" *ngIf="currencyRates.baseCurrency">
+                <label>{{currencyRates.baseCurrency}}
+                  <!-- <span class="form-field-required">*</span> -->
+                </label>
+                <input type="text" class="form-control" value="1.00" [attr.disabled] = true>
+            </div>
+            <div formArrayName="rates"
+            *ngFor="let item of formData.controls; let i = index;">
+              <div [formGroupName]="i">
+                <div class="form-group col-sm-8" style="float: left;">
+                  <label >{{item.get('currency').value}}</label>
+                  <input type="text" formControlName="rate" [maxlength]="MAX_LENGTH_CONFIG.MAX_10" class="form-control" [ngClass]="{ 'form-field-required': item.get('rate').errors }"/>
+                  <div *ngIf="item.get('rate').errors" class="form-field-required">
+                    <div *ngIf="item.get('rate').errors.required">{{'CURRENCY_RATE_REQUIRED' | translate}}</div>
+                    <div *ngIf="item.get('rate').errors.minlength">{{'CURRENCY_RATE_LENGTH' | translate}}</div>
+                    <div *ngIf="(item.get('rate').errors.pattern && !item.get('rate').errors.alphabet)">{{'CURRENCY_RATE_DECIMAL' | translate}}</div>
+                    <div *ngIf="(item.get('rate').errors.pattern && item.get('rate').errors.alphabet)">{{'CURRENCY_RATE_MUST_CONTAIN_NUMBER' | translate}}</div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

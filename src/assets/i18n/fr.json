@@ -1,0 +1,127 @@
+{
+  "COMMON": {
+    "BUTTONS": {
+      "SAVE": "Enregistrer",
+      "CANCEL": "Annuler",
+      "DELETE": "Delete",
+      "FILTER": "Filter",
+      "ACTION": "Actions",
+      "EXPORT": "Export",
+      "DELETE_CAM_CASE": "Delete",
+      "SEARCH": "Search",
+      "CLEAR": "Clear",
+      "YES": "Oui",
+      "NO": "Non"
+    },
+    "MODALS": {
+      "CHANGES_NOT_SAVED": "Les modifications que vous avez apportées ne seront pas sauvegardées.",
+      "ARE_U_SURE_TO_DELETE": "Are you sure you want to delete this ?"
+    },
+    "LABELS": {
+      "SELECT": "Select",
+      "TOTAL_RECORDS": "Total Records"
+    }
+  },
+  "USER": {
+    "FORM_LABELS": {
+      "FIRST_NAME": "Prénom",
+      "LAST_NAME": "Nom de famille",
+      "EMAIL": "Email",
+      "USER_ROLE": "Rôle d'utilisateur"
+    },
+    "ADD_USER": {
+      "ADD_USER_LBL": "Ajouter un utilisateur"
+    },
+    "EDIT_USER": {
+      "EDIT_USER_LBL": "Edit User"
+    },
+    "LIST_USER": {
+      "LIST_USER_LBL": "User List"
+    },
+    "USER_DETAIL": {
+      "USER_DETAIL_LBL": "User Detail"
+    }
+  },
+  "MANAGE_MERCHANT": {
+    "FORM_LABELS": {
+      "STORE_NAME": "Store Name",
+      "COMPANY_NUMBER": "Company Number",
+      "STORE_EMAIL": "Store Email",
+      "STATUS": "Status",
+      "LAST_UPDATED_ON": "Last Updated On",
+      "CREATED_ON": "Created On"
+    },
+    "LIST_MERCHANT": {
+      "LIST_MERCHANT_LBL": "Merchant List",
+      "CHANGE_SALE_PERSON":"Change Salesperson"
+    },
+    "ADD_MERCHANT": {
+      "ADD_MERCHANT_LBL": "Add Merchant"
+    },
+    "EDIT_MERCHANT": {
+      "EDIT_MERCHANT_LBL": "Edit Merchant"
+    },
+    "MERCHANT_DETAIL": {
+      "MERCHANT_DETAIL_LBL": "Merchant Detail"
+    }
+  },
+  "MERCHANT_SCHEME": {
+    "FORM_LABELS": {
+      "SCHEME_NAME": "Nom du régime",
+      "SCHEME_ID": "Id du schéma",
+      "DURATION": "Durée",
+      "VALIDITY": "Validité",
+      "COMMISSION_B2C": "Commission B2C en USD",
+      "COMMISSION_B2B": "Commission B2B en USD",
+      "MEMBERSHIP_PRICE": "Prix ​​d'adhésion",
+      "LOGISTICS_TYPE": "Type de logistique",
+      "STATUS": "Statut"
+    },
+    "LIST_MERCHANT_SCHEME": {
+      "LIST_SCHEME_LBL": "Liste des schémas du marchand"
+    },
+    "ADD_MERCHANT_SCHEME": {
+      "ADD_SCHEME_LBL": "Ajouter un schéma marchand"
+    },
+    "EDIT_MERCHANT_SCHEME": {
+      "EDIT_SCHEME_LBL": "Modifier le schéma du marchand"
+    },
+    "MERCHANT_SCHEME_DETAIL": {
+      "DETAIL_SCHEME_LBL": "Détail du schéma du marchand"
+    }
+  },
+  "DOCUMENT_TYPE": {
+    "FORM_LABLES": {
+      "NAME": "prénom",
+      "DOCTYPE_ID": "Identifiant du document",
+      "STATUS": "statut"
+    },
+    "LIST_DOCUMENT_TYPE": {
+      "LIST_TYPE_LBL": "Liste de types de document"
+    },
+    "ADD_DOCUMENT_TYPE": {
+      "ADD_TYPE_LBL": "Ajouter un type de document"
+    },
+    "EDIT_DOCUMENT_TYPE": {
+      "LIST_TYPE_LBL": "Modifier le type de document"
+    },
+    "DOCUMENT_TYPE_DETAIL": {
+      "DETAIL_TYPE_LBL": "Type de document Détail"
+    },
+    "APPROVAL": {
+      "FORM_LABELS": {
+        "APPROVAL_REQUEST_ID": "Id",
+        "STORE_NAME": "Store Name",
+        "ASSIGNEE_NAME": "Assignee Name",
+        "ROLE_NAME": "Role Name",
+        "STATUS": "Approval Status",
+        "MERCHANT_STATUS": "Merchant Status",
+        "APPROVAL_DATE": "Approval Date",
+        "LAST_UPDATED_ON": "Last Updated On",
+        "CREATED_ON": "Created On",
+        "ACTIONS": "Actions"
+      }
+    }
+  },
+  "ROLE_NAME_REQUIRED": "Role fr name is required."
+}

@@ -1,0 +1,1122 @@
+{
+  "COMMON": {
+    "BUTTONS": {
+      "SAVE": "Save",
+      "CANCEL": "Cancel",
+      "CLOSE": "Close",
+      "DELETE": "Delete",
+      "FILTER": "Filter",
+      "ACTION": "Actions",
+      "EXPORT": "Export",
+      "DELETE_CAM_CASE": "Delete",
+      "SEARCH": "Search",
+      "CLEAR": "Clear",
+      "YES": "Yes",
+      "NO": "No",
+      "BACK": "Back",
+      "EDIT": "Edit",
+      "SAVE_AND_CONTINUE": "Save & Continue",
+      "PREVIOUS": "Previous",
+      "SUBMIT_FOR_REVIEW": "Submit For Review",
+      "ACCEPT": "Approve",
+      "REJECT": "Reject",
+      "UPDATE": "Update",
+      "RESET": "Reset",
+      "OK": "OK",
+      "SUBMIT": "Submit",
+      "LOGIN": "Log In",
+      "VIEW": "View",
+      "IMPORT" : "Import"
+    },
+    "MODALS": {
+      "CHANGES_NOT_SAVED": "Do you want to cancel the form? Details added in the form will be lost.",
+      "ARE_U_SURE_TO_DELETE": "Are you sure you want to delete this?"
+    },
+    "LABELS": {
+      "ICON_NAME": "Icon Name",
+      "IMAGE_NAME": "Image Name",
+      "SELECT": "Select",
+      "TOTAL_RECORDS": "Total Records",
+      "STATUS": "Status",
+      "LAST_UPDATED_ON": "Last Updated On",
+      "CREATED_ON": "Created On",
+      "ID": "ID",
+      "NO_RECORD_FOUND": "No record found.",
+      "SELECT_COUNTRY": "Select Country",
+      "SELECT_STATE": "Select State",
+      "SELECT_CITY": "Select City",
+      "CREATED_BY": "Created By",
+      "SELECT_SERVER": "Select server",
+      "REASON": "Reason",
+      "YES": "Yes",
+      "NO": "No",
+      "TOP": "Top",
+      "BOTTOM": "Bottom"
+    },
+    "TITLES": {
+      "MY_PROFILE": "My Profile",
+      "ROLE_LIST": "List Role",
+      "ROLE_ADD": "Add Role",
+      "ROLE_EDIT": "Edit Role",
+      "ROLE_VIEW": "View Role",
+      "DASHBOARD": "Dashboard",
+      "COUNTRY_ADD": "Add Country",
+      "COUNTRY_LIST": "View Countries",
+      "COUNTRY_VIEW": "View Country",
+      "COUNTRY_EDIT": "Edit Country",
+      "COUNTRY_GROUP_ADD": "Add Group",
+      "COUNTRY_GROUP_LIST": "View Groups",
+      "COUNTRY_GROUP_VIEW": "View Group",
+      "COUNTRY_GROUP_EDIT": "Edit Group",
+      "CATEGORY_EDIT": "Edit Category",
+      "CATEGORY_VIEW": "View Category",
+      "CATEGORY_LIST": "Category List",
+      "CATEGORY_ADD": "Add Category",
+      "ATTRIBUTE_ADD": "Add Attribute",
+      "ATTRIBUTE_LIST": "View Attributes",
+      "ATTRIBUTE_VIEW": "View Attribute",
+      "ATTRIBUTE_EDIT": "Edit Attribute",
+      "CURRENCY_ADD": "Add Currency",
+      "CURRENCY_LIST": "View Currencies",
+      "CURRENCY_VIEW": "View Currency",
+      "CURRENCY_EDIT": "Edit Currency",
+      "STATES_LIST": "View States",
+      "STATES_ADD": "Add State",
+      "STATES_VIEW": "View State",
+      "STATES_EDIT": "Edit State",
+      "CITIES_LIST": "View Cities",
+      "CITIES_ADD": "Add Cities",
+      "CITIES_VIEW": "View Cities",
+      "CITIES_EDIT": "Edit Cities",
+      "CUSTOMER_ADD": "Add Customer",
+      "CUSTOMER_LIST": "View Customers",
+      "CUSTOMER_VIEW": "View Customer",
+      "CUSTOMER_EDIT": "Edit Customer",
+      "BANNERS_EDIT": "Edit Banners",
+      "BANNERS_VIEW": "View Banners",
+      "BANNERS_LIST": "Banners List",
+      "BANNERS_ADD": "Add Banners",
+      "THEMES_LIST": "View Themes",
+      "THEMES_ADD": "Add Theme",
+      "THEMES_VIEW": "View Theme",
+      "THEMES_EDIT": "Edit Theme",
+      "BRANDS_LIST": "Brand List",
+      "BRANDS_ADD": "Add Brand",
+      "BRANDS_VIEW": "View Brand",
+      "BRANDS_EDIT": "Edit Brand",
+      "CURRENCY_RATES" : "Currency Rates",
+      "TRAINING_VIDEOS_LIST": "Training videos",
+      "TRAINING_VIDEOS_ADD": "Add Training video",
+      "TRAINING_VIDEOS_VIEW": "View Training video",
+      "TRAINING_VIDEOS_EDIT": "Edit Training video"
+    },
+    "PLEASE_SELECT": "Please select"
+  },
+  "USER": {
+    "FORM_LABELS": {
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "EMAIL": "Email",
+      "USER_ROLE": "User Role",
+      "STATUS": "Status",
+      "CREATED_BY_NAME": "Created By",
+      "ROLE_NAME": "Role Name"
+    },
+    "ADD_USER": {
+      "ADD_USER_LBL": "Add User"
+    },
+    "EDIT_USER": {
+      "EDIT_USER_LBL": "Edit User"
+    },
+    "LIST_USER": {
+      "LIST_USER_LBL": "User List"
+    },
+    "USER_DETAIL": {
+      "USER_DETAIL_LBL": "User Detail"
+    },
+    "FORM_PLACEHOLDER": {
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "EMAIL": "Email",
+      "USER_ROLE": "Please select",
+      "STATUS": "Please select"
+    }
+  },
+  "MANAGE_MERCHANT": {
+    "FORM_LABELS": {
+      "STORE_NAME": "Store Name",
+      "COMPANY_NUMBER": "Company Number",
+      "STORE_EMAIL": "Store Email",
+      "STATUS": "Status",
+      "LAST_UPDATED_ON": "Last Updated On",
+      "CREATED_ON": "Created On",
+      "COMPANY_NAME": "Company Name",
+      "SELECT_SALESPERSON": "Select Sales Person",
+      "CURRENT_SALESPERSON": "Sales Person"
+    },
+    "LIST_MERCHANT": {
+      "LIST_MERCHANT_LBL": "Merchant List",
+      "LIST_MERCHANT_IMPORT": "Merchant Import",
+      "LIST_MERCHANT_EXPORT": "Merchant Export",
+      "CHANGE_SALE_PERSON": "Change Sales Person"
+    },
+    "ADD_MERCHANT": {
+      "ADD_MERCHANT_LBL": "Add Merchant",
+      "FEES_DETAILS": {
+        "TITLE": "Delivery, Scheme & Fee details",
+        "COUNTRY": "Country",
+        "REGISTRATIONB2C": "Registration Fee for B2C in USD",
+        "REGISTRATIONB2B": "Registration Fee for B2B in USD",
+        "TRANSACTIONB2C": "Transaction Fee for B2C in USD",
+        "TRANSACTIONB2B": "Transaction Fee for B2B in USD",
+        "AGREEMENTPERIOD": "Agreement Period",
+        "REMARKS": "Remarks",
+        "SCHEME": "Scheme"
+      },
+      "PICKUP_DETAILS": {
+        "TITLE": "Add New Pickup Address",
+        "CONTACT_NAME": "Contact Name",
+        "CONTACT_NUMBER": "Contact Number",
+        "ADDRESS_LINE1": "Address Line1",
+        "ADDRESS_LINE2": "Address Line2",
+        "COUNTRY": "Country",
+        "STATE": "State",
+        "CITY": "City",
+        "ZIPCODE": "Zipcode"
+      },
+      "FINANCE_INFO": {
+        "TITLE": "Finance and Tax details",
+        "BANK_NAME": "Bank Name",
+        "BRANCH_NAME": "Branch Name",
+        "ACCOUNT_NUMBER": "Account Number",
+        "ROUTING_NUMBER": "Routing Number",
+        "BANK_ADDRESS": "Bank Address",
+        "SWIFT": "Swift/IFSC Code",
+        "PAYPAL": "Paypal Email",
+        "COMAPNY_NAME": "Company Name Registered Under Bank Name",
+        "TAX_STATE": "Tax State",
+        "GST": "GST/VAT Number",
+        "BANK_DETALS": "Bank Details"
+      },
+      "TAX_DETAILS": {
+        "TITLE": "Finance and Tax details",
+        "TAX_STATE": "Tax State",
+        "GST": "GST/VAT Number",
+        "TAX_DETAILS": "Tax Details"
+      },
+      "DOCUMENT_UPLOAD": {
+        "TITLE": "Documents",
+        "BROWSE_DOCUMENT": "Browse Documents",
+        "BROWSE CSV": "Browse CSV",
+        "MAX_FILE_SIZE": "Max file size 10MB",
+        "DOCUMENT": "Documents",
+        "DOC_TYPE": "Document Type",
+        "NO_DOCUMENTS_UPLOADED": "No documents uploaded."
+      },
+      "CONTACT_FINANCE": {
+        "TITLE": "Contact Person for Accounts and Finance Matters",
+        "CONTACT_PERSON": "Contact Person",
+        "DESIGNATION": "Designation",
+        "EMAIL": "Email Address",
+        "TELEPHONE": "Telephone",
+        "EXT": "Ext.",
+        "MOBILE_1": "Mobile Number 1",
+        "MOBILE_2": "Mobile Number 2",
+        "CONTACT_PERSON_FINANCE": "Contact Person for Accounts and Finance Matters"
+      },
+      "CONTACT_PERSON": {
+        "TITLE": "Contact Person for Merchandise and Product Matters",
+        "MERCHANT_REPRESENTATIVE_NAME": "Merchant's Representative Name",
+        "CONTACT_PERSON": "Contact Person",
+        "DESIGNATION": "Designation",
+        "TELEPHONE": "Telephone",
+        "EXT": "Ext.",
+        "EMAIL": "Email Address",
+        "MOBILE_1": "Mobile Number 1",
+        "MOBILE_2": "Mobile Number 2",
+        "CONTACT_PERSON_MERCHANDISE": "Contact Person for Merchandise and Product Matters"
+      },
+      "COMPANY_INFO": {
+        "TITLE": "Business Information",
+        "BUISNESS_NAME": "Business Legal Name",
+        "MERCHANT_REPRESENTATIVE_NAME": "Merchant's Representative Name",
+        "COMPANY_NAME": "Company Number",
+        "MOBILE_NUMBER": "Mobile Number",
+        "STORE_NAME": "Store Name",
+        "STORE_EMAIL": "Store Login Email",
+        "NATURE_OF_BUISNESS": "Nature of Business",
+        "CHOOSE_CATEGORY": "Choose Category",
+        "ANNUAL_TURNOVER": "Annual Turnover",
+        "ADDRESS_1": "Address Line 1",
+        "ADDRESS_2": "Address Line 2",
+        "COUNTRY": "Country",
+        "STATE": "State",
+        "CITY": "City",
+        "ZIPCODE": "Zipcode",
+        "SELL_OTHER_WEB": "Do you sell in other website?",
+        "URL": "Website URL",
+        "PROVIDE_WEBSITE_URL": "If yes, please provide website URL"
+      },
+      "PRO_AND_REVENUE": {
+        "TITLE": "Products and Revenue",
+        "CAT": "Category",
+        "SUB_CAT": "Sub-Category",
+        "ANNUAL": "Annual Turnover",
+        "PRO_SELL": "How many products do you sell?",
+        "SELL_OTHER_WEB": "Do you sell in other website?",
+        "URL": "Website URL"
+      },
+      "MERCHANT_SCHEME": {
+        "TITLE": "Merchant Scheme",
+        "LBL": "Merchant Scheme"
+      },
+      "PRODUCT_REVENUE": {
+        "TITLE": "Product & Revenue",
+        "PRIMARY_CATEGORY": "Primary Category",
+        "SECONDARY_CATEGORY": "Secondary Category",
+        "CATEGORY": "Category",
+        "NUMBER_PRODUCT": "Number of Product"
+      },
+      "SCHEME_FEE": {
+        "TITLE": "Scheme & Fees",
+        "SCHEME": "Select Scheme",
+        "REGISTRATION_FEE": "Registration Fee",
+        "GLOBAL_B2C": "Global Platform B2C in USD",
+        "DOMESTIC_B2C": "Domestic Platform B2C in USD",
+        "AGRREMENT_B2C": "Agreement Period for B2C",
+        "GLOBAL_B2B": "Global Platform B2B in USD",
+        "DOMESTIC_B2B": "Domestic Platform B2B in USD",
+        "AGRREMENT_B2B": "Agreement Period for B2B",
+        "TRANSECTION_FEE": "Transaction Fee",
+        "GLOBAL_B2C_PERCENT": "Global Platform B2C in %",
+        "DOMESTIC_B2C_PERCENT": "Domestic Platform B2C in %",
+        "GLOBAL_B2B_PERCENT": "Global Platform B2B in %",
+        "DOMESTIC_B2B_PERCENT": "Domestic Platform B2B in %",
+        "REMARKS": "Remarks"
+      },
+      "PLATFROM_ADDRESS": {
+        "TITLE": "Pickup Address",
+        "ADD_ADDRESS": "Add Address"
+      },
+      "SELECT_GROUP_COUNTRIES": {
+        "TITLE": "Select Groups and countries",
+        "GROUP": "Groups",
+        "COUNTRIES": "Countries",
+        "GROUP_NAME": "Group Name"
+      },
+      "DELIVERY_DETAILS": {
+        "TITLE": "Select Platform",
+        "MODE": {
+          "NORMAL": "Delivery Mode – Normal",
+          "FROZEN": "Delivery Mode – Frozen/Chilled",
+          "TYPE": "Delivery Mode – Merchant Type",
+          "OTHERS": "Delivery Mode – Others"
+        },
+        "MODE_ON_MERCHANT_VIEW": {
+          "NORMAL": "Normal",
+          "FROZEN": "Frozen/Chilled",
+          "TYPE": "Merchant Type",
+          "DELIVERY": "Merchant Delivery",
+          "OTHERS": "Others(Please specify)",
+          "OTHERS_VALUE": "Others"
+        },
+        "ESTIMATE": "Estimate SKUs",
+        "SHIPPING_FEE": "Shipping Fee",
+        "TYPE": "Platform Type",
+        "SHIPPING_FEE_MERCHANT_VIEW": "Shipping Fee (Included)"
+      },
+      "PLATFORM": {
+        "TITLE": "Delivery Platform",
+        "TYPE": "Type",
+        "GLOBAL_PLATFORM_CHKBOX": "Global",
+        "GLOBAL_PLATFORM_DETAIL": "List all your products and services in over 40 countries across the Globe. All pricing to be based in USD.",
+        "DOMESTIC_PLATFORM_CHKBOX": "Domestic",
+        "DOMESTIC_PLATFORM_DETAIL": "List all your products and services on your preferred Domestic Platform. Pricing to be based in the selected country's currency.",
+        "GLOBAL_PLATFORM": "Global Platform",
+        "DOMESTIC_PLATFORM": "Domestic Platform"
+
+      },
+      "AUTHORIZED_SIGNATURE": {
+        "TITLE": "Merchant Authorized Signatory",
+        "DATE": "Date",
+        "NAME": "Name",
+        "DESIGNATION": "Designation",
+        "SIGNATURE": "Signature"
+      },
+      "FORM_PLACEHOLDER": {
+        "COMPANY_INFO": {
+          "BUISNESS_NAME": "Business Legal Name",
+          "MERCHANT_REPRESENTATIVE_NAME": "Merchant's Representative Name",
+          "COMPANY_NUMBER": "Company Number",
+          "MOBILE_NUMBER": "Mobile Number",
+          "STORE_NAME": "Store Name",
+          "STORE_EMAIL": "Store Login Email",
+          "NATURE_OF_BUISNESS": "Nature of Business",
+          "ANNUAL_TURNOVER": "Annual Turnover",
+          "ADDRESS_1": "Address Line 1",
+          "ADDRESS_2": "Address Line 2",
+          "COUNTRY": "Please select",
+          "STATE": "Please select",
+          "CITY": "Please select",
+          "ZIPCODE": "Zipcode",
+          "SELL_OTHER_WEB": "Please select",
+          "URL": "Website URL",
+          "PROVIDE_WEBSITE_URL": "If yes, please provide website URL"
+        },
+        "CONTACT_PERSON": {
+          "MERCHANT_REPRESENTATIVE_NAME": "Merchant's Representative Name",
+          "CONTACT_PERSON": "Contact Person",
+          "DESIGNATION": "Designation",
+          "TELEPHONE": "Telephone",
+          "EXT": "Ext.",
+          "EMAIL": "Email Address",
+          "MOBILE_1": "Mobile Number 1",
+          "MOBILE_2": "Mobile Number 2"
+        },
+        "CONTACT_FINANCE": {
+          "CONTACT_PERSON": "Contact Person",
+          "DESIGNATION": "Designation",
+          "EMAIL": "Email Address",
+          "TELEPHONE": "Telephone",
+          "EXT": "Ext.",
+          "MOBILE_1": "Mobile Number 1",
+          "MOBILE_2": "Mobile Number 2"
+        },
+        "FINANCE_INFO": {
+          "BANK_NAME": "Bank Name",
+          "BRANCH_NAME": "Branch Name",
+          "ACCOUNT_NUMBER": "Account Number",
+          "ROUTING_NUMBER": "Routing Number",
+          "BANK_ADDRESS": "Bank Address",
+          "SWIFT": "Swift/IFSC Code",
+          "PAYPAL": "Paypal Email",
+          "COMAPNY_NAME": "Company Name Registered Under Bank Name",
+          "TAX_STATE": "Tax State",
+          "GST": "GST/VAT Number",
+          "BANK_DETALS": "Bank Details"
+        },
+        "DELIVERY_DETAILS": {
+          "ESTIMATE": "Estimate SKUs",
+          "SHIPPING_FEE": "Please select"
+        },
+        "SCHEME_FEE": {
+          "REGISTRATION_FEE": "Registration Fee",
+          "GLOBAL_B2C": "Global Platform B2C in USD",
+          "DOMESTIC_B2C": "Domestic Platform B2C in USD",
+          "AGRREMENT_B2C": "Agreement Period for B2C",
+          "GLOBAL_B2B": "Global Platform B2B in USD",
+          "DOMESTIC_B2B": "Domestic Platform B2B in USD",
+          "AGRREMENT_B2B": "Agreement Period for B2B",
+          "TRANSECTION_FEE": "Transaction Fee",
+          "GLOBAL_B2C_PERCENT": "Global Platform B2C in %",
+          "DOMESTIC_B2C_PERCENT": "Domestic Platform B2C in %",
+          "GLOBAL_B2B_PERCENT": "Global Platform B2B in %",
+          "DOMESTIC_B2B_PERCENT": "Domestic Platform B2B in %",
+          "REMARKS": "Remarks"
+        },
+        "PRODUCT_REVENUE": {
+          "NUMBER_PRODUCT": "Please select"
+        },
+        "PICKUP_DETAILS": {
+          "CONTACT_NAME": "Contact Name",
+          "CONTACT_NUMBER": "Contact Number",
+          "ADDRESS_LINE1": "Address Line1",
+          "ADDRESS_LINE2": "Address Line2",
+          "COUNTRY": "Please select",
+          "STATE": "Please select",
+          "CITY": "Please select",
+          "ZIPCODE": "Zipcode"
+        },
+        "AUTHORIZED_SIGNATURE": {
+          "DATE": "Date",
+          "NAME": "Name",
+          "DESIGNATION": "Designation"
+        }
+      }
+    },
+    "EDIT_MERCHANT": {
+      "EDIT_MERCHANT_LBL": "Edit Merchant"
+    },
+    "MERCHANT_DETAIL": {
+      "MERCHANT_DETAIL_LBL": "Merchant Detail"
+    },
+    "MERCHANT_SCHEME_DETAIL": {
+      "DETAIL_SCHEME_LBL": "Merchant Scheme Detail"
+    }
+  },
+  "APPROVAL": {
+    "FORM_LABELS": {
+      "APPROVAL_REQUEST_ID": "ID",
+      "STORE_NAME": "Store Name",
+      "ASSIGNEE_NAME": "Assignee Name",
+      "ROLE_NAME": "Role Name",
+      "STATUS": "Approval Status",
+      "MERCHANT_STATUS": "Merchant Status",
+      "APPROVAL_DATE": "Approval Date",
+      "LAST_UPDATED_ON": "Last Updated On",
+      "CREATED_ON": "Created On",
+      "ACTIONS": "Actions",
+      "REFERENCE_ID": "Reference Id",
+      "APPROVAL_TYPE": "Approval Type",
+      "PREVIOUS_VALUE": "Previous Value",
+      "PROPOSED_VALUE": "Proposed Value",
+      "PROPOSED_BY": "Created By"
+    }
+  },
+  "MERCHANT_SCHEME": {
+    "FORM_LABELS": {
+      "SCHEME_NAME": "Scheme Name",
+      "SCHEME_ID": "ID",
+      "DURATION": "Duration",
+      "VALIDITY": "Validity",
+      "REGISTRATION_FEE_B2C": "Global/Domestic Platform B2C in USD",
+      "REGISTRATION_FEE_B2B": "Global/Domestic Platform B2B in USD",
+      "AGREEMENT_B2C": "Agreement Period for B2C",
+      "AGREEMENT_B2B": "Agreement Period for B2B",
+      "TRANSACTION_FEE_B2C": "Global/Domestic Platform B2C in %",
+      "TRANSACTION_FEE_B2B": "Global/Domestic Platform B2B in %",
+      "LOGISTICS_TYPE": "Logistics Type",
+      "STATUS": "Status",
+      "LAST_UPDATED_ON": "Last Updated On",
+      "CREATED_ON": "Created On",
+      "REMARKS": "Remarks",
+      "SCHEME_TYPE": "Scheme Type",
+      "REGISTARTION_FEE": "Registration Fee",
+      "TRANSACTION_FEE": "Transaction Fee"
+    },
+    "LIST_MERCHANT_SCHEME": {
+      "LIST_SCHEME_LBL": "Scheme List"
+    },
+    "ADD_MERCHANT_SCHEME": {
+      "ADD_SCHEME_LBL": "Add Scheme"
+    },
+    "EDIT_MERCHANT_SCHEME": {
+      "EDIT_SCHEME_LBL": "Edit Scheme"
+    },
+    "MERCHANT_SCHEME_DETAIL": {
+      "DETAIL_SCHEME_LBL": "Scheme Detail"
+    },
+    "FORM_PLACEHOLDER": {
+      "SCHEME_NAME": "Scheme Name",
+      "DURATION": "Please select",
+      "VALIDITY": "Validity",
+      "REGISTRATION_FEE_B2C": "Global/Domestic Platform B2C in USD",
+      "REGISTRATION_FEE_B2B": "Global/Domestic Platform B2B in USD",
+      "AGREEMENT_B2C": "Agreement Period for B2C",
+      "AGREEMENT_B2B": "Agreement Period for B2B",
+      "TRANSACTION_FEE_B2C": "Global/Domestic Platform B2C in %",
+      "TRANSACTION_FEE_B2B": "Global/Domestic Platform B2B in %",
+      "REMARKS": "Remarks",
+      "STATUS": "Please select",
+      "SCHEME_TYPE": "Please select"
+    }
+  },
+  "DOCUMENT_TYPE": {
+    "FORM_LABLES": {
+      "NAME": "Name",
+      "DOCTYPE_ID": "ID",
+      "STATUS": "Status"
+    },
+    "LIST_DOCUMENT_TYPE": {
+      "LIST_TYPE_LBL": "Document Type List"
+    },
+    "ADD_DOCUMENT_TYPE": {
+      "ADD_TYPE_LBL": "Add Document"
+    },
+    "EDIT_DOCUMENT_TYPE": {
+      "EDIT_TYPE_LBL": "Edit Document"
+    },
+    "DOCUMENT_TYPE_DETAIL": {
+      "DETAIL_TYPE_LBL": "Document Detail"
+    },
+    "FORM_PLACEHOLDER": {
+      "NAME": "Name",
+      "STATUS": "Please select"
+    }
+  },
+  "MANAGE_CERTIFICATE": {
+    "FORM_LABLES": {
+      "CERTIFICATE_NAME": "Certificate Name",
+      "CERTIFICATE_ID": "ID",
+      "REQUIRED": "Required"
+    },
+    "LIST_CERTIFICATE": {
+      "LIST_CERTIFICATE_LBL": "Certificates List"
+    },
+    "ADD_CERTIFICATE": {
+      "ADD_CERTIFICATE_LBL": "Add Certificate"
+    },
+    "EDIT_CERTIFICATE": {
+      "EDIT_CERTIFICATE_LBL": "Edit Certificate"
+    },
+    "CERTIFICATE_DETAIL": {
+      "DETAIL_CERTIFICATE_LBL": "Certificate Detail"
+    },
+    "FORM_PLACEHOLDER": {
+      "CERTIFICATE_NAME": "Certificate Name",
+      "REQUIRED": "Please select",
+      "STATUS": "Please select"
+    }
+  },
+  "APPROVAL_STATUS": {
+    "FORM_LABELS": {
+      "STATUS": "Status",
+      "STEP": "Step",
+      "COMMENT": "Comments"
+    },
+    "FORM_PLACEHOLDER": {
+      "STEP": "Please select",
+      "STATUS": "Please select",
+      "COMMENT": "Comments"
+    }
+  },
+  "CATEGORY": {
+    "FORM_LABELS": {
+      "CATEGORY_NAME": "Category Name",
+      "ICON_IMG": "Icon Image",
+      "BG_COLOR": "Background Color",
+      "BG_IMG": "Background Image",
+      "PRIMARY_IMG": "Primary Image",
+      "PRIMARY_SIZE": "Primary Image Size",
+      "PRIMARY_URL": "Primary Image URL",
+      "MOBILE_IMG": "Mobile Image",
+      "LANDING_PAGE": "Landing Page",
+      "PARENT_CATEGORY": "Parent Category",
+      "SORT_ORDER": "Sort Order",
+      "APPROVAL_STATUS": "Approval Status",
+      "HALAL_CATEGORY": "Halal Category"
+    },
+    "LIST_CATEGORY": {
+      "LIST_CATEGORY_LBL": "Category List"
+    }
+  },
+  "ROLE": {
+    "FORM_LABELS": {
+      "NAME": "Role Name",
+      "PERMISSIONS": "Permissions",
+      "ROLE_PERMISSIONS": "Role Permissions"
+    },
+    "FORM_PLACEHOLDER": {
+      "NAME": "Role name",
+      "ROLE_PERMISSIONS": "Please select"
+    },
+    "ADD_ROLE": {
+      "ADD_ROLE_LBL": "Add Role"
+    }
+  },
+  "PROFILE": {
+    "FORM_LABELS": {
+      "MY_PROFILE": "My Profile",
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "EMAIL": "Email",
+      "PHONE_NUMBER1": "Phone Number1",
+      "PHONE_NUMBER2": "Phone Number2"
+    },
+    "FORM_PLACEHOLDER": {
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "EMAIL": "Email",
+      "PHONE_NUMBER1": "Phone Number1",
+      "PHONE_NUMBER2": "Phone Number2"
+    }
+  },
+  "CHANGE_PASSWORD": {
+    "FORM_LABELS": {
+      "CHANGE_PASSWORD": "Change Password",
+      "CURRENT_PASSWORD": "Current Password",
+      "NEW_PASSWORD": "New Password",
+      "CONFIRM_PASSWORD": "Confirm Password"
+    },
+    "FORM_PLACEHOLDER": {
+      "CURRENT_PASSWORD": "Current Password",
+      "NEW_PASSWORD": "New Password",
+      "CONFIRM_PASSWORD": "Confirm Password"
+    }
+  },
+  "COUNTRY": {
+    "FORM_LABELS": {
+      "CODE": "Country Code",
+      "NAME": "Country Name"
+    },
+    "BUTTONS": {
+      "ADD": "Add Country"
+    },
+    "FORM_PLACEHOLDER": {
+      "CODE": "Country Code",
+      "NAME": "Country Name",
+      "STATUS": "Please select"
+    }
+  },
+  "COUNTRYGROUP": {
+    "FORM_LABELS": {
+      "NAME": "Group Name",
+      "COUNTRIES": "Countries"
+    },
+    "BUTTONS": {
+      "ADD": "Add Group"
+    },
+    "FORM_PLACEHOLDER": {
+      "NAME": "Group Name",
+      "COUNTRIES": "Countries",
+      "STATUS": "Please select"
+    }
+  },
+  "CURRENCY": {
+    "FORM_LABELS": {
+      "NAME": "Currency",
+      "SYMBOL": "Symbol"
+    },
+    "PLACEHOLDER": {
+      "CURRENCY_SYMBOL": "Ex: $,€ or USD or EUR"
+    },
+    "BUTTONS": {
+      "ADD": "Add Currency"
+    }
+  },
+  "CURRENCY_RATES": {
+    "BUTTONS": {
+      "SAVE": "Save currency rates"
+    }
+  },
+  "CUSTOMER": {
+    "ADD_CUSTOMER_TITLE": "Add Customer",
+    "FORM_LABELS": {
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "EMAIL": "Email",
+      "SIGNUP_PLATFORM": "Sign up platform",
+      "SIGNUP_METHOD": "Sign up method",
+      "REGISTERED_USING_CODE": "Registered using code",
+      "REFERRAL_CODE": "Referral code",
+      "KYC_DOCUMENT": "KYC document",
+      "CREATED_BY": "Created By"
+    },
+    "PLACEHOLDER": {
+      "REGISTERED_USING_CODE": "Referral code (if any)"
+    },
+    "BUTTONS": {
+      "ADD": "Add Customer",
+      "RESET_PASSWORD": "Reset password"
+    }
+  },
+  "THEME": {
+    "FORM_LABELS": {
+      "NAME": "Theme Name",
+      "START_DATE": "Start Date",
+      "END_DATE": "End Date",
+      "BG_COLOR": "Background Color",
+      "BG_IMG": "Background Image",
+      "HEADER_BG_COLOR": "Header Background Color",
+      "FRONT_BG_COLOR": "Font Color For Header",
+      "PLACEHOLDER_IMG": "Product Placeholder Image",
+      "DEFAULT": "Is  Default ",
+      "OTHER_PLACEHOLDER_IMG": "Other Placeholder Image(No Image)"
+    },
+    "BUTTONS": {
+      "FRONT_BG_COLOR": "Font Color For Header",
+      "PLACEHOLDER_IMG": "Product Placeholder Image",
+      "DEFAULT": "Is Default",
+      "OTHER_PLACEHOLDER_IMG": "Other Placeholder Image(No Image)"
+    },
+    "PLACEHOLDER":{
+      "NAME": "Theme name.Ex:Christmas, New Year, Default."
+    }
+  },
+  "BANNERS": {
+    "FORM_LABELS": {
+      "BANNER_NAME": "Banner Name",
+      "BANNER_LANGUAGE": "Banner Language",
+      "BANNER_PARENT": "Parent Banner",
+      "IMAGE": "Image",
+      "START_DATE": "Start Date",
+      "END_DATE": "End Date",
+      "LOCATION": "Location",
+      "SPECIFIED_PAGE": "Specified Page",
+      "SPECIFIED_CATEGORIES": "Specified Categories",
+      "SPECIFIED_PRODUCTS": "Specified products ",
+      "WEB_STATUS": "Web Status",
+      "MOBILE_STATUS": "Mobile Status",
+      "SORT_ORDER": "Sort Order",
+      "CREATED_BY": "Created By",
+      "CREATED_ON": "Created On",
+      "LAST_UPDATED": "Last Updated On",
+      "BROWSE_IMAGE":"Browse Image",
+      "PLEASE_SELECT_PLACE_HOLDER":"Please select"
+    },
+    "BUTTONS": {
+      "ADD": "Add Banner"
+    }
+  },
+  "BRANDS": {
+    "FORM_LABELS": {
+      "NAME": "Brand Name",
+      "START_DATE": "Start Date",
+      "END_DATE": "End Date",
+      "ICON": "Icon",
+      "IMAGE": "Image",
+      "LOCATION": "Location",
+      "LANDING_PAGE": "Landing Page",
+      "SPECIFIED_PAGE": "Specified Page",
+      "CATEGORIES": "Specified  Categories",
+      "PRODUCTS": "Specified Products",
+      "TOP_BRAND": "Top Brands",
+      "LATEST_BRAND": "Latest Brand",
+      "MONTH_BRAND": "Brand Of the month",
+      "SORT_ORDER": "Sort Order",
+      "DEFAULT": "Is  Default"
+    },
+    "BUTTONS": {
+      "ADD": "Add Brand"
+    }
+  },
+  "ATTRIBUTE": {
+    "FORM_LABELS": {
+      "NAME": "Label",
+      "ENTITY_TYPE": "Attribute Entity",
+      "INPUT_TYPE": "Input Type",
+      "IS_REQUIRED": "Is Required",
+      "DEFAULT": "Is Default",
+      "VALUE":"Value",
+      "OPTIONS":"Attributes Options"
+    },
+    "PLACEHOLDER":{
+      "NAME":"Attribute label name. Ex: Color, Size, Flavour",
+      "VALUE":"Attribute Value. Ex: Color, Size, Flavour"
+    }
+  },
+  "TRAINING_VIDEO": {
+    "ADD_CUSTOMER_TITLE": "Add training video",
+    "FORM_LABELS": {
+      "TOPIC": "Topic",
+      "TITLE": "Title",
+      "URL": "URL",
+      "CREATED_BY": "Created By"
+    },
+    "BUTTONS": {
+      "ADD": "Add training video"
+    }
+  },
+  "COLOR_PLACEHOLDER":"#000000",
+  "ROLE_NAME_REQUIRED": "Role name is required.",
+  "ROLE_PERMISSIONS_REQUIRED": "Please select permissions.",
+  "EMAIL_REQUIRED": "Email address is required.",
+  "INVALID_EMAIL": "Email address is not valid. Ex: john.doe@example.com.",
+  "FIRST_NAME_REQUIRED": "First name is required.",
+  "FIRST_NAME_MUST_CONTAIN": "First name must contain alphabets or numbers.",
+  "LAST_NAME_REQUIRED": "Last name is required.",
+  "LAST_NAME_MUST_CONTAIN": "Last name must contain alphabets or numbers.",
+  "ROLE_REQUIRED": "Please select role.",
+  "PASSWORD_POLICY": "Password should be at least 6 characters in length and must contain at least 1 alphabet, 1 number, 1 uppercase character, 1 lowercase character.",
+  "INVALID_NUMBER": "Invalid number.",
+  "INVALID_WEBSITE_ADDRESS": "Website URL is not valid. Ex: http://www.example.com.",
+  "ALPHANUMERIC_ENTER": "This field must contain only alphabets or numbers.",
+  "SCHEME_NAME_REQUIRED": "Scheme name is required.",
+  "INVALID_SCHEME_NAME": "Please select valid scheme.",
+  "DURATION_REQUIRED": "Please select duration.",
+  "VALIDITY_REQUIRED": "Please select validity.",
+  "INVALID_DATE": "Please select valid date.",
+  "COMMISION_B2C_REQUIRED": "Commission B2C is required.",
+  "COMMISION_B2B_REQUIRED": "Commission B2B is required.",
+  "INVALID_DECIMAL_VALUE": "Please enter valid value Ex: 2110.00",
+  "MERMBERSHIP_PRICE_REQUIRED": "Membership Price is required.",
+  "STATUS_REQUIRED": "Please select status.",
+  "STEP_REQUIRED": "Please select step.",
+  "PASSWORD_REQUIRED": "Password is required.",
+  "OLD_PASSWORD_REQUIRED": "Current password is required.",
+  "CONFIRM_PASSWORD_REQUIRED": "Confirm password is required.",
+  "PASSWORD_CONFIRM_PASSWORD_SAME": "Password Mismatch. Please re-enter your password.",
+  "DOCUMENT_NAME_REQUIRED": "Document name is required.",
+  "DOCUMENT_NAME_INVALID": "Document name invalid.",
+  "LEGAL_NAME_REQUIRED": "Business Legal name is required.",
+  "LEGAL_NAME_MIN_LENGTH": "Business legal name must contain minimum 3 characters and maximum 100 characters.",
+  "COMPANY_NAME_REQUIRED": "Company number is required.",
+  "COMPANY_NAME_MIN_LENGTH": "Company number must contain minimum 3 characters and maximum 50 characters.",
+  "MOBILE_NO_REQUIRED": "Mobile number is required.",
+  "MOBILE_NO_MIN_LENGTH": "Mobile number must contain minimum 5 digits and maximum 10 digits.",
+  "STORE_NAME_REQUIRED": "Store name is required.",
+  "STORE_NAME_MIN_LENGTH": "Store name must contain minimum 3 characters and maximum 100 characters.",
+  "STORE_LOGIN_EMAIL_REQUIRED": "Email address is required.",
+  "NATURE_OF_BUSSINNESS_REQUIRED": "Nature of Business is required.",
+  "NATURE_OF_BUSSINNESS_MIN_LENGTH": "Nature of business must contain minimum 3 characters and maximum 1000 characters.",
+  "CATEGORY_REQUIRED": "Please select categories.",
+  "ADDRESS_REQUIRED": "Address line 1 is required.",
+  "ADDRESS_REQUIRED_MIN_LENGTH": "Address line 1 must contain minimum 3 characters and maximum 100 characters.",
+  "ADDRESS_2_REQUIRED_MIN_LENGTH": "Address line 2 must contain minimum 3 characters and maximum 100 characters.",
+  "COUNTRY_REQUIRED": "Please select country.",
+  "STATE_REQUIRED": "Please select state.",
+  "CITY_REQUIRED": "Please select city.",
+  "ZIP_CODE_REQUIRED": "Zip code is required.",
+  "ZIP_CODE_MIN_LENGTH": "Zip Code must contain minimum 3 characters and maximum 10 characters.",
+  "CONTACT_DESIGNATION_REQUIRED": "Designation is required.",
+  "CONTACT_DESIGNATION_MIN_LENGTH": "Designation must contain 3 characters and maximum 100 characters.",
+  "MOBILE1_REQUIRED": "Mobile number is required.",
+  "MOBILE1_MIN_LENGTH": "Mobile number must contain minimum  5 digits and maximum 10 digits.",
+  "MOBILE2_REQUIRED": "Mobile number is required.",
+  "MOBILE2_MIN_LENGTH": "Mobile number must contain minimum  5 digits and maximum 10 digits.",
+  "TELEPHONE_REQUIRED": "Telephone is required.",
+  "TELEPHONE_MIN_LENGTH": "Telephone must contain minimum 5 digits and maximum 10 digits.",
+  "EXTENSION_REQUIRED": "Extension is required.",
+  "EXTENSION_MIN_LENGTH": "Extension must contain minimum 1 digit and maximum 5 digits.",
+  "CONTACT_PERSON_REQUIRED": "Contact Person is required.",
+  "CONTACT_PERSON_MIN_LENGTH": "Contact Person must contain minimum 3 characters and maximum 100 characters.",
+  "DESIGNATION_REQUIRED": "Designation is required.",
+  "DESIGNATION_MIN_LENGTH": "Designation must contain minimum 3 characters and maximum 100 characters.",
+  "PHONE1_REQUIRED": "Mobile number is required.",
+  "PHONE1_MIN_LENGTH": "Mobile number must contain minimum 5 digits and maximum 10 digits.",
+  "PHONE2_REQUIRED": "Mobile number is required.",
+  "PHONE2_MIN_LENGTH": "Mobile number must contain minimum 5 digits and maximum 10 digits.",
+  "REPRESENTATIVE_NAME_REQUIRED": "Merchant's Representative name is required.",
+  "REPRESENTATIVE_NAME_MIN_LENGTH": "Merchant’s representative name must contain minimum 3 characters and maximum 100 characters.",
+  "DELIVERY_MODE_NORMAL_REQUIRED": "Please select one of the delivery mode.",
+  "DELIVERY_MODE_NORMAL_FROZEN": "Please select one of the delivery mode.",
+  "DELIVERY_MODE_NORMAL_MERCHANT": "Please select one of the delivery mode.",
+  "DELIVERY_MODE_NORMAL_OTHER": "Please select one of the delivery mode.",
+  "OTHER_DETAIL_REQUIRED": "Other delivery mode is required.",
+  "OTHER_DETAIL_LENGTH": "Other delivery mode must contain minimum 3 characters and maximum 100 characters.",
+  "ESTIMATED_SKU_REQUIRED": "Estimate SKUs is required.",
+  "ESTIMATED_SKU_LENGTH": "Estimate SKUs must contain minimum 1 digit and maximum 10 digit.",
+  "SHIPPING_FEE_REQUIRED": "Please select shipping fee (included).",
+  "PRIMARY_CATEGORY_REQUIRED": "Please select primary category(s)",
+  "SECONDARY_CATEGORY_REQUIRED": "Please select secondary category(s)",
+  "PRODUCT_REVENU_CATEGORY": "Please select category(s)",
+  "PRODUCT_REVENU_PRODUCT": "Please select number of products you want to sell.",
+  "SCHEME_REQUIRED": "Please select scheme.",
+  "GLOBAL_PLATFORM_B2C_REQUIRED": "Registration fee is required for {{sectionName}}.",
+  "GLOBAL_PLATFORM_B2C_MIN_LENGTH": "Registration fee must contain minimum 1 digit and maximum 10 digits for {{sectionName}}.",
+  "AGREEMENT_PLATFORM_B2C_REQUIRED": "Agreement period must contain only numbers.",
+  "AGREEMENT_PLATFORM_B2C_MIN_LENGTH": "Agreement period must contain minimum 1 digit and maximum 10 digits.",
+  "GLOBAL_PLATFORM_B2B_REQUIRED": "Registration fee is required for {{sectionName}}.",
+  "GLOBAL_PLATFORM_B2B_MIN_LENGTH": "Registration fee must contain minimum 1 digit and maximum 10 digits for {{sectionName}}",
+  "AGREEMENT_PERIOD_B2B_MIN_LENGTH": "Agreement period must contain minimum 1 digit and maximum 10 digits.",
+  "GLOBAL_PLATFORM_B2C_PERCENTAGE_REQUIRED": "Transaction fee is required for {{sectionName}}",
+  "GLOBAL_PLATFORM_B2C_PERCENTAGE_MIN_LENGTH": "Transaction fee must contain minimum 1 digit and maximum 10 digits for {{sectionName}}.",
+  "GLOBAL_PLATFORM_B2B_PERCENTAGE_REQUIRED": "Transaction fee is required for {{sectionName}}.",
+  "GLOBAL_PLATFORM_B2B_PERCENTAGE_MIN_LENGTH": "Transaction fee must contain minimum 1 digit and maximum 10 digits for {{sectionName}}.",
+  "PRODUCT_REMARK": "Remark fee must contain minimum 3 characters and maximum 1000 characters for {{sectionName}}",
+  "SHIPPING_REQUIRED": "Please select Shipping Fee",
+  "PLATFORM_TYPE_REQUIRED": "Please select one platform.",
+  "DOCUMENT_TYPE_REQUIRED": "Document type is required.",
+  "ONE_DOCUMENT_REQUIRED": "Minimum one document required for each document type.",
+  "REGISTRATION_FEE_B2C_REQUIRED": "Registration Fee B2C is required.",
+  "REGISTRATION_FEE_B2B_REQUIRED": "Registration Fee B2B is required.",
+  "TRANSACTION_FEE_B2C_REQUIRED": "Transaction Fee B2C is required.",
+  "TRANSACTION_FEE_B2B_REQUIRED": "Transaction Fee B2B is required.",
+  "AGREEMENT_PERIOD_B2B_REQUIRED": "B2B Agreement period is required.",
+  "BANK_NAME_REQUIRED": "Bank name is required.",
+  "BANK_NAME_MIN_LENGTH": "Bank name must contain minimum 3 characters and maximum 100 characters.",
+  "BRANCH_NAME_REQUIRED": "Branch name is required",
+  "BRANCH_NAME_MIN_LENGTH": "Branch name must contain minimum 3 characters and maximum 100 characters.",
+  "ACCOUNT_NUMBER_REQUIRED": "Account number is required.",
+  "ACCOUNT_NUMBER_MIN_LENGTH": "Account number must contain minimum 3 digits and maximum 100 digits.",
+  "ROUTING_NUMBER_REQUIRED": "Routing number is required.",
+  "ROUTING_NUMBER_MIN_LENGTH": "Routing number must contain minimum 3 characters and maximum 100 characters.",
+  "BANK_ADDRESS_REQUIRED": "Bank address is required.",
+  "BANK_ADDRESS_MIN_LENGTH": "Bank address must contain minimum 3 characters and maximum 200 characters.",
+  "SWIFT_CODE_REQUIRED": "SWIFT/IFSC code is required.",
+  "SWIFT_CODE_LENGTH": "Swift/IFSC Code must contain minimum 3 characters and maximum 30 characters.",
+  "COMPANY_NAME_UNDER_BANK_REQUIRED": "Company name is required.",
+  "COMPANY_NAME_UNDER_BANK_MIN_LENGTH": "Company name must contain minimum 3 characters and maximum 100 characters.",
+  "GST_VALUE_REQUIRED": "Tax state is required.",
+  "GST_VALUE_MIN_LENGTH": "Tax state must contain minimum 3 characters and maximum 100 characters.",
+  "GST_VAT_REQUIRED": "GST/VAT number is required.",
+  "GST_VAT_MIN_LENGTH": "GST/VAT Number must contain minimum 3 characters and maximum 100 characters.",
+  "APPLICANT_REQUIRED": "Name is required",
+  "APPLICANT_MIN_LENGTH": "Name must contain minimum 3 characters and maximum 100 characters.",
+  "MERCHANT_SCHEME_REQUIRED": "Please select Merchant scheme.",
+  "CONTACT_NAME_REQUIRED": "Contact name is required.",
+  "CONTACT_NAME_MIN_LENGTH": "Contact name must contain minimum 3 characters and maximum 100 characters.",
+  "CONTACT_NUMBER_REQUIRED": "Contact number is required.",
+  "CONTACT_NUMBER_MIN_LENGTH": "Contact number must contain minimum 5 digits and maximum 10 digits.",
+  "SUB_CATEGORY_REQUIRED": "Please select categories.",
+  "ANNUAL_TURNOVER_REQUIRED": "Please select annual turnover.",
+  "PRODUCT_WANT_TO_SELL_REQUIRED": "Please select number of products.",
+  "SELL_OTHER_WEBSITE_REQUIRED": "Website URL is not valid. Ex: http://www.example.com",
+  "SELL_SELECT_OTHER_WEBSITE_REQUIRED": "Please select",
+  "VALID_WEBSITE_REQUIRED": "Website URL is required.",
+  "PAGE_NOT_FOUND": "Page Not Found !",
+  "PAGE_NOT_FOUND_DESC": "YOU SEEM TO BE TRYING TO FIND HIS WAY HOME.",
+  "BACK_TO_HOME": "Back to home.",
+  "DOCUMENT_TYPE_ADDED": "Document type added successfully.",
+  "SCHEME_ADDED": "Scheme added successfully.",
+  "SCHEME_DELETED": "Scheme deleted successfully.",
+  "DELIVERY_MODE_REQUIRED": "Delivery Mode – Others is required.",
+  "MAX_FILE_SIZE_EXCEED": "Please upload documents max upto 10MB.",
+  "FILE_FORMAT_EXCEPTED": "Invalid document type. Supported document formats are: jpg, jpeg, png, doc, docx, pdf, odt, txt.",
+  "FILE_FORMAT_SIGNATURE_EXCEPTED": "Invalid document type. Supported document formats are: jpg, jpeg, png",
+  "ONE_DOCUMET_REQUIRED": "Minimum one document required for each document type.",
+  "FEE_DETAIL_REMOVED_SUCCESSFULLY": "Fee details removed successfully.",
+  "UPDATED_SUCCESSFULLY": "Updated successfully.",
+  "ADDED_SUCCESSFULLY": "Added successfully.",
+  "DELETED_SUCCESSFULLY": "Deleted successfully.",
+  "PROFILE_SUCCESSFULLY": "Profile updated successfully.",
+  "ROLE_UPDATED_SUCCESSFULLY": "Role updated successfully.",
+  "USER_DELETED_SUCCESSFULLY": "User deleted successfully.",
+  "USER_ADDED_SUCCESSFULLY": "User added successfully.",
+  "USER_UPDATED_SUCCESSFULLY": "User updated successfully.",
+  "CERTIFICATE_ADDED_SUCCESSFULLY": "Certificate added successfully.",
+  "CERTIFICATE_UPDATED_SUCCESSFULLY": "Certificate updated successfully.",
+  "CERTIFICATE_DELETED_SUCCESSFULLY": "Certificate deleted successfully.",
+  "INVALID_INPUT": "Invalid input.",
+  "ROLE_DELETED_SUCCESSFULLY": "Role deleted successfully.",
+  "SCHEME_DELETED_SUCCESSFULLY": "Scheme deleted successfully.",
+  "MERCHANT_DELETED_SUCCESSFULLY": "Merchant deleted successfully.",
+  "DOCUMENT_DELETED_SUCCESSFULLY": "Document deleted successfully.",
+  "PHONE_NO1_REQUIRED": "Phone number1 is required.",
+  "SAVE_AT_LEAST_ONE_RECORD": "Please save at least one record",
+  "ADDRESS_DETAIL_REMOVED_SUCCESSFULLY": "Address details removed successfully.",
+  "NO_RECORD_SELECTED_FOR_EXPORT": "Please select rows to export.",
+  "COUNTRY_CODE_REQUIRED": "Country code is required.",
+  "COUNTRY_CODE_MIN_LENGTH": "Country code must contain 2 characters ISO code.",
+  "COUNTRY_NAME_REQUIRED": "Country name is required.",
+  "COUNTRY_NAME_MIN_LENGTH": "Country name must contain minimum 2 characters and maximum 50 characters.",
+  "COUNTRY_NAME_ALPHANUMERIC": "Country name must contain alphabets.",
+  "COUNTRY_CODE_ALPHANUMERIC": "Country code must contain alphabets.",
+  "MINIMUM_CHAR_1": "Field must contain 1 characters.",
+  "MINIMUM_CHAR_3": "Field must contain 3 characters.",
+  "MINIMUM_CHAR_5": "Field must contain 5 characters.",
+  "COUNTRY_UPDATED_SUCCESSFULLY": "Country updated successfully.",
+  "COUNTRY_DELETED_SUCCESSFULLY": "Country deleted successfully.",
+  "GROUP_NAME_REQUIRED": "Group name is required.",
+  "GROUP_NAME_MIN_LENGTH": "Group name must contain minimum 3 characters and maximum 100 characters.",
+  "GROUP_NAME_ALPHANUMERIC": "Group name must contain alphabets or numbers.",
+  "COUNTRIES_IS_REQUIRED": "Please select countries.",
+  "GROUP_UPDATED_SUCCESSFULLY": "Group updated successfully.",
+  "GROUP_DELETED_SUCCESSFULLY": "Group deleted successfully.",
+  "SCHEME_NAME_MIN_LENGTH": "Scheme name must contain minimum 3 characters and maximum 100 characters.",
+  "SCHEME_NAME_ALPHANUMERIC": "Scheme name must contain alphabets or numbers.",
+  "SCHEME_TYPE_REQUIRED": "Please select scheme type.",
+  "REGISTARTION_FEE_B2C_REQUIRED": "B2C registration fee is required.",
+  "REGISTARTION_FEE_B2B_REQUIRED": "B2B registration fee is required.",
+  "REGISTARTION_FEE_B2C_NUMERIC": "B2C registration fee must contain 2 digits after decimal for {{sectionName}}.",
+  "REGISTARTION_FEE_B2B_NUMERIC": "B2B registration fee must contain 2 digits after decimal for {{sectionName}}.",
+  "REGISTARTION_FEE_B2C_MIN_LENGTH": "B2C transaction fee must contain minimum 1 digit.",
+  "REGISTARTION_FEE_B2B_MIN_LENGTH": "B2B transaction fee must contain minimum 1 digit.",
+  "AGREEMENT_PERIOD_B2C_REQUIRED": "B2C Agreement period is required.",
+  "AGREEMENT_PERIOD_B2C_NUMERIC": "Agreement period must contain numbers.",
+  "AGREEMENT_PERIOD_B2B_NUMERIC": "Agreement period must contain numbers.",
+  "TRANSECTION_FEE_B2C_REQUIRED": "B2C transaction fee is required.",
+  "TRANSECTION_FEE_B2B_REQUIRED": "B2B transaction fee is required.",
+  "TRANSECTION_FEE_B2C_NUMERIC": "B2C transaction fee must contain 2 digits after decimal for {{sectionName}}.",
+  "TRANSECTION_FEE_B2B_NUMERIC": "B2B transaction fee must contain 2 digits after decimal for {{sectionName}}.",
+  "TRANSECTION_FEE_B2C_MIN_LENGTH": "B2C transaction fee must contain minimum 1 digit.",
+  "TRANSECTION_FEE_B2B_MIN_LENGTH": "B2B transaction fee must contain minimum 1 digit.",
+  "REMARKS_MIN_LENGTH": "Remarks must contain minimum 3 characters and maximum 1000 characters.",
+  "ACCESS_DENIED": "Access denied. You are not authorized to view this page.",
+  "CATEGORY_UPDATED_SUCCESSFULLY": "Catagory updated successfully.",
+  "CATEGORY_DELETED_SUCCESSFULLY": "Catagory deleted successfully.",
+  "BRAND_UPDATED_SUCCESSFULLY": "Brand updated successfully.",
+  "BRAND_DELETED_SUCCESSFULLY": "Brand deleted successfully.",
+  "BRAND_DATES_ERROR": "End date should be greater than Start date.",
+  "SCHEME_UPDATED_SUCCESSFULLY": "Scheme updated successfully.",
+  "SCHEME_SAVED_SUCCESSFULLY": "Scheme saved successfully.",
+  "SELECT_ONE_PLATFORM": "Please select one platform.",
+  "SELECT_GROUP_COUNTRY": "Please select any group or country.",
+  "DOMESTIC_GLOBAL_SUBMIT": "Submit Domestic and Global Platform",
+  "DOMESTIC_PLATFORM_SUBMIT": "Submit Domestic Platform",
+  "GLOBAL_PLATFORM_SUBMIT": "Submit Global Platform",
+  "PLS_COMPLETE_REQD_FIELD": "Please complete required fields for {{name}}.",
+  "DELIVERY_MODE_REQUIRED": "Please select one of the delivery mode for {{name}}.",
+  "PLS_COMPLETE_ADDRESS_REQD": "Please select at least one address  for {{name}}.",
+  "AUTHORIZED_SIGNATURE_IMAGE": "Please upload signature image max upto 10MB.",
+  "ASSIGN_SALESPERSON_SUCCESSFULLY": "Sales Person assigned successfully.",
+  "ASSIGN_SALESPERSON_REQUIRED": "Please select sales person.",
+  "PLS_SAVE_FIELDS_TO_CONTINUE": "Please save changes for {{name}}.",
+  "MERCHENT_IMPORT_FILE": "Please choose csv file.",
+  "MERCHENT_IMPORT_FILE_TYPE": "Invalid document type. Please upload csv file only.",
+  "MERCHENT_IMPORT_FILE_SIZE_LIMIT": "Please upload import file max upto 10MB",
+  "MERCHENT_IMPORT_SERVER": "Please select server.",
+  "MERCHENT_MESSAGE": "Total of {{count}} merchants are imported/updated on {{ServerName}}.",
+  "CATEGORY_NAME_REQUIRED": "Category name is required.",
+  "CATEGORY_NAME_MIN_LENGTH": "Category name must contain minimum 3 characters and maximum 100 characters.",
+  "CATEGORY_NAME_ALPHANUMERIC": "Category name must contain alphabets and numbers.",
+  "CATEGORY_BG_COLOR": "Color codes with start with # and max 6 digits.",
+  "CATEGORY_SORTORDER_MIN_LENGTH": "Sort order must contain minimum 1 character and maximum 10 characters.",
+  "CATEGORY_SORTORDER_NUMERIC": "Sort order must contain numbers.",
+  "HALAL_REQUIRED": "Please select halal.",
+  "COLOR_CODE": "Please enter valid color code.",
+  "GREATER_THEN_ZERO":"Please enter value greater then Zero.",
+  "MAX_FILE_SIZE": "Please upload image max upto {0}.",
+  "FILE_FORMAT_EXCEPTED":"Invalid image type.Supported image formats are:jpg, jpeg, png",
+  "CURRENCY_MIN_LENGTH": "Currency Symbol must contain minimum 1 characters and maximum 5 characters.",
+  "CURRENCY_NAME_REQUIRED": "Please select currency.",
+  "CURRENCY_SYMBOL_REQUIRED": "Currency symbol is required.",
+  "CURRENCY_SYMBOL_INVALID": "Symbol must contain alphabets or numbers or currency symbols.",
+  "CURRENCY_UPDATED_SUCCESSFULLY": "Currency updated successfully.",
+  "CURRENCY_DELETED_SUCCESSFULLY": "Currency deleted successfully.",
+  "MANAGE_CERTIFICATE_CERTIFICATE_NAME_REQUIRED": "Please select the certificate status.",
+  "MANAGE_CERTIFICATE_CERTIFICATE_NAME_ALPHANUMERIC": "Please select the certificate status.",
+  "MANAGE_CERTIFICATE_REQUIRED_REQUIRED": "Please select.",
+  "MANAGE_CERTIFICATE_STATUS_REQUIRED": "Please select the certificate status.",
+  "STATE_NAME_REQUIRED": "State name is required.",
+  "STATE_NAME_LENGTH": "State name must contain minimum 2 characters and maximum 50 characters.",
+  "STATE_NAME_ALPHANUMERIC": "State name must contain alphabets.",
+  "STATE_NAME_EXIST": "State name already exsits for {{countryName}}",
+  "SELECT_COUNTRY": "Please select country.",
+  "STATE_UPDATED_SUCCESSFULLY": "State updated successfully.",
+  "STATE_DELETED_SUCCESSFULLY": "State deleted successfully.",
+  "CITY_NAME_REQUIRED": "City name is required.",
+  "CITY_NAME_ALPHANUMERIC": "City name must contain alphabets.”",
+  "CITY_NAME_LENGTH": "City name must contain minimum 2 characters and maximum 50 characters.",
+  "CITY_NAME_EXIST": "City name already exists for {{stateName}} in {{countryName}}",
+  "FIRST_NAME_MIN_LENGTH": "First name must contain minimum 3 characters and maximum 100 characters.",
+  "LAST_NAME_MIN_LENGTH": "Last name must contain minimum 3 characters and maximum 100 characters.",
+  "PLATFORM_REQUIRED": "Platform is required.",
+  "CUSTOMER_UPDATED_SUCCESSFULLY": "Customer updated successfully.",
+  "CUSTOMER_DELETED_SUCCESSFULLY": "Customer deleted successfully.",
+  "THEME_DELETED_SUCCESSFULLY": "Theme deleted successfully.",
+  "THEME_UPDATED_SUCCESSFULLY": "Theme updated successfully.",
+  "THEME_NAME_REQUIRED": "Theme name is required.",
+  "THEME_NAME_ALPHANUMERIC": "Theme name must contain alphabets or numbers.",
+  "THEME_NAME_LENGTH": "Theme name must contain minimum 3 characters and maximum 100 characters.",
+  "THEME_START_DATE_REQUIRED": "Please select start date.",
+  "THEME_END_DATE_REQUIRED": "Please select end date.",
+  "THEME_BGCOLOR_REQUIRED": "Please select background color.",
+  "THEME_HBGCOLOR_REQUIRED": "Please select header background color.",
+  "THEME_FBGCOLOR_REQUIRED": "Please select font color.",
+  "THEME_STATUS_REQUIRED": "Please select.",
+  "ATTRIBUTE_DELETED_SUCCESSFULLY": "Attribute deleted successfully.",
+  "ATTRIBUTE_UPDATED_SUCCESSFULLY": "Attribute updated successfully.",
+  "ATTRIBUTE_INPUT_TYPE":"Please select input type",
+  "ATTRIBUTE_NAME_REQUIRED": "Label is required.",
+  "ATTRIBUTE_NAME_ALPHANUMERIC": "Label name must contain alphabets or numbers.",
+  "ATTRIBUTE_NAME_LENGTH": "Label must contain minimum 3 characters and maximum 100 characters.",
+  "ATTRIBUTE_VALUE_REQUIRED": "Value is required.",
+  "ATTRIBUTE_SWATCH_REQUIRED": "Please choose color or upload a file.",
+  "ATTRIBUTE_VALUE_ALPHANUMERIC": "Value name must contain alphabets or numbers.",
+  "ATTRIBUTE_VALUE_LENGTH": "Value must contain minimum 3 characters and maximum 100 characters.",
+  "BRAND_NAME_REQUIRED": "Brand name is required.",
+  "BRAND_NAME_ALPHANUMERIC": "Brand name must contain alphabets or numbers”",
+  "BRAND_NAME_LENGTH": "Brand name must contain minimum 3 characters and maximum 100 characters.",
+  "BRAND_START_DATE_REQUIRED": "Please select start date.",
+  "BRAND_END_DATE_REQUIRED": "Please select end date.",
+  "BANNER_NAME_REQUIRED": "Banner name is required.",
+  "BANNER_NAME_ALPHANUMERIC": "Banner name must contain alphabets or numbers.",
+  "BANNER_NAME_LENGTH": "Banner name must contain minimum 3 characters and maximum 100 characters.",
+  "BANNER_START_DATE_REQUIRED": "Please select start date.",
+  "BANNER_END_DATE_REQUIRED": "Please select end date.",
+  "BANNER_DATES_ERROR": "End date should be greater than Start date.",
+  "FILE_FORMAT_BANNER_EXPECTED": "Invalid document type. Supported document formats are: jpg, jpeg, png",
+  "BANNER_WEB_STATUS_REQUIRED": "Please select web status.",
+  "BANNER_MOBILE_STATUS_REQUIRED": "Please select mobile status.",
+  "BANNER_IMAGE_SIZE":"Please upload image of minimum size 100*100px and maximum size 2000*2000px.",
+  "BANNER_DELETED_SUCCESSFULLY": "Banner deleted successfully.",
+  "BANNER_UPDATED_SUCCESSFULLY": "Banner updated successfully.",
+  "BANNER_SORT_ORDER_LENGTH":"Sort order must contain minimum 1 character and maximum 10 characters",
+  "CURRENCY_RATE_REQUIRED" : "Currency rate is required.",
+  "CURRENCY_RATE_MUST_CONTAIN_NUMBER" : "Currency rate must contain only numbers.",
+  "CURRENCY_RATE_LENGTH" : "Currency rate must contain minimum 1 and maximum 10 digits.",
+  "CURRENCY_RATE_DECIMAL" : "Currency rate must contain only two digits after decimal.",
+  "CUSTOMER_REFERRAL_CODE": "Code must contain alphabets or number.",
+  "CUSTOMER_REFERRAL_CODE_MIN_LENGTH": "Code must contain minimum 3 characters and maximum 100 characters.",
+  "TITLE_REQUIRED": "Title is required.",
+  "TITLE_ALPHANUMERIC": "Title must contain alphabets and numbers.",
+  "TITLE_LENGTH": "Title must contain minimum 3 characters and maximum 100 characters.",
+  "TOPIC_REQUIRED": "Topic is required.",
+  "TOPIC_ALPHANUMERIC": "Topic must contain alphabets and numbers.",
+  "TOPIC_LENGTH": "Topic must contain minimum 3 characters and maximum 100 characters.",
+  "WEBSITE_URL_LENGTH": "Website URL must contain maximum 100 characters.",
+  "TRAINING_VIDEOS_ADDED_SUCCESSFULLY": "Certificate added successfully.",
+  "TRAINING_VIDEOS_UPDATED_SUCCESSFULLY": "Training video updated successfully.",
+  "TRAINING_VIDEOS_DELETED_SUCCESSFULLY": "Training video deleted successfully."
+}

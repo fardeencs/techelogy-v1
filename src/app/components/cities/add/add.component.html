@@ -1,0 +1,76 @@
+<div class="card  box-shadow action-button--top text-right">
+  <div class="search-filter-header text-right">
+    <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+      <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+    </button>
+    <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+      {{'COMMON.BUTTONS.CANCEL'| translate }}
+    </button>
+    <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.DELETE'| translate }}" (click)="onDelete()" *ngIf="citiesToken && getPermissionStatus(permissions, PERMISSION_ACTION.CITIES.DELETE)">
+      {{'COMMON.BUTTONS.DELETE'| translate }}
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <form class="form-horizontal m-t-10" #citiesForm="ngForm" #citiesForm id="citiesForm" [formGroup]="cities.citiesFormGroup">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>{{'CITIES.FORM_LABELS.COUNTRY'| translate }} <span class="form-field-required">*</span></label>
+            <select class="form-control" (ngModelChange)="getStateList($event, true)" formControlName="countryName">
+                <option value="">{{'COMMON.LABELS.SELECT_COUNTRY' | translate }}</option>
+                <option *ngFor ="let country of countryList" [attr.value]="country.countryName">
+                {{country['countryName']}}
+              </option>
+            </select>
+            <control-messages 
+                [control]="cities.citiesFormGroup.controls.countryName"
+                [messages]="cities.validateRules.messages.countryName">
+            </control-messages>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'CITIES.FORM_LABELS.STATE'| translate }} <span class="form-field-required">*</span></label>
+            <select class="form-control" formControlName="stateId">
+              <option value="">{{'COMMON.LABELS.SELECT_STATE' | translate }}</option>
+              <option *ngFor="let state of stateList; let i =index" [attr.value]="state.stateId" [selected]="state.stateId == cities.citiesFormGroup.controls.stateId.value">
+                {{state.stateName}}
+              </option>
+            </select>
+            <control-messages 
+                [control]="cities.citiesFormGroup.controls.stateId"
+                [messages]="cities.validateRules.messages.stateId">
+            </control-messages>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'CITIES.FORM_LABELS.NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" class="form-control" formControlName="cityName">
+            <control-messages 
+                [control]="cities.citiesFormGroup.controls.cityName"
+                [messages]="cities.validateRules.messages.cityName">
+            </control-messages>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'COMMON.LABELS.STATUS'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" formControlName="isActive">
+              <option *ngFor="let status of STATUS_OPTIONS;" [value]="status.value">{{ status.label }}</option>
+            </select>
+            <control-messages 
+                [control]="cities.citiesFormGroup.controls.isActive"
+                [messages]="cities.validateRules.messages.isActive">
+            </control-messages>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="action()">{{'COMMON.BUTTONS.SAVE' | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

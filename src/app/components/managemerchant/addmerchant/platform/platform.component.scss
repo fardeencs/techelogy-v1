@@ -1,0 +1,26 @@
+
+/* Select Platform Type  */
+.select-platform__item {
+    padding-top: 15px;
+    margin-bottom: 5px;
+    border: 1px solid rgb(219, 219, 219);
+    transition: background 0.2s  ease-in;
+    &:hover{
+        background:rgb(241, 241, 241);
+    }
+}
+
+/* Group and Country  */
+.groups-countries{
+    h5{
+        margin-bottom: 0px;
+    }
+    small{
+        color: rgb(125, 125, 125);
+    }
+}
+
+.disable-accordion{
+  opacity:0.4;
+  pointer-events: none;
+}

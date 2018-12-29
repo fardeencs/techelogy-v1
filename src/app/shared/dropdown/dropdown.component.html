@@ -1,0 +1,31 @@
+
+<div *ngIf="!treeview">   
+    <ng-select
+    #dropdown
+    [name]="name"
+    [searchable]="searchable"
+    [items]="data"
+    [bindLabel]="bindLabel"
+    [bindValue]="bindValue"
+    [(ngModel)]="value"
+    [placeholder]="placeholder"
+    [multiple]="multiple">
+    </ng-select>
+</div>
+
+
+
+
+<div *ngIf="treeview">   
+    <treeview-dropdown 
+    [config]="config" 
+    [items]="items" 
+    [disabled]="!dropdownEnabled"
+    [itemTemplate]="itemTemplate" 
+    [buttonClass]="buttonClass" 
+    (selectedChange)="onSelectedChange($event)"
+    [ngxDisabledOnSelector]="'button.dropdown-toggle'" 
+    (filterChange)="onFilterChange($event)">
+ </treeview-dropdown>
+
+</div>

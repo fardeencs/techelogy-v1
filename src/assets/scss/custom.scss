@@ -1,0 +1,612 @@
+/*----------------------
+  dashboard income info
+-----------------------*/
+.card-income-info{
+  .income-icon{
+    font-size:16px;
+  }
+}
+/*----------------------
+  remove ul list style
+----------------------*/
+.no-list-style{
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+/*----------------------
+  Manage Role list
+----------------------*/
+.role-list{
+  list-style-type: none;
+  padding-left: 0px;
+  ul {
+    list-style-type: none;
+  }
+}
+
+/*----------------------
+  Page Not Found
+----------------------*/
+.error-box {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
+
+.error-box .footer {
+  width: 100%;
+  left: 0px;
+  right: 0px;
+}
+
+.error-body {
+  padding-top: 5%;
+
+}
+.error-body p{
+  font-weight: 400;
+}
+
+.error-body h1 {
+  font-size: 210px;
+  font-weight: 900;
+  color: #ff0000;
+  text-shadow: 4px 4px 0 #ffffff, 6px 6px 0 #ff0000;
+  line-height: 210px;
+}
+
+.error-body h3 {
+  color: #ff0000;
+}
+
+
+/*----------------------
+  Search Filter & Top action button
+----------------------*/
+.action-button--top{
+  padding: 0px 10px;
+  width: 100%;
+}
+// .search-filter{
+
+// }
+.search-filter-header{
+  margin: 10px 0px;
+  .dropdown{
+   .dropdown-toggle{
+      min-width: 170px;
+      padding-right: 30px;
+      text-align: left;
+      margin-right: 0px;
+      &::after {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+      }
+    }
+  }
+  .btn{
+    &:not(:last-child){
+      margin-right: 5px;
+    }
+  }
+}
+
+/*--------------------
+    Action Button
+  ----------------------*/
+
+  .action-button{
+    .btn{
+      margin-bottom: 5px;
+      &:not(:last-child){
+        margin-right: 5px;
+      }
+    }
+  }
+
+
+/*------------------------------
+  Action Dropdown Action Menu
+--------------------------------*/
+
+.action-dropdown{
+  .dropdown-menu{
+    border-radius: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+}
+.dropdown-item{
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
+  &:hover,
+  &:active{
+    background: #f1f1f1;
+    color: #888888;
+  }
+  &.disabled{
+    opacity: 0.2;
+    cursor: default;
+  }
+}
+/*------------------------
+  box shadow
+--------------------------*/
+.box-shadow{
+  box-shadow: 0px 2px 7px 0px #e2e2ee;
+}
+
+/*-----------------------------------------
+  Tab-sidebar  & Tab-contentdetail
+-------------------------------------------*/
+.tab-sidebar{
+  background: $tab-sidebar-color;
+  padding:0px 0px 150px 0px;
+  min-width: 240px;
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link{
+      background: $white;
+      color:$tab-sidebar-color;
+      border-color:$white;
+      font-weight: 600;
+  }
+  .nav-pills .nav-link{
+      border-radius: 0px;
+      font-weight: 400;
+      color: $white;
+      font-size: 14px;
+      padding: 10px 30px;
+      cursor: pointer;
+      border-bottom: 1px solid $tab-border-color;
+      &:not(.active):hover{
+          background: $tab-hover-color;
+          color:$white;
+      }
+      .step-icon{
+        display: none;
+      }
+      &.nav-link-disabled{
+        background: $tab-hover-color;
+        color:$white;
+        opacity: 0.5;
+        cursor:not-allowed;
+      }
+  }
+}
+.tab-contentdetail{
+  background-color: $white;
+  .tab-content{
+      padding:15px 30px 30px 30px;
+  }
+}
+
+/*--------------------
+  custom-upload-file
+----------------------*/
+.custom-upload-file{
+  input[type="file"]{
+    opacity: 0px;
+    display: none;
+  }
+}
+
+/*------------------
+  select-language
+-------------------*/
+.select-language{
+  background: transparent;
+  color: $white;
+  border: 1px solid $white;
+  padding: 2px 5px;
+  option{
+    color: $bodytext;
+  }
+}
+
+/* ------------------
+  Date Picker Style
+--------------------*/
+bs-datepicker-container,
+bs-daterangepicker-container {
+  z-index: 900 !important;
+}
+.bs-datepicker-head{
+  background: transparent !important;
+}
+.bs-datepicker-head button.next span,
+.bs-datepicker-head button.previous span{
+  line-height: 24px;
+}
+.bs-datepicker-body{
+  font-weight: 500;
+}
+.bs-datepicker-head button,
+.bs-datepicker-body table th,
+.bs-datepicker-body table td{
+  color: $bodytext !important;
+}
+
+/* Select Delivery, scheme & fee details for Global Platform */
+accordion-group.panel{
+  .card{
+      margin-bottom: 15px;
+      border: none;
+  }
+  .card-header{
+    border-bottom: 0px;
+  }
+  .accordion-icon{
+    transition: all 0.7s ease;
+  }
+  &.panel-open{
+    .card-body{
+     border: 1px solid rgba(0, 0, 0, 0.125);
+     border-top: 0px;
+    }
+    .accordion-icon{
+      transform: rotate(90deg);
+    }
+  }
+  .card-header{
+    padding: 0px 15px;
+  }
+  .card-header-title{
+    padding: 0.75rem 5px 0.75rem 2px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    &.border-danger{
+      border-color:$danger;
+    }
+  }
+}
+accordion-group .panel-title{
+  cursor: pointer;
+  .btn{
+      padding-top: 0px;
+      padding-bottom:0px;
+  }
+}
+
+/* fieldset & legend */
+fieldset {
+  min-width: auto;
+  padding: 0px 15px 0;
+  margin: 0px 0px 15px;
+  border: 1px solid rgb(204, 204, 204);
+}
+
+legend {
+  display: inline-block;
+  width: auto;
+  padding: 0 15px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+  color: #484b4e;
+}
+
+/* pickup address  */
+.pickup-address{
+  .pickup-address__list{
+    margin: 0px 0px 2px 0px;
+    // background: #f1f1f1;
+    padding: 8px 0px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    &:last-child{
+      margin-bottom: 15px;
+      border-bottom: 0px;
+    }
+  }
+}
+
+/* Badge */
+
+@each $status, $color in
+(New,#5fd0ff),
+(Rejected,#b80d12),
+(Active,#8cb726),
+(Approved,#8cb726),
+(In,#ffc107),
+(Incorrect,#ff6065),
+(Inactive,#777777),
+(L1, #e6ba00),
+(L2,#e6ba00),
+(Draft,#b5b5b5),
+(default,#777777)
+{
+  .badge-#{$status} {
+    background: $color;
+    color:#fff;
+  }
+}
+
+.badge{
+  font-size: 13px;
+}
+.read-only-color {
+  background: #FFF !important;
+  opacity: 1 !important;
+}
+
+/* upload document list */
+.upload-document{
+  padding: 15px 15px;
+  border: 1px solid $file_border_color;
+  transition: all 0.2s linear;
+  margin-bottom: 15px;
+  &:hover{
+      box-shadow: 0px 2px 5px 1px $file_box_color;
+  }
+  a{
+      color: $file_text_color;
+      &:hover{
+          color: $file_text_hover_color;
+      }
+  }
+
+}
+.document-list__item {
+  position: relative;
+  border: 1px solid $file_border_color;
+  background:$file_bg_color;
+
+  .file-icon,
+  .file-image{
+      display:inline-block;
+  }
+  .btn-download-file,
+  .btn-delete-file {
+      padding:4px 10px;
+      font-size: 20px;
+  }
+  a.file-icon,
+  a.file-image{
+    border-bottom: 0px;
+    color:$file_text_color;
+  }
+}
+
+.upload-document-grid{
+  display: inline-block;
+  width: 100%;
+  .file-icon{
+      width: $file_width;
+      height: $file_height;
+      display: inline-block;
+      text-align: center;
+      line-height: 150px;
+      border-radius: 0;
+      font-size: 60px;
+      border-bottom: 1px solid $file_border_color;
+      background: $file_color_white;
+  }
+
+  .file-image{
+      width: $file_width;
+      height:$file_height;
+      object-fit: contain;
+      border-bottom: 1px solid $file_border_color;
+  }
+  .document-list__item {
+    margin: 0px 10px 10px 0px;
+    float: left;
+    text-align: center;
+    .file-icon,
+    .file-image{
+        display:block;
+    }
+    .btn-download-file,
+    .btn-delete-file {
+      padding: 2px 7px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      margin: 5px 5px;
+      transition: all 0.25s ease;
+    }
+    &:hover{
+      box-shadow: 0px 5px 15px 1px $file_box_color;
+      background: $file_color_white;
+      .btn-download-file,
+      .btn-delete-file {
+        border: 1px solid $file_border_color;
+        background:$file_bg_color;
+      }
+    }
+  }
+  .document-name{
+    width: $file_width;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    padding: 5px;
+    background: $file_color_white;
+    border-bottom: 1px solid $file_border_color;
+  }
+}
+
+.upload-document-list{
+  display: inline-block;
+  width: 100%;
+  .document-list__item {
+    padding: 10px 6px;
+    margin-bottom: 10px;
+    .file-icon,
+    .file-image{
+      font-size: 20px;
+      width: 36px;
+      height: 36px;
+      text-align: center;
+      border-radius: 50%;
+      border: 1px solid $file_border_color;
+      background: $file_bg_color;
+      margin: 0px 5px;
+    }
+    .file-icon{
+      line-height: 36px;
+    }
+    .file-image{
+      line-height: normal;
+    }
+    .file-name{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .btn-download-file,
+    .btn-delete-file {
+      padding: 2px 7px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      margin: 0px 5px;
+      transition: all 0.25s ease;
+    }
+    &:hover{
+      box-shadow: 0px 5px 15px 1px $file_box_color;
+      background: $file_color_white;
+      .btn-download-file,
+      .btn-delete-file {
+        border: 1px solid $file_border_color;
+        background:$file_bg_color;
+      }
+    }
+  }
+}
+@media(max-width:767px){
+  .upload-document-grid{
+    display: inline-block;
+    width: 100%;
+    .file-icon,
+    .file-image{
+        width: 100%;
+    }
+    .document-list__item {
+      margin: 0px 0px 10px 0px;
+      width: 100%;
+      float: left;
+      text-align: center;
+      .file-icon,
+      .file-image{
+          display:block;
+      }
+      .btn-download-file,
+      .btn-delete-file {
+        padding: 2px 7px;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        margin: 5px 5px;
+        transition: all 0.25s ease;
+      }
+      &:hover{
+        box-shadow: 0px 5px 15px 1px $file_box_color;
+        background: $file_color_white;
+        .btn-download-file,
+        .btn-delete-file {
+          border: 1px solid $file_border_color;
+          background:$file_bg_color;
+        }
+      }
+    }
+    .document-name{
+      width: 100%;
+    }
+  }
+}
+.no-records-found{
+  font-size: 12px;
+  padding: 7px 10px;
+  border-radius: 3px;
+  background: $file_bg_color;
+}
+
+.document-list__type{
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0px;
+}
+
+.csv-file-upload-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 8px 12px;
+  height: 40px;
+  border: 1px solid  rgb(206, 212, 218);
+}
+
+.progress-linear {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 5px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+
+  .container {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 5px;
+    -webkit-transform: translate(0,0) scale(1,1);
+    transform: translate(0,0) scale(1,1);
+    background-color: rgb(170,209,249);
+
+    .bar {
+      transition: all .2s linear;
+      -webkit-animation: query .8s infinite cubic-bezier(.39,.575,.565,1);
+      animation: query .8s infinite cubic-bezier(.39,.575,.565,1);
+
+      transition: -webkit-transform .2s linear;
+      transition: transform .2s linear;
+      background-color: rgb(16,108,200);
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      height: 5px;
+    }
+  }
+}
+
+/* category color preview  */
+.input-color-picker{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  input,
+  .color-code{
+    max-width: 100px;
+  }
+}
+.color-preview{
+  width:50px;
+  height: 38px;
+  border: 1px solid #ccc;
+  margin-right: -1px;
+}
+.color-code{
+  background-color: rgb(233, 236, 239);
+  border: 1px solid #ccc;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  border-radius: 0px;
+  color: rgb(73, 80, 87);
+  padding: 7px 15px;
+}
+.no-color{
+  .color-code{
+    padding: 0;
+    border: 0;
+    background:transparent;
+    color: $bodytext
+  }
+}

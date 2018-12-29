@@ -1,0 +1,279 @@
+<!-- ============================================================== -->
+<!-- Bread crumb and Action Button -->
+<!-- ============================================================== -->
+<div class="card  box-shadow action-button--top">
+  <div class="row">
+    <!-- start Breadcrumb -->
+    <div class="col-lg-5 align-self-center top-breadcrumb-action">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h4 class="text-themecolor m-b-0">{{pageInfo?.title | translate }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb" *ngIf="pageInfo?.urls">
+            <ng-template ngFor let-url [ngForOf]="pageInfo?.urls" let-last="last">
+              <li class="breadcrumb-item" *ngIf="!last" [routerLink]="url.url">
+                <a href='javascript:void(0)'>{{url.title}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">{{url.title}}</li>
+            </ng-template>
+          </ol>
+        </div>
+      </div>
+    </div> <!-- # End Breadcrumb -->
+
+    <!-- start Action Button -->
+    <div class="col-lg-7 align-self-center">
+      <div class="search-filter-header text-right">
+        <button type="button" class="btn btn-inverse px-4" title="{{'COMMON.BUTTONS.BACK'| translate }}" (click)="back()">
+          <i class="mdi mdi-arrow-left mr-2"></i> {{'COMMON.BUTTONS.BACK'| translate }}
+        </button>
+        <button type="button" class="btn btn-inverse px-4" title=" {{'COMMON.BUTTONS.CANCEL'| translate }}" (click)="cancelButtonAction()">
+          {{'COMMON.BUTTONS.CANCEL'| translate }}
+        </button>
+        <!-- <button type="button" class="btn btn-inverse px-4" (click)="onDelete()" *ngIf="categoryToken && getPermissionStatus(permissions, PERMISSION_ACTION.CATEGORY.DELETE)">
+          {{'COMMON.BUTTONS.DELETE'| translate }}
+        </button> -->
+      </div>
+    </div><!-- End Action Button -->
+  </div>
+</div><!-- # End Bread crumb and Action Button -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-body">
+      <form class="form-horizontal m-t-10" #categoryForm="ngForm" id="categoryForm" #categoryForm>
+        <div class="row">
+          <input type="hidden" name="level" [(ngModel)]="category.level" />
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.PARENT_CATEGORY'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <select class="form-control" name="parentId" (change)="onChangePCategory($event)" [(ngModel)]="category.parentId">
+              <option [attr.data-level]="1" [value]="0">{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option [attr.data-level]="pcategory.level" *ngFor="let pcategory of parentCategories;" [value]="pcategory.entityId">{{
+                pcategory.displayName }}</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.CATEGORY_NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="{{'CATEGORY.FORM_LABELS.CATEGORY_NAME'| translate }}" [maxlength]="MAX_LENGTH_CONFIG.TXT_FIELD_DEFAULT"
+              [restrict]="REG_EXP_CONFIG.ALPHANUMERIC_CHARACTER" class="form-control" [(ngModel)]="category.categoryName"
+              name="categoryName" [maxlength]="MAX_LENGTH_CONFIG.MAX_100">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'COUNTRYGROUP.FORM_LABELS.COUNTRIES'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+
+            <ng-select class="custom-select-dd" name="countryIds" [searchable]="true" [items]="countries" [multiple]="true"
+              [closeOnSelect]="false" bindLabel="countryName" bindValue="countryCode" placeholder="Select Countries"
+              [(ngModel)]="selectedCountries" (change)="onCountryChange(selectedCountries)">
+            </ng-select>
+          </div>
+
+
+
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.BG_COLOR'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <div class="input-color-picker">
+              <div class="color-preview" [style.background]="category.backgroundColor"></div>
+              <input type="text" placeholder="#000000" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" [colorPicker]="category.backgroundColor"
+                (colorPickerChange)="category.backgroundColor=$event" [cpCancelButton]="true" readonly class="form-control"
+                [(ngModel)]="category.backgroundColor" name="backgroundColor" [maxlength]="MAX_LENGTH_CONFIG.MAX_7">
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.PRIMARY_SIZE'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <select class="form-control" name="primaryImageSize" [(ngModel)]="category.primaryImageSize">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let size of IMG_SIZE_OPTION;" [value]="size.value">{{ size.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.PRIMARY_URL'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <input type="text" placeholder="" class="form-control" [(ngModel)]="category.primaryImageUrl" name="primaryImageUrl"
+              [maxlength]="MAX_LENGTH_CONFIG.MAX_100">
+          </div>
+
+
+
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.LANDING_PAGE'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <select class="form-control" name="landingPage" [(ngModel)]="category.landingPage">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let status of PAGE_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.HALAL_CATEGORY'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" name="isHalal" [(ngModel)]="category.isHalal">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let status of HALAL_OPTION;" [value]="status.value">{{ status.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.SORT_ORDER'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <input type="text" placeholder="{{'CATEGORY.FORM_LABELS.SORT_ORDER'| translate }}" [restrict]="REG_EXP_CONFIG.NUMERIC"
+              class="form-control" [(ngModel)]="category.sortOrder" name="sortOrder" [maxlength]="MAX_LENGTH_CONFIG.MAX_10">
+          </div>
+
+          <div class="form-group col-sm-6" *ngIf="categoryToken">
+            <label>{{'USER.FORM_LABELS.CREATED_BY_NAME'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <input type="text" placeholder="" readonly class="form-control" [(ngModel)]="category.createdByName" name="createdByName" />
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'CATEGORY.FORM_LABELS.APPROVAL_STATUS'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" name="isApproved" [(ngModel)]="category.isApproved">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let status of APPROVAL_STATUS;" [value]="status.value">{{ status.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label>{{'COMMON.LABELS.STATUS'| translate }}
+              <span class="form-field-required">*</span>
+            </label>
+            <select class="form-control" name="isActive" [(ngModel)]="category.isActive">
+              <option value>{{'COMMON.PLEASE_SELECT'| translate }}</option>
+              <option *ngFor="let page of STATUS_OPTIONS;" [value]="page.value">{{ page.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label>{{'CATEGORY.FORM_LABELS.ICON_IMG'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+
+            <p-fileUpload name="iconImage" multiple="false" [disabled]="category.imageUpload.iconImage || category.iconImage"
+              accept="image/*" auto="true" maxFileWidth="50" maxFileHeight="50" maxFileSize="5000000" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}"
+              invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_EXCEPTED' | translate }}" customUpload="true"
+              (onError)="onError($event)" (onSelect)="onSelect($event,'iconImage')" (uploadHandler)="onFileUpload($event,'iconImage')">
+            </p-fileUpload>
+
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="category.imageUpload.iconImage || category.iconImage">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{ category.iconImageName }}">{{ category.iconImageName }}</div>
+                <a [href]="category.imageUpload.iconImage || category.iconImage" class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button type="button" (click)="onRemove('iconImage')" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label>{{'CATEGORY.FORM_LABELS.MOBILE_IMG'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <p-fileUpload name="mobileImage" multiple="false" [disabled]="category.imageUpload.mobileImage || category.mobileImage"
+              accept="image/*" auto="true" maxFileWidth="500" maxFileHeight="500" maxFileSize="10000000" customUpload="true" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}"
+              invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_EXCEPTED' | translate }}" (onError)="onError($event)"
+              (onSelect)="onSelect($event,'mobileImage')" (uploadHandler)="onFileUpload($event,'mobileImage')">
+            </p-fileUpload>
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="category.imageUpload.mobileImage || category.mobileImage">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{ category.mobileImageName }}">{{ category.mobileImageName }}</div>
+                <a [href]="category.imageUpload.mobileImage || category.mobileImage" class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button type="button" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete" (click)="onRemove('mobileImage')"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label>{{'CATEGORY.FORM_LABELS.BG_IMG'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <p-fileUpload name="backgroundImage" multiple="false" [disabled]="category.imageUpload.backgroundImage || category.backgroundImage"
+              accept="image/*" maxFileWidth="2000" maxFileHeight="2000" auto="true" maxFileSize="10000000" customUpload="true" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}"
+              invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_EXCEPTED' | translate }}" (onError)="onError($event)"
+              (onSelect)="onSelect($event,'backgroundImage')" (uploadHandler)="onFileUpload($event,'backgroundImage')">
+            </p-fileUpload>
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="category.imageUpload.backgroundImage || category.backgroundImage">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{ category.backgroundImageName }}">{{ category.backgroundImageName
+                  }}</div>
+                <a [href]="category.imageUpload.backgroundImage || category.backgroundImage" class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button type="button" (click)="onRemove('backgroundImage')" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label>{{'CATEGORY.FORM_LABELS.PRIMARY_IMG'| translate }}
+              <span class="form-field-required"></span>
+            </label>
+            <p-fileUpload name="primaryImage" multiple="false" [disabled]="category.imageUpload.primaryImage || category.primaryImageArr[0]"
+              accept="image/*" maxFileWidth="2000" maxFileHeight="2000" auto="true" maxFileSize="10000000" customUpload="true" invalidFileSizeMessageDetail="{{ 'MAX_FILE_SIZE' | translate }}"
+              invalidFileTypeMessageDetail="{{ 'FILE_FORMAT_EXCEPTED' | translate }}" (onError)="onError($event)"
+              (onSelect)="onSelect($event,'primaryImage')" (uploadHandler)="onFileUpload($event,'primaryImage')">
+            </p-fileUpload>
+            <div class="upload-document-grid mt-3">
+              <div class="document-list__item" *ngIf="category.imageUpload.primaryImage || category.primaryImageArr[0]">
+                <span class="file-icon">
+                  <i class="mdi mdi-file-image"> </i>
+                </span>
+                <div class="document-name" title="{{ category.primaryImageName }}">{{ category.primaryImageName }}</div>
+                <a [href]="category.imageUpload.primaryImage || category.primaryImageArr[0]" class="btn btn-link btn-download-file">
+                  <i class="mdi mdi-cloud-download"></i>
+                </a>
+                <button (click)="onRemove('primaryImage')" type="button" class="btn btn-link btn-delete-file">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-danger px-4" title="{{'COMMON.BUTTONS.SAVE'| translate }}" (click)="action()">{{'COMMON.BUTTONS.SAVE'
+              | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

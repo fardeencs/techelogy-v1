@@ -1,0 +1,22 @@
+version: 0.1
+environment_variables:
+    plaintext:
+        S3_BUCKET: "uatcidevelopment"
+        BUILD_ENV: "AS Development"
+phases:
+    install:
+        commands:
+            - echo Installing source NPM dependencies
+            - npm install -g @angular/cli
+            - npm install
+    build:
+        commands:
+            - echo Builds started on `date`
+            - ng build --prod --aot
+            - cp appspec.yml dist/
+            - ls -l
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'dist*'
+

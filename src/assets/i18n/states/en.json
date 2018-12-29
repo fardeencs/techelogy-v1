@@ -1,0 +1,12 @@
+{
+  "STATES": {
+    "FORM_LABELS": {
+      "NAME": "State name",
+      "NAME1": "State",
+      "COUNTRY": "Country"
+    },
+    "BUTTONS": {
+      "ADD": "Add State"
+    }
+  }
+}
