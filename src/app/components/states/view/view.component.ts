@@ -143,3 +143,74 @@ export class ViewComponent extends BaseComponent implements OnInit,
     }
   }
 }
+
+/*
+
+//our root app component
+import {Component, NgModule, ViewChild} from '@angular/core'
+import {BrowserModule} from '@angular/platform-browser'
+import {FormsModule, NgForm, FormGroup } from '@angular/forms'
+
+
+@Component({
+  selector: 'my-app',
+  template: `
+    <form #myForm="ngForm" (ngSubmit)="onSubmit($event)">
+      <span *ngFor="let value of values;let i = index">
+       <input type="text" [(ngModel)]="value.text" name="text-{{i}}"/>
+       <br/>
+      </span>
+      <input type="submit" value="Save" [disabled]="!myForm.dirty" />
+    </form>
+    Form dirty - {{ formStatus }}
+  `,
+})
+export class App {
+  values: Model[];
+  @ViewChild('myForm') myForm: FormGroup;
+  private formStatus: boolean;
+  
+  constructor() {
+    this.values = [new Model("1"),new Model("2"),new Model("3")];
+  }
+  
+  ngOnInit() {
+    this.myForm.valueChanges.subscribe(v => this.formStatus = this.myForm.dirty);
+  }
+  
+  onSubmit(event){
+    event.preventDefault();
+    
+    // So here we have 2 options
+    //1. Either to `reset` the form and pass prev form value as a param
+    const { myForm: { value: formValueSnap } } = this; // const formValueSnap = this.myForm.value;
+    this.myForm.reset(formValueSnap, true);
+   
+    //2. Or use helper method to loop through all the controls
+    // and mark them as pristine
+    // this._markFormPristine(this.myForm);
+    
+    this.formStatus = this.myForm.dirty;
+  }
+  
+  private _markFormPristine(form: FormGroup | NgForm): void {
+    Object.keys(form.controls).forEach(control => {
+      form.controls[control].markAsPristine();
+    });
+  }
+}
+
+@NgModule({
+  imports: [ BrowserModule, FormsModule ],
+  declarations: [ App ],
+  bootstrap: [ App ]
+})
+export class AppModule {}
+
+export class Model
+{
+  constructor(public text: string){
+  
+  }
+}
+*/
